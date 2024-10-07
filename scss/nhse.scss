@@ -1,3 +1,9 @@
+/* Import NHSE scss directory partials */
+@import "../node_modules/nhsuk-frontend/packages/nhsuk";
+
+/**
+ * Extra colour mappings fpr Moodle theme
+ */
 $color_nhsuk-dark-blue: #005eb8;
 
 $btn-default-text: $color_nhsuk-black;
@@ -11,10 +17,16 @@ $btn-secondary-text: $color_nhsuk-white;
 $btn-secondary-background: $color_nhsuk-dark-blue;
 $btn-secondary-border: $color_nhsuk-dark-blue;
 
+/* Import NHSE scss directory partials */
+@import "nhse/courseindex";
+@import "nhse/media";
+
+/* Custom components */
+@import "components/button/button";
+
 /**
  * Generic style tweaks
  */
-
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 600;
 }
@@ -28,11 +40,6 @@ ol {
   @extend %nhsuk-list;
   @extend %nhsuk-list--number;
 }
-
-/* Import NHSE scss directory partials */
-
-@import "nhse/courseindex";
-@import "nhse/media";
 
 /**
  * Button styles
@@ -135,7 +142,13 @@ body.limitedwidth {
 }
 
 .drawercontent {
-  height: calc(100% - 124px)
+  height: calc(100% - 124px);
+  h1, h2, h3 {
+    font-size: 1em;
+    margin-bottom: 0;
+    padding: .25rem .5rem;
+    line-height: 1.5;
+  }
 }
 
 .drawers .block_myoverview>.card-body {
@@ -177,6 +190,16 @@ body.limitedwidth {
   height: 20px;
   padding-top:0;
   padding-bottom:0;
+}
+
+.editmode-switch-form {
+  margin-block-start: 0.4em;
+  margin-block-end: 0.6em;
+  .input-group {
+    label {
+      padding-top: 3px;
+    }
+  }
 }
 
 /**
@@ -272,7 +295,7 @@ body.limitedwidth {
 }
 
 /**
- * Header navigation and tabs
+ * Header navigation
  */
 @media (max-width: 40.0525em) {
   .nhsuk-header__container {
@@ -280,21 +303,23 @@ body.limitedwidth {
   }
 }
 
-.nhsuk-header__navigation-link {
-  color: $color_nhsuk-white;
-  white-space: nowrap;
-
-  &:visited {
+.nhsuk-header--white {
+  .nhsuk-header__navigation-link {
     color: $color_nhsuk-white;
-  }
+    white-space: nowrap;
 
-  &.active {
-    border-bottom: 4px solid $color_nhsuk-white;
-  }
+    &:visited {
+      color: $color_nhsuk-white;
+    }
 
-  &:checked {
-    color: $color_nhsuk-black;
-    border-bottom: 4px solid $color_nhsuk-black;
+    &.active {
+      border-bottom: 4px solid $color_nhsuk-white;
+    }
+
+    &:checked {
+      color: $color_nhsuk-black;
+      border-bottom: 4px solid $color_nhsuk-black;
+    }
   }
 }
 
@@ -617,10 +642,6 @@ body.limitedwidth {
   }
 }
 
-.nhsuk-header__service-name {
-  display: none;
-}
-
 .nhsuk-header__navigation-item {
   border-top: none;
 }
@@ -650,9 +671,6 @@ body.limitedwidth {
     .dropdown-toggle::after {
       display: inline-block;
     }
-  }
-  .nhsuk-header__service-name {
-    display: inline-block;
   }
 }
 
