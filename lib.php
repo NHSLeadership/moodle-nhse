@@ -52,11 +52,9 @@ function theme_nhse_get_main_scss_content($theme) {
     /**
      * Load variable overload for bootstrap
      */
-    $scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/bootstrap/overload.scss');
-
-    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/fontawesome.scss');
-    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/bootstrap.scss');
-    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/moodle.scss');
+//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/fontawesome.scss');
+//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/bootstrap.scss');
+//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/moodle.scss');
 
     // Get main theme file and combine them together.
     $scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/nhse/css/nhse.min.css');

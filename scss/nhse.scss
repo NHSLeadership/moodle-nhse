@@ -1,8 +1,17 @@
-/* Import NHSE scss directory partials */
+/* Import the entire NHSUK scss */
 @import "../node_modules/nhsuk-frontend/packages/nhsuk";
+@import "../scss/bootstrap/_config.scss";
+
+@import "../../boost/scss/fontawesome.scss";
+@import "../../boost/scss/bootstrap.scss";
+@import "../../boost/scss/moodle.scss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 /**
- * Extra colour mappings fpr Moodle theme
+ * Extra colour mappings for Moodle
  */
 $color_nhsuk-dark-blue: #005eb8;
 
@@ -45,23 +54,65 @@ ol {
  * Button styles
  */
 .btn {
-  &:not(.btn-close)
-  &:not(.btn-icon)
-  &:not(.btn-link)
-  &:not(.btn-open)
-  &:not(.search-icon)
-  &:not(.dropdown-toggle)
-  &:not(.icon-no-margin) {
+  &:not(
+    .btn-icon,
+    .btn-close,
+    .btn-link,
+    .btn-open,
+    .search-icon,
+    .navbar .dropdown-toggle,
+    .icon-no-margin
+  ) {
     @extend .nhsuk-button--small;
+    box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
+
+  &.disabled {
+    @extend .nhsuk-button--disabled;
+    box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
+  }
+
+  &.active, &.visited {
+    @extend .nhsuk-button--reverse;
+    box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
+  }
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  @extend .nhsuk-button--small;
+  @extend .nhsuk-button--secondary;
+  box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
+  &:visited {
+    color: $nhsuk-reverse-button-color;
+  }
+}
+
+.page {
+  .dropdown-toggle {
+    @extend .nhsuk-button--reverse;
+    box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
+  }
+}
+
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle),
+.btn-group>.btn-group:not(:last-child)>.btn {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 /**
  * Body styles
  */
-body.limitedwidth {
-  #page.drawers .main-inner {
-    max-width: 960px;
+body {
+  background-color: $nhsuk-form-element-background-color;
+  background: none;
+  &.limitedwidth {
+    #page.drawers {
+      .main-inner {
+        max-width: 960px;
+      }
+    }
   }
 }
 
@@ -93,8 +144,11 @@ body.limitedwidth {
   border: none;
   border-radius: 0;
   -moz-border-radius: 0;
-  background-color: $color_nhsuk-grey-5;
   margin: 0;
+  background-color: $color_nhsuk-grey-5;
+  &.course-card {
+    background-color: $color_nhsuk-white;
+  }
 }
 
 .coursebox {
@@ -212,7 +266,9 @@ body.limitedwidth {
   flex-direction: column;
 
   #page {
-    margin-top: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
   }
 
   svg {
@@ -220,8 +276,9 @@ body.limitedwidth {
   }
 }
 
-.pagelayout-mydashboard,
-.pagelayout-mycourses
+.pagelayout-admin,
+.pagelayout-mycourses,
+.pagelayout-mydashboard
 {
   #page-wrapper {
     #page {
@@ -246,6 +303,7 @@ body.limitedwidth {
   #page.drawers {
     .main-inner {
       padding: 1.5rem 1.5rem;
+      width: 100%;
     }
 
     div[role="main"] {
@@ -297,12 +355,6 @@ body.limitedwidth {
 /**
  * Header navigation
  */
-@media (max-width: 40.0525em) {
-  .nhsuk-header__container {
-    padding: 20px;
-  }
-}
-
 .nhsuk-header--white {
   .nhsuk-header__navigation-link {
     color: $color_nhsuk-white;
@@ -334,7 +386,7 @@ body.limitedwidth {
 
     &.dropdown-item {
       display: flex;
-      padding-left: 25px;
+      padding-left: 1rem;
     }
 
     &:visited {
@@ -366,7 +418,7 @@ body.limitedwidth {
   overflow: visible;
 }
 
-.nhsuk-header__light {
+.nhsuk-header--white {
   background-color: $color_nhsuk-white;
   .nhsuk-header__navigation {
     color: $btn-default-text;
@@ -483,8 +535,10 @@ body.limitedwidth {
 
   .navbar-nav {
     .btn {
-      &:not(.btn-close)
-      &:not(.btn-open) {
+      &:not(
+        .btn-close,
+        .btn-open
+      ) {
         color: $btn-primary-text;
         background-color: $btn-primary-background;
         border-color: transparent;
@@ -524,8 +578,10 @@ body.limitedwidth {
 
     .navbar-nav {
       .btn {
-        &:not(.btn-close)
-        &:not(.btn-open) {
+        &:not(
+          .btn-close,
+          .btn-open
+        ) {
           color: $btn-default-text;
           background-color: $btn-default-background;
           border-color: transparent;
@@ -623,14 +679,49 @@ body.limitedwidth {
   }
 }
 
+/**
+ * Double-sized Checkboxes
+ */
+input[type=checkbox] {
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+}
+
+label input[type=checkbox] {
+  margin-right: 1.0rem!important;
+}
+
+.form-check-inline .form-check-input {
+  margin-left: 1.0rem;
+  margin-right: 1.0rem;
+}
+
+.form-control {
+  padding: 0 0.75rem;
+  border-radius: 0;
+}
+
+.form-item {
+  .form-setting {
+    .form-defaultinfo {
+      padding-left: 1rem;
+    }
+  }
+}
+
+.custom-select {
+  padding: 0 1.75rem 0 .75rem
+}
+
 .simplesearchform {
   .collapse.show {
     background-color: $color_nhsuk-blue;
   }
-  .simplesearchform {
-    .collapsing {
-      background-color: $color_nhsuk-blue;
-    }
+  .collapsing {
+    background-color: $color_nhsuk-blue;
   }
   .input-group {
     input.form-control {

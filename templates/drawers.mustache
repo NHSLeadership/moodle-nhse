@@ -54,7 +54,7 @@
 <body {{{ bodyattributes }}}>
 {{> core/local/toast/wrapper}}
 
-<div id="page-wrapper" class="nhse-drawers d-print-block">
+<div id="page-wrapper" class="d-print-block">
 
     {{{ output.standard_top_of_body_html }}}
     {{> theme_nhse/header }}
@@ -76,6 +76,7 @@
             {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
         {{/ theme_boost/drawer }}
     {{/courseindex}}
+
     {{#hasblocks}}
         {{< theme_boost/drawer }}
             {{$id}}theme_boost-drawers-blocks{{/id}}
@@ -95,7 +96,8 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
 
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+    <div id="page" class="nhsuk-width-container-flex nhsuk-u-padding-bottom-4 drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container"
+         data-region="mainpage" data-usertour="scroller">
         <div id="topofscroll" class="main-inner">
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
@@ -166,9 +168,12 @@
                 </div>
             </div>
         </div>
-        {{> theme_nhse/footer }}
     </div>
+    <!-- end of div id="page"-->
+
+    {{> theme_nhse/footer }}
     {{{ output.standard_after_main_region_html }}}
+
 </div>
 
 </body>
