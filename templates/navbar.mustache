@@ -61,12 +61,7 @@
     <!--    <span class="sr-only">{{#str}}sidepanel, core{{/str}}</span>-->
     <!--</button>-->
 
-    <ul class="navbar-nav d-none d-md-flex my-1 px-1">
-        <!-- page_heading_menu -->
-        {{{ output.page_heading_menu }}}
-    </ul>
-
-    <div id="usernavigation" class="navbar-nav ml-auto nhsuk-header__content">
+    <div class="navbar-nav ml-auto nhsuk-header__content" id="usernavigation">
         {{# output.search_box }}
             {{{ output.search_box }}}
             <div class="divider border-left h-75 align-self-center mx-1"></div>
@@ -86,4 +81,7 @@
 
 </nav>
 
-{{> theme_boost/primary-drawer-mobile }}
+<ul class="navbar-nav d-none d-md-flex my-1 px-1">
+    <!-- page_heading_menu -->
+    {{{ output.page_heading_menu }}}
+</ul>

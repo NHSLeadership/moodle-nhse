@@ -238,6 +238,18 @@ body {
 /**
  * Header styles
  */
+.nhsuk-header__container {
+  padding: 10px 0;
+}
+
+@media (max-width: 40.0525em) {
+  .nhsuk-header__container {
+    display: flex !important;
+    .nhsuk-header__logo {
+      padding-right: 12px;
+    }
+  }
+}
 
 .header-maxwidth {
   max-width: 960px;
@@ -280,6 +292,10 @@ body {
     margin: 0 auto;
     width: 100%;
     max-width: 960px;
+    .main-inner {
+      padding: 1.5rem 1.5rem;
+      width: 100%;
+    }
   }
 
   svg {
@@ -389,11 +405,11 @@ body {
 /**
  * Header navigation tabs only
  */
-
 .nav-tabs {
   .nhsuk-header__navigation-link {
     color: $color_nhsuk-blue;
     border-bottom: 0;
+    padding: 12px 12px;
 
     &.dropdown-item {
       display: flex;
@@ -480,8 +496,8 @@ body {
 
 .popover-region-header-container {
   height: 50px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .navbar-expand {
