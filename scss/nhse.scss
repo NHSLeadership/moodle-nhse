@@ -814,10 +814,10 @@ label input[type=checkbox] {
     display: none !important;
   }
   [data-region=right-hand-drawer].drawer {
-    top: 148px;
+    top: 140px;
   }
   .drawer-left, .drawer-right {
-    top: 148px;
+    top: 140px;
     height: calc(100vh - 124px)
   }
 }
