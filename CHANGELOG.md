@@ -6,6 +6,9 @@
 2. Moodle Boost and Bootstrap themes SaSS overload added (fonts and base styles)
 3. NPM scripts added for building minified CSS and changes watch (as the latest NHSUK is no longer compatible with Moodle SASS scripts)
 4. Implemented header and footer changes
+5. Fixed notifications text styling
+6. Thumbnail and favicon updates
+7. Breadcrumb tweaks
 
 ## 2022-03-08.01
 
