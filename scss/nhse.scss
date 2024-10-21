@@ -534,6 +534,7 @@ body {
 
   .popover-region .popover-region-container {
     top: 84px;
+    color: $nhsuk-secondary-text-color;
   }
 
   .navbar-toggler-icon {
@@ -828,9 +829,16 @@ label input[type=checkbox] {
 /**
  * Calendar styles
  */
-
 .maincalendar {
   .calendarmonth {
+    ul {
+      li {
+        &>a {
+          white-space: normal;
+        }
+      }
+    }
+
     td {
       .day-number-circle {
         .day-number {
