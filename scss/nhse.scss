@@ -83,6 +83,14 @@ ul {
     @extend .nhsuk-button--reverse;
     box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
+
+  &.text-primary {
+    color: $btn-secondary-text!important;
+  }
+}
+
+.bg-secondary {
+  color: $nhsuk-reverse-button-text-color!important;
 }
 
 .btn-secondary,
@@ -162,13 +170,6 @@ body {
   }
 }
 
-.coursebox {
-  p {
-    font-size: initial;
-    line-height: initial;
-  }
-}
-
 .course_category_tree {
   .category {
     >.info {
@@ -239,7 +240,11 @@ body {
  * Header styles
  */
 .nhsuk-header__container {
-  padding: 10px 0;
+  padding: 16px 0;
+}
+
+.nhsuk-header__search-form {
+  margin: 0;
 }
 
 @media (max-width: 40.0525em) {
@@ -500,13 +505,6 @@ body {
   padding-bottom: 12px;
 }
 
-.navbar-expand {
-  .navbar-nav {
-    margin-top: .2em;
-    margin-left: .2em;
-  }
-}
-
 .nav {
   margin-left: 0;
 }
@@ -585,7 +583,7 @@ body {
     }
 
     .text-primary {
-      color: $btn-primary-text!important;
+      color: $btn-secondary-text!important;
     }
   }
 
@@ -701,6 +699,24 @@ body {
   }
 }
 
+.nhsuk-header__search-wrap {
+  .btn-close,
+  .btn-open {
+    color: $btn-primary-text;
+    background-color: $btn-primary-background;
+  }
+}
+
+@media (min-width: 48.0625em) {
+  .nhsuk-search__input {
+    width: 180px;
+  }
+
+  .nhsuk-search__submit {
+    padding: 0 8px 0;
+  }
+}
+
 #navbuttons {
   input[type="submit"] {
     @extend .nhsuk-button--small;
@@ -720,6 +736,9 @@ input[type=checkbox] {
 
 label input[type=checkbox] {
   margin-right: 1.0rem!important;
+}
+.form-check label {
+  padding-left: 1.0rem!important;
 }
 
 .form-check-inline .form-check-input {
@@ -745,12 +764,21 @@ label input[type=checkbox] {
 }
 
 .simplesearchform {
+  .btn-close {
+    right: -2.5em;
+    top: 0.2rem;
+  }
   .collapse.show {
     background-color: $color_nhsuk-blue;
+    right: 0;
   }
   .collapsing {
     background-color: $color_nhsuk-blue;
+    right: 0;
   }
+  .searchform-navbar {
+    padding-right: 2.5em;
+}
   .input-group {
     input.form-control {
       border-top-left-radius: 0;
@@ -846,5 +874,14 @@ label input[type=checkbox] {
         }
       }
     }
+  }
+}
+
+th, td {
+  font-size: 1.0rem;
+}
+@media (min-width: 40.0625em) {
+  th, td {
+    font-size: 1.0rem;
   }
 }
