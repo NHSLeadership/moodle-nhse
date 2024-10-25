@@ -837,7 +837,7 @@ label input[type=checkbox] {
   }
 }
 
-@media (min-width: 990px) {
+@media (min-width: 992px) {
   .d-md-none {
     display: none !important;
   }
@@ -845,7 +845,7 @@ label input[type=checkbox] {
     top: 140px;
   }
   .drawer-left, .drawer-right {
-    top: 140px;
+    top: 148px;
     height: calc(100vh - 124px)
   }
 }
