@@ -36,13 +36,13 @@
     <div class="collapse nhsuk-header__search-wrap" id="searchform-navbar">
         <form class="nhsuk-header__search-form searchform-navbar "
               autocomplete="off" action="{{{ action }}}" method="get" accept-charset="utf-8" rolw="search">
-            {{#hiddenfields}}
-                <input type="hidden" name="{{ name }}" value="{{ value }}">
-            {{/hiddenfields}}
             <div class="input-group">
                 <label for="searchinput-{{uniqid}}" class="nhsuk-label nhsuk-u-visually-hidden">
                     <span class="sr-only">{{{ searchstring }}}</span>
                 </label>
+                {{#hiddenfields}}
+                    <input type="hidden" name="{{ name }}" value="{{ value }}">
+                {{/hiddenfields}}
 
                 <input type="text"
                        class="nhsuk-search__input"

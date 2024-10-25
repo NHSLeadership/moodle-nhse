@@ -30,15 +30,13 @@ require_once(__DIR__ . '/lib.php');
 //=========================================================================
 // SETTINGS FOR DEVELOPMENT SERVERS - not intended for production use!!!
 //=========================================================================
-//
-//@error_reporting(E_ALL ^ E_DEPRECATED | E_STRICT);
-//@ini_set('display_errors', '1');
-//$CFG->debug = (E_ALL ^ E_DEPRECATED | E_STRICT);
-//$CFG->debugdisplay = true;
-//$CFG->debugusers = 2;
 
+@error_reporting(E_ALL ^ E_DEPRECATED | E_STRICT);
+@ini_set('display_errors', '1');
+$CFG->debug = (E_ALL ^ E_DEPRECATED | E_STRICT);
+$CFG->debugdisplay = true;
 
-// You can specify a comma separated list of user ids that that always see
+// You can specify a comma separated list of user ids that always see
 // debug messages, this overrides the debug flag in $CFG->debug and $CFG->debugdisplay
 // for these users only.
 // $CFG->debugusers = '2';
