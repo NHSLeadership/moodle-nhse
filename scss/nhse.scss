@@ -46,6 +46,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 600;
 }
 
+h1 {
+  font-size: 1.75rem;
+}
+h2 {
+  font-size: 1.50rem;
+}
+h3 {
+  font-size: 1.35rem;
+}
+h4, h5, h6 {
+  font-size: 1.1875rem;
+}
+
 ul {
   @extend %nhsuk-list;
   @extend %nhsuk-list--bullet;
@@ -232,7 +245,6 @@ body {
 .drawercontent {
   height: calc(100% - 124px);
   h1, h2, h3 {
-    font-size: 1em;
     margin-bottom: 0;
     padding: .25rem .5rem;
     line-height: 1.5;
@@ -319,7 +331,10 @@ body {
   #page {
     margin: 0 auto;
     width: 100%;
-    max-width: 1920px;
+    max-width: 1440px;
+    &.nhsuk-width-container {
+      max-width: 990px;
+    }
     .main-inner {
       padding: 1.5rem 1.5rem;
       width: 100%;
@@ -406,6 +421,21 @@ body {
     }
   }
 }
+
+/**
+ * Container notification messages
+ */
+
+.content-item-container {
+  &.notification {
+    .content-item-body {
+      .notification-message {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 
 /**
  * Header navigation
@@ -722,6 +752,13 @@ body {
   }
 }
 
+.content-area {
+  .navbar {
+    a, a:visited {
+     color: $btn-primary-text;
+    }
+  }
+}
 .nhsuk-header__search-wrap {
   .btn-close,
   .btn-open {
