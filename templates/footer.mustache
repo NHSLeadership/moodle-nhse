@@ -33,7 +33,17 @@
 }}
 <footer role="contentinfo" id="nhsuk-footer">
     <div class="nhsuk-footer-container">
-        <div class="nhsuk-width-container" data-region="footer-content-popover">
+<!--        <div data-region="footer-container-popover">-->
+<!--            {{#output.has_communication_links}}-->
+<!--                <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon bg-primary text-white icon-no-margin btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">-->
+<!--                    {{#pix}}t/messages-o, core{{/pix}}-->
+<!--                </button>-->
+<!--            {{/output.has_communication_links}}-->
+<!--            <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">-->
+<!--                {{#pix}}e/question, core{{/pix}}-->
+<!--            </button>-->
+<!--        </div>-->
+        <div class="nhsuk-width-container footer-content-popover container" data-region="footer-content-popover">
             <h2 class="nhsuk-u-visually-hidden">Support links</h2>
 
             {{# output.has_popover_links }}
