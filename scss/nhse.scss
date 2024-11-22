@@ -11,10 +11,15 @@
 }
 
 /**
+ * For sticky header
+ */
+body {
+  height: auto;
+}
+
+/**
  * Extra colour mappings for Moodle
  */
-$color_nhsuk-dark-blue: #005eb8;
-
 $btn-default-text: $color_nhsuk-black;
 $btn-default-background: $color_nhsuk-white;
 
@@ -37,8 +42,36 @@ $btn-secondary-border: $color_nhsuk-dark-blue;
  * Generic style tweaks
  */
 a {
-  &:not([class]) {
-    text-decoration: underline;
+  &.btn {
+    &:focus {
+      @include nhsuk-focused-button;
+    }
+  }
+  &.btn {
+    &:focus {
+      @include nhsuk-focused-button;
+    }
+  }
+  &.nav-link {
+    &:focus {
+      @include nhsuk-focused-button;
+    }
+  }
+}
+
+button {
+  &.btn {
+    &:focus {
+      @include nhsuk-focused-button;
+    }
+  }
+}
+
+input {
+  &.custom-control-input {
+    &:focus {
+      @include nhsuk-focused-text;
+    }
   }
 }
 
@@ -78,6 +111,10 @@ ul {
 
 .text-muted {
   color: $nhsuk-text-color !important;
+}
+
+.nhsuk-breadcrumb__item {
+  font-size: 15px;
 }
 
 /**
@@ -126,13 +163,6 @@ ul {
     &:visited {
       color: $nhsuk-reverse-button-color;
     }
-  }
-}
-
-.page {
-  .dropdown-toggle {
-    @extend .nhsuk-button--reverse;
-    box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
 }
 
@@ -227,6 +257,16 @@ body {
 /**
  * Drawer styles
  */
+.drawer {
+  ul {
+    font-size: 15px;
+  }
+  .card-text {
+    li {
+      padding: .25rem .5rem;
+    }
+  }
+}
 
 .drawer-toggles {
   .drawer-toggler {
@@ -251,9 +291,28 @@ body {
   }
 }
 
-.drawers .block_myoverview>.card-body {
-  padding: 1.25rem!important;
+.drawers {
+  .block_myoverview>.card-body {
+    padding: 1.25rem!important;
+  }
 }
+.comment-area {
+  padding: 10px 0 0;
+}
+
+.comment-list {
+  font-size: 1rem;
+  color: $nhsuk-text-color;
+  li {
+    background-color: $color_nhsuk-white;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+}
+.comment-ctrl {
+  font-size: 1rem;
+}
+
 
 .dropdown-menu {
   min-width: 20rem;
@@ -273,6 +332,11 @@ body {
 /**
  * Header styles
  */
+.sticky-top {
+  position: sticky;
+  top: 0;
+}
+
 .nhsuk-header__container {
   padding: 16px 0;
   max-width: 990px;
@@ -346,6 +410,59 @@ body {
   }
 }
 
+/**
+ * Max width except reportbuilder
+ */
+#page-admin-reportbuilder,
+#page-admin-reportbuilder-edit {
+  height: 100%;
+  #page-wrapper {
+    #page {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+#page {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  &.drawers {
+    margin-top: 0;
+
+    .main-inner {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    &:not([class]) {
+      text-decoration: underline;
+
+      &:focus {
+        @include nhsuk-focused-text;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #page {
+    &.drawers {
+      &.show-drawer-left {
+        padding-left: 286px;
+        margin-left: 0;
+      }
+      &.show-drawer-right {
+        padding-right: 316px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .pagelayout-admin,
 .pagelayout-mycourses,
 .pagelayout-mydashboard
@@ -383,21 +500,6 @@ body {
   }
 }
 
-#page.drawers {
-  margin-top: 0;
-  .main-inner {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  #page.drawers {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 #frontpage-available-course-list {
   .coursebox {
     @extend .nhsuk-card__content;
@@ -422,6 +524,14 @@ body {
   }
 }
 
+.reportbuilder-toggle-card {
+  .toggle-card-button {
+    i.toggle-card-icon {
+      color: $color_nhsuk-white;
+    }
+  }
+}
+
 /**
  * Container notification messages
  */
@@ -436,6 +546,9 @@ body {
   }
 }
 
+#region-main {
+  height: 100%;
+}
 
 /**
  * Header navigation
@@ -493,6 +606,12 @@ body {
       color: $color_nhsuk-white;
     }
   }
+
+  .nav-link {
+    &:focus {
+      @include nhsuk-focused-text;
+    }
+  }
 }
 
 /**
@@ -502,7 +621,9 @@ body {
 .nhsuk-header__navigation {
   overflow: visible;
 }
-
+.nhsuk-header__service-name {
+  max-width: none;
+}
 .nhsuk-header--white {
   background-color: $color_nhsuk-white;
   .nhsuk-header__navigation {
@@ -523,6 +644,14 @@ body {
     &:checked {
       color: $color_nhsuk-white;
       border-bottom: 4px solid $color_nhsuk-white;
+    }
+  }
+}
+
+.nhsuk-breadcrumb__list {
+  .nhsuk-breadcrumb__item {
+    .nhsuk-breadcrumb__link {
+      padding: 0 10px 10px 0;
     }
   }
 }
@@ -566,6 +695,12 @@ body {
   padding: 0.6rem 1rem;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.icon-no-margin {
+  &:focus {
+    @include nhsuk-focused-button;
+  }
 }
 
 .navbar {
@@ -620,6 +755,9 @@ body {
       ) {
         color: $btn-primary-text;
         background-color: $btn-primary-background;
+        &:focus {
+          @include nhsuk-focused-button;
+        }
         border-color: transparent;
         border-bottom: none;
       }
@@ -669,14 +807,17 @@ body {
       }
     }
 
-    .custom-control-input:checked~.custom-control-label::before {
-      color: $btn-primary-text;
-      background-color: $btn-primary-background;
-      border-color: $btn-primary-background;
-    }
+    .custom-control-input {
 
-    .custom-control-input:checked~.custom-control-label::after {
-      background-color: $btn-default-background;
+      &:checked ~ .custom-control-label::before {
+        color: $btn-primary-text;
+        background-color: $btn-primary-background;
+        border-color: $btn-primary-background;
+      }
+
+      &:checked ~ .custom-control-label::after {
+        background-color: $btn-default-background;
+      }
     }
 
     .dropdown-toggle::after {
@@ -759,6 +900,7 @@ body {
     }
   }
 }
+
 .nhsuk-header__search-wrap {
   .btn-close,
   .btn-open {
@@ -940,8 +1082,12 @@ label input[type=checkbox] {
 th, td {
   font-size: 1.0rem;
 }
+
 @media (min-width: 40.0625em) {
   th, td {
     font-size: 1.0rem;
+  }
+  .nhsuk-breadcrumb__item {
+    font-size: 1.1875rem;
   }
 }
