@@ -6,6 +6,11 @@
 @import "../../boost/scss/bootstrap.scss";
 @import "../../boost/scss/moodle.scss";
 
+$color_nhsuk-light-blue: #41B6E6;
+$color_nhsuk-bright-blue: #0072CE;
+
+@import "checklist.scss";
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -934,6 +939,13 @@ input[type=checkbox] {
   -webkit-transform: scale(2); /* Safari and Chrome */
   -o-transform: scale(2); /* Opera */
   transform: scale(2);
+}
+
+input[type=checkbox] + label {
+  padding-left: 1.0rem!important;
+}
+label input[type=checkbox] {
+  margin-right: 1.0rem!important;
 }
 
 label input[type=checkbox] {
