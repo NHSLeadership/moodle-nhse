@@ -1,0 +1,19 @@
+.checklist_progress_inner {
+  background-image: none;
+  background-color: $color_nhsuk-light-blue;
+  box-shadow: 0 0 4px $color_nhsuk-dark-blue;
+  background: -moz-linear-gradient(0deg, $color_nhsuk-dark-blue 0%, $color_nhsuk-light-blue 50%, $color_nhsuk-dark-blue 100%);
+  background: -webkit-linear-gradient(0deg, $color_nhsuk-dark-blue 0%, $color_nhsuk-light-blue 50%, $color_nhsuk-dark-blue 100%);
+  background: linear-gradient(0deg, $color_nhsuk-dark-blue 0%, $color_nhsuk-light-blue 50%, $color_nhsuk-dark-blue 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="$color_nhsuk-light-blue",endColorstr="$color_nhsuk-light-blue",GradientType=1);
+}
+
+.checklist_progress_anim {
+  background-color: $color_nhsuk-dark-blue;
+  box-shadow: 0 0 4px $color_nhsuk-light-blue;
+}
+
+ol.checklist .studentcomment {
+  background-color: $color_nhsuk-grey-5;
+  border: none;
+}
