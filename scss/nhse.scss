@@ -6,6 +6,11 @@
 @import "../../boost/scss/bootstrap.scss";
 @import "../../boost/scss/moodle.scss";
 
+$color_nhsuk-light-blue: #41B6E6;
+$color_nhsuk-bright-blue: #0072CE;
+
+@import "checklist.scss";
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -108,6 +113,10 @@ ul {
     border-left: calc(1px + 5px) solid $color_nhsuk-blue;
   }
 }
+
+//.float-end {
+//  float: inline-end;
+//}
 
 .text-muted {
   color: $nhsuk-text-color !important;
@@ -286,7 +295,7 @@ body {
   height: calc(100% - 124px);
   h1, h2, h3 {
     margin-bottom: 0;
-    padding: .25rem .5rem;
+    padding: .25rem .5rem .25rem 0;
     line-height: 1.5;
   }
 }
@@ -936,6 +945,13 @@ input[type=checkbox] {
   transform: scale(2);
 }
 
+input[type=checkbox] + label {
+  padding-left: 1.0rem!important;
+}
+label input[type=checkbox] {
+  margin-right: 1.0rem!important;
+}
+
 label input[type=checkbox] {
   margin-right: 1.0rem!important;
 }
@@ -1036,6 +1052,17 @@ label input[type=checkbox] {
         max-width: none;
       }
     }
+  }
+}
+
+.drawer {
+  &.drawer-left {
+    width: 335px;
+    max-width: 335px;
+  }
+  &.drawer-right {
+    width: 335px;
+    max-width: 335px;
   }
 }
 
