@@ -1,5 +1,8 @@
 # NHSE Theme change log
 
+## 2025-05-13.01
+1. Fix for left and right menu in course edit bulk actions
+
 ## 2025-04-09.02
 1. Change default drawer width to 335pc
 2. Tweak buttons positioning in drawers

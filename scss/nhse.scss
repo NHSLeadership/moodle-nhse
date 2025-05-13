@@ -1059,10 +1059,12 @@ label input[type=checkbox] {
   &.drawer-left {
     width: 335px;
     max-width: 335px;
+    top: 135px;
   }
   &.drawer-right {
     width: 335px;
     max-width: 335px;
+    top: 135px;
   }
 }
 
