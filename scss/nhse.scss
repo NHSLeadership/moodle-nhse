@@ -624,6 +624,19 @@ body {
 }
 
 /**
+ * Main header navigation menu
+ */
+a.nhsuk-header__navigation-link.dropdown-item {
+    &:visited {
+        color: $gray-900;
+    }
+    
+    &:hover {
+        color: $color_nhsuk-white;
+    }
+}
+
+/**
  * Header navigation light variation
  */
 

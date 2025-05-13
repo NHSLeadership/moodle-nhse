@@ -2,6 +2,7 @@
 
 ## 2025-05-13.01
 1. Fix for left and right menu in course edit bulk actions
+2. Fix  visited/hover links in the main navigation sub menu
 
 ## 2025-04-09.02
 1. Change default drawer width to 335pc
