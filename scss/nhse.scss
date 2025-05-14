@@ -1059,12 +1059,10 @@ label input[type=checkbox] {
   &.drawer-left {
     width: 335px;
     max-width: 335px;
-    top: 135px;
   }
   &.drawer-right {
     width: 335px;
     max-width: 335px;
-    top: 135px;
   }
 }
 
@@ -1078,6 +1076,10 @@ label input[type=checkbox] {
   .drawer-left, .drawer-right {
     top: 135px;
     height: calc(100vh - 124px)
+  }
+  .hasstickyfooter .drawer-left, .hasstickyfooter .drawer-right {
+    top: 135px;
+    height: calc(100vh - 60px - max(80px, 1rem * 3));
   }
 }
 
