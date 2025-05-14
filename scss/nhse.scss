@@ -624,6 +624,43 @@ body {
 }
 
 /**
+ * Main header navigation menu
+ */
+// a.nhsuk-header__navigation-link.dropdown-item {
+//     line-height: 1.5;
+//     border-top: 1px solid $color_nhsuk-grey-4;
+
+//     &:visited {
+//         color: $color_nhsuk-purple;
+//     }
+
+//     &:hover {
+//         color: $color_nhsuk-white;
+//     }
+// }
+
+a.nhsuk-header__navigation-link {
+  line-height: 2.0rem;
+  &:visited {
+    text-decoration: none;
+  }
+
+  &.dropdown-item {
+    border-bottom: 1px solid $color_nhsuk-grey-5;
+    color: $color_nhsuk-blue;
+
+    &:visited {
+      color: $color_nhsuk-purple;
+      text-decoration-line: none;
+    }
+
+    &:hover {
+      color: $color_nhsuk-white;
+    }
+  }
+}
+
+/**
  * Header navigation light variation
  */
 
