@@ -1077,6 +1077,10 @@ label input[type=checkbox] {
     top: 135px;
     height: calc(100vh - 124px)
   }
+  .hasstickyfooter .drawer-left, .hasstickyfooter .drawer-right {
+    top: 135px;
+    height: calc(100vh - 60px - max(80px, 1rem * 3));
+  }
 }
 
 .nhsuk-list--number, ol {
