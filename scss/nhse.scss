@@ -156,6 +156,10 @@ ul {
   &.text-primary {
     color: $btn-secondary-text!important;
   }
+
+  &.btn-icon:hover, &.btn.btn-icon:focus {
+    @include nhsuk-focused-button;
+  }
 }
 
 .bg-secondary {
@@ -322,9 +326,12 @@ body {
   font-size: 1rem;
 }
 
-
 .dropdown-menu {
+  border: none;
+  border-radius: 0;
   min-width: 20rem;
+  padding: 0 0 0 15px;
+  margin: 0;
 }
 
 [data-region=right-hand-drawer].drawer {
@@ -383,8 +390,8 @@ body {
 }
 
 .editmode-switch-form {
-  margin-block-start: 0.4em;
-  margin-block-end: 0.6em;
+  //margin-block-start: 0.4em;
+  //margin-block-end: 0.6em;
   .input-group {
     label {
       padding-top: 3px;
@@ -412,10 +419,6 @@ body {
       padding: 1.5rem 1.5rem;
       width: 100%;
     }
-  }
-
-  svg {
-    max-height: 50px;
   }
 }
 
@@ -624,28 +627,17 @@ body {
 }
 
 /**
- * Main header navigation menu
+ * Header navigation menu
  */
-// a.nhsuk-header__navigation-link.dropdown-item {
-//     line-height: 1.5;
-//     border-top: 1px solid $color_nhsuk-grey-4;
+.nhsuk-header__navigation-link {
+  padding: 12px 12px;
 
-//     &:visited {
-//         color: $color_nhsuk-purple;
-//     }
-
-//     &:hover {
-//         color: $color_nhsuk-white;
-//     }
-// }
-
-a.nhsuk-header__navigation-link {
-  line-height: 2.0rem;
   &:visited {
     text-decoration: none;
   }
 
   &.dropdown-item {
+    line-height: 2.0rem;
     border-bottom: 1px solid $color_nhsuk-grey-5;
     color: $color_nhsuk-blue;
 
@@ -762,11 +754,22 @@ a.nhsuk-header__navigation-link {
   .dropdown-toggle::after {
     display: none;
     color: $btn-primary-text;
+    font-size: 12px;
+    &.show {
+      transform: rotate(270deg);
+    }
   }
 
   .popover-region .popover-region-container {
     top: 84px;
     color: $nhsuk-secondary-text-color;
+  }
+
+  svg {
+    max-height: 50px;
+    &.nhsuk-logo {
+      max-height: 35px;
+    }
   }
 
   .navbar-toggler-icon {
@@ -1044,6 +1047,14 @@ label input[type=checkbox] {
   }
 }
 
+.nhsuk-mobile-menu-container {
+  .dropdown-menu {
+    position: relative !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+}
+
 .nhsuk-header__navigation-item {
   border-top: none;
 }
@@ -1093,6 +1104,16 @@ label input[type=checkbox] {
 }
 
 .drawer {
+  .drawerheader {
+    background-color: $color_nhsuk-blue;
+    color: $color_nhsuk-white;
+    .btn, .btn:hover {
+        color: $color_nhsuk-white;
+    }
+    .sitename {
+      white-space: normal;
+    }
+  }
   &.drawer-left {
     width: 335px;
     max-width: 335px;
@@ -1112,7 +1133,8 @@ label input[type=checkbox] {
   }
   .drawer-left, .drawer-right {
     top: 135px;
-    height: calc(100vh - 124px)
+    height: calc(100vh - 124px);
+    border-top: 1px solid $color_nhsuk-white;
   }
   .hasstickyfooter .drawer-left, .hasstickyfooter .drawer-right {
     top: 135px;
