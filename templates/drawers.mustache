@@ -58,7 +58,14 @@
 <div id="page-wrapper" class="d-print-block">
 
     {{{ output.standard_top_of_body_html }}}
-    {{> theme_nhse/header }}
+    
+    {{! Call the custom renderer method to get the header data }}
+    {{! This section will receive the object returned by get_global_header_data as its context }}
+    {{# output.get_global_header_data }}
+        {{! Now, the header partial will be rendered with the context prepared above. }}
+        {{! 'customnavigation' will be directly accessible in header.mustache. }}
+        {{> theme_nhse/header }}
+    {{/ output.get_global_header_data }}
 
     {{#courseindex}}
         {{< theme_boost/drawer }}
