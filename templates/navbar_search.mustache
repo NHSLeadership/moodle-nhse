@@ -54,7 +54,7 @@
         ]
     }
 }}
-<div class="nhsuk-header__content" id="content-header">
+<div class="nhsuk-header__content" id="content-header">    
     <div class="nhsuk-header__search">
         <div class="nhsuk-header__search-wrap" id="wrap-search">
         <form class="nhsuk-header__search-form" id="search" action="https://learninghub.nhs.uk/search/results" method="get" role="search">
@@ -73,8 +73,8 @@
 </div>
 
 
-{{!#output.page_heading_menu}}
-<!--ul class="navbar-nav d-none d-md-flex my-1 px-1"-->
-    {{{! output.page_heading_menu }}}
-<!--/ul-->
-{{!/output.page_heading_menu}}
+{{#output.page_heading_menu}}
+<ul class="navbar-nav d-none d-md-flex my-1 px-1">
+    {{{output.page_heading_menu }}}
+</ul>
+{{/output.page_heading_menu}}

@@ -74,12 +74,17 @@
             </a>
         </div>
 
-        <div class="nhsuk-header__content">
+        <div class="nhsuk-header__rhscontent">
+        
         {{> theme_nhse/navbar_search }}
+        {{> theme_nhse/navbar_account }}
+        <nav class="navbar">
+        {{{ output.edit_switch }}}
+        </nav>
         </div>
     </div>
 
-    {{!> theme_nhse/nav}}
+    {{> theme_nhse/nav}}
 </header>
 
 {{> theme_boost/primary-drawer-mobile }}

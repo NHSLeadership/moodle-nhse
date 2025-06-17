@@ -21,19 +21,10 @@
 }}
 <div class="nhsuk-navigation-container">
     <nav class="nhsuk-navigation" id="header-navigation" role="navigation" aria-label="Primary navigation">
-        <ul class="nhsuk-header__navigation-list"
+        <ul class="nhsuk-header__navigation-list test"
             id="moremenu{{#moremenuid}}-{{moremenuid}}{{/moremenuid}}-{{#navbarstyle}}{{navbarstyle}}{{/navbarstyle}}{{^navbarstyle}}default{{/navbarstyle}}"
             role="{{#istablist}}tablist{{/istablist}}{{^istablist}}menubar{{/istablist}}">
-
             {{#primarymoremenu}}
-                {{#nodecollection}}
-                    {{#children}}
-                        {{> core/moremenu_children}}
-                    {{/children}}
-                {{/nodecollection}}
-                {{#nodearray}}
-                    {{> core/moremenu_children}}
-                {{/nodearray}}
                 <li class="nhsuk-header__navigation-item nav-item dropdown dropdownmoremenu d-none {{#isactive}}nhsuk-header__navigation-item__item--current{{/isactive}}" role="none" data-region="morebutton">
                     <a class="nhsuk-header__navigation-link dropdown-toggle nav-link " href="#" id="moremenu-dropdown{{#moremenuid}}-{{moremenuid}}{{/moremenuid}}" role="{{#istablist}}tab{{/istablist}}{{^istablist}}menuitem{{/istablist}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
                         {{#str}}moremenu, core{{/str}}
@@ -41,13 +32,19 @@
                 </li>
             {{/primarymoremenu}}
 
-            {{^primarymoremenu}}
-                <li data-key="home" class="nhsuk-header__navigation-item nav-item" role="none" data-forceintomoremenu="false">
-                    <a class="nhsuk-header__navigation-link nav-link" href="{{home_url}}" role="menuitem" tabindex="-1">
-                        Home
+
+            {{!-- BEGIN: Custom Navigation items --}}
+            {{#customnavigation}}
+                <li class="nhsuk-header__navigation-item nav-item" role="none"> {{!-- Added nhsuk-header__navigation-item and nav-item classes --}}
+                    <a class="nhsuk-header__navigation-link nav-link" href="{{url}}" role="menuitem"> {{!-- Added nhsuk-header__navigation-link and nav-link classes --}}
+                        {{title}}
+                        {{#hasnotification}}
+                            <span class="nhsuk-tag nhsuk-tag--notification">{{notificationcount}}</span> {{!-- Used NHS.UK tag for consistency --}}
+                        {{/hasnotification}}
                     </a>
                 </li>
-            {{/primarymoremenu}}
+            {{/customnavigation}}       
+            {{!-- END: Custom Navigation items --}}
 
             <li class="nhsuk-mobile-menu-container">
                 <button class="nhsuk-header__menu-toggle nhsuk-header__navigation-link" id="toggle-menu" aria-expanded="false">
@@ -58,7 +55,6 @@
                     </svg>
                 </button>
             </li>
-
-        </ul>
+        </ul>   
     </nav>
 </div>

@@ -1,3 +1,7 @@
 node_modules/
 vendor/
 /.vs
+
+# Compiled CSS files
+css/*.min.css
+css/*.min.css.map
