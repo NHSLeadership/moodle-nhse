@@ -25,6 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['advancedsettings']                            = 'Advanced settings';
+$string['api_base_url_setting']                        = 'LH OpenAPI Base URL';
+$string['api_base_url_setting_desc']                   = 'The base URL for the Learning Hub OpenAPI (e.g., https://lh-openapi.dev.local). This will be used to fetch user navigation data.';
 $string['backgroundimage']                             = 'Background image';
 $string['backgroundimage_desc']                        = 'The image to display as a background of the site. The background image you upload here will override the background image in your theme preset files.';
 $string['bcsettings']                                  = 'Breadcrumb settings';
@@ -44,6 +46,8 @@ $string['copyright_default']                           = 'NHS England';
 $string['cookiesnotice']                               = 'Read our cookies notice';
 $string['cookiesenabled']                              = 'Cookies must be enabled in your browser';
 $string['currentinparentheses']                        = '(current)';
+$string['dotnet_base_url_setting']                     = '.NET Application Base URL';
+$string['dotnet_base_url_setting_desc']                = 'The base URL for your .NET application (e.g., https://lh-web.dev.local). Relative links received from the API will be prepended with this URL if they are not absolute.';
 $string['fontsize']                                    = 'Theme base fontsize';
 $string['fontsize_desc']                               = 'Enter a fontsize in %';
 $string['footersettings']                              = 'Footer settings';

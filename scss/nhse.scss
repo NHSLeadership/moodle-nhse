@@ -186,7 +186,7 @@ body {
     #page {
       &.drawers {
         .main-inner {
-          max-width: 990px;
+          /* max-width: 990px; */
         }
       }
     }
@@ -211,13 +211,6 @@ body {
   > * {
     color: $color_nhsuk-grey-1 !important;
   }
-}
-
-/**
- * Increase max container width
- */
-.nhsuk-width-container {
-  max-width: 990px;
 }
 
 /**
@@ -338,26 +331,68 @@ body {
 }
 
 .nhsuk-header__container {
-  padding: 16px 0;
-  max-width: 990px;
+  padding: 16px 0;  
 }
 
 .nhsuk-header__search-form {
   margin: 0;
 }
 
-@media (max-width: 40.0525em) {
-  .nhsuk-header__container {
-    display: flex !important;
-    .nhsuk-header__logo {
-      padding-right: 12px;
+.nhsuk-header__rhscontent {
+ 
+    // Styles specifically for the nhsuk-header__rhscontent element
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; // Example: Align content to the right
+    // Add other styles as needed (padding, etc.)
+
+    .border-left, .border-start {
+      border-left: none !important;
     }
-  }
+
+    .custom-control-input:checked~.custom-control-label::before {
+      color: $btn-primary-text;
+      background-color: $btn-default-background;
+      border-color: $btn-default-background;
+    }
+
+    .custom-control-input:checked~.custom-control-label::after {
+      background-color: $btn-primary-background;
+    }
+
+    .text-primary {
+      color: $btn-secondary-text!important;
+    }
+    .nhsuk-header__content {
+	    padding-right: 1.5rem;
+    }
+
+    .nhsuk-account__login {
+      font-size: 0.875rem;
+      float: right;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nhsuk-account__login--link {
+      color: #fff;
+    }
+
 }
 
-.header-maxwidth {
-  max-width: 990px;
-}
+// @media (max-width: 40.0525em) {
+//   .nhsuk-header__container {
+//     display: flex !important;
+//     .nhsuk-header__logo {
+//       padding-right: 12px;
+//     }
+//   }
+// }
+
 
 @media (min-width: 768px) {
   .header-maxwidth {
@@ -395,9 +430,9 @@ body {
   #page {
     margin: 0 auto;
     width: 100%;
-    max-width: 1440px;
+    max-width: 1200px;
     &.nhsuk-width-container {
-      max-width: 990px;
+      max-width: 1200px;
     }
     .main-inner {
       padding: 1.5rem 1.5rem;
@@ -570,6 +605,7 @@ body {
       color: $color_nhsuk-black;
       border-bottom: 4px solid $color_nhsuk-black;
     }
+
   }
 }
 
@@ -645,8 +681,24 @@ body {
       color: $color_nhsuk-white;
       border-bottom: 4px solid $color_nhsuk-white;
     }
+    
   }
 }
+
+  .nhsuk-tag {
+    top: 0.5rem;
+    right: -0.625rem;
+    font-size: 0.6875rem;
+    line-height: 1.125rem;
+    font-weight: 900;
+    background: #d5281b;
+    color: #fff;
+    min-width: 1.125rem; 
+    text-align: center;
+    border-radius: 0.5625rem;
+    padding: 0.0625rem 0.1875rem 0;
+  }
+
 
 .nhsuk-breadcrumb__list {
   .nhsuk-breadcrumb__item {
@@ -911,7 +963,7 @@ body {
 
 @media (min-width: 48.0625em) {
   .nhsuk-search__input {
-    width: 180px;
+    width: 16.25rem;
   }
 
   .nhsuk-search__submit {

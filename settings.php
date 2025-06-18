@@ -26,6 +26,24 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingnhse', get_string('configtitle', 'theme_nhse'));
     $page = new admin_settingpage('theme_nhse_general', get_string('generalsettings', 'theme_nhse'));
 
+     // --- NEW: Add the .NET Application Base URL setting to the 'General' tab ---
+    $page->add(new admin_setting_configtext(
+        'theme_nhse/dotnet_base_url', // Unique identifier for this setting
+        get_string('dotnet_base_url_setting', 'theme_nhse'), // Display title
+        get_string('dotnet_base_url_setting_desc', 'theme_nhse'), // Description for the setting
+        '', // Default value (empty string)
+        PARAM_URL // Moodle will validate the input as a URL
+    ));
+
+     // --- NEW: Add the API Base URL setting ---
+    $page->add(new admin_setting_configtext(
+        'theme_nhse/api_base_url', // Unique identifier for this setting
+        get_string('api_base_url_setting', 'theme_nhse'), // Display title
+        get_string('api_base_url_setting_desc', 'theme_nhse'), // Description
+        '', // Default value (empty string)
+        PARAM_URL // Moodle will validate this as a URL
+    ));
+
     // Unaddable blocks.
     // Blocks to be excluded when this theme is enabled in the "Add a block" list: Administration, Navigation, Courses and
     // Section links.
