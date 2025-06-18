@@ -116,7 +116,12 @@ class core_renderer extends \theme_boost\output\core_renderer
             error_log("theme_nhse: User not logged in, skipping OIDC token fetch.");
         }
 
-         $url = 'https://lh-openapi.dev.local/User/GetLHUserNavigation';
+        // --- The rest of your existing API call logic ---
+        $api_endpoint_path = 'User/GetLHUserNavigation';
+        $url = $api_base_url . $api_endpoint_path;
+
+
+        
          try 
          {
             $curl = new \curl();
