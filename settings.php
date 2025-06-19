@@ -110,6 +110,17 @@ if ($ADMIN->fulltree) {
 
     // Must add the page after definiting all the settings!
     $settings->add($page);
+     
+
+      // SCORM Settings Tab
+    $scormpage = new admin_settingpage('theme_nhse_scorm', get_string('scormsettings', 'theme_nhse'));
+    $name = 'theme_nhse/scormfullscreenbutton';
+    $title = get_string('scormfullscreenbutton', 'theme_nhse');
+    $description = get_string('scormfullscreenbutton_desc', 'theme_nhse');
+    $default = 1;
+    $fullscreenbuttonsetting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $scormpage->add($fullscreenbuttonsetting);
+    $settings->add($scormpage);
 
     // Advanced settings.
     $page = new admin_settingpage('theme_nhse_advanced', get_string('advancedsettings', 'theme_nhse'));

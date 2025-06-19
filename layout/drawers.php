@@ -61,7 +61,7 @@ if (!$courseindex) {
 }
 
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
-$forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
+// $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
 $secondarynavigation = false;
 $overflow = '';
@@ -99,7 +99,7 @@ $templatecontext = [
     'mobileprimarynav' => $primarymenu['mobileprimarynav'],
     'usermenu' => $primarymenu['user'],
     'langmenu' => $primarymenu['lang'],
-    'forceblockdraweropen' => $forceblockdraweropen,
+    // 'forceblockdraweropen' => $forceblockdraweropen,
     'regionmainsettingsmenu' => $regionmainsettingsmenu,
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'overflow' => $overflow,
@@ -109,5 +109,23 @@ $templatecontext = [
 
 // Include NHSUK Frontend js file
 $PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/node_modules/nhse-tel-frontend/dist/nhsuk.min.js'));
+
+error_log('Current PAGE URL: ' . $PAGE->url->out());
+if (strpos($PAGE->url->out(), '/mod/scorm/player.php') !== false) {
+
+     // Access the theme settings
+    $theme_settings = theme_config::load('nhse'); // Replace 'nhse' with your theme's shortname
+
+    error_log('theme_settings object: ' . print_r($theme_settings, true));
+
+     // Check the value of your boolean setting
+    if (!empty($theme_settings->settings->scormfullscreenbutton)) {
+        // If the setting is enabled (typically stored as '1'), load the JavaScript
+        $PAGE->requires->js('/theme/nhse/javascript/scorm-fullscreen.js.php');
+        error_log('Attempting to load /theme/nhse/javascript/scorm-fullscreen.js.php (scormfullscreenbutton is NOT empty)');
+    } else {
+        error_log('scormfullscreenbutton is empty or not set.');
+    }
+}
 
 echo $OUTPUT->render_from_template('theme_nhse/drawers', $templatecontext);
