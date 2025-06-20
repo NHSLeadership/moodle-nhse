@@ -30,8 +30,8 @@ namespace theme_nhse\output\core;
 defined('MOODLE_INTERNAL') || die();
 
 use moodle_url;
-use html_writer;
 use coursecat_helper;
+use user_picture;
 
 /**
  * The core course renderer
@@ -117,6 +117,53 @@ class course_renderer extends \core_course_renderer
 //    }
 
     /**
+     * Returns the user picture
+     * @param $user
+     * @param $imgsize
+     *
+     * @return string
+     * @throws \core\exception\coding_exception
+     */
+    public function get_user_picture($user) {
+        global $DB, $PAGE;
+
+        if (!isset($user->picture)) {
+            $user = $DB->get_record('user', ['id' => $user?->id]);
+        }
+
+        return $this->user_picture($user);
+    }
+
+    /**
+     * Returns HTML to display course contacts.
+     * @param $course
+     *
+     * @return array
+     * @throws \coding_exception
+     * @throws \core\exception\coding_exception
+     */
+    public function get_course_contacts($course) {
+        $contacts = [];
+        if ($course->has_course_contacts()) {
+            $instructors = $course->get_course_contacts();
+            foreach ($instructors as $instructor) {
+                $user = $instructor['user'];
+                $contact = [
+                    'id' => $user->id,
+                    'fullname' => fullname($user),
+                    'role' => $instructor['role']->displayname,
+                ];
+
+                $contact['userpicture'] = $this->get_user_picture($user);
+
+                $contacts[] = $contact;
+            }
+        }
+
+        return $contacts;
+    }
+
+    /**
      * Get the user progress in the course.
      * @param $course
      * @param $userid
@@ -160,10 +207,7 @@ class course_renderer extends \core_course_renderer
 //        $content .= \html_writer::end_tag('div');
 //        return $content;
 
-        $coursecontacts = $course->get_course_contacts();
         $courseenrolmenticons = !empty($courseenrolmenticons) ? $this->render_enrolment_icons($courseenrolmenticons) : false;
-        $courseprogress = $this->get_progress($course);
-        $hasprogress = $courseprogress != null;
         $images = $this->course_images($course);
 
         $data = [
@@ -174,12 +218,12 @@ class course_renderer extends \core_course_renderer
             'summary' => $this->course_summary($chelper, $course),
             'category' => $this->course_category_name($chelper, $course),
             'customfields' => $this->course_custom_fields($course),
-            'hasprogress' => $hasprogress,
-            'progress' => (int) $courseprogress,
+            'hasprogress' => $this->get_progress($course) > 0,
+            'progress' => $this->get_progress($course),
             'hasenrolmenticons' => $courseenrolmenticons != false,
             'enrolmenticons' => $courseenrolmenticons,
-            'hascontacts' => !empty($coursecontacts),
-            'contacts' => $this->course_contacts($course),
+            'contacts' => $this->get_course_contacts($course),
+            'hascontacts' => !empty($this->get_course_contacts($course)),
             'courseurl' => new moodle_url('/course/view.php', ['id' => $course->id]),
         ];
 

@@ -2,13 +2,12 @@
 
     <div class="nhsuk-card nhsuk-card--clickable">
         <img class="nhsuk-card__img {{image.class}}" src="{{image.src}}" alt="{{image.alt}}">
+
         <div class="nhsuk-card__content nhsuk-card__content--primary">
             <h2 class="nhsuk-card__heading nhsuk-heading-m">
-                <a class="nhsuk-card__link" href="{{courseurl}}" tabindex="-1">{{fullname}}</a>
+                <a href="{{courseurl}}" class="nhsuk-card__link" tabindex="-1">{{fullname}}</a>
             </h2>
-            <p class="nhsuk-card__description">
 
-            </p>
             {{#hasenrolmenticons}}
                 <div class="enrolmenticons">
                     {{#enrolmenticons}}
@@ -18,29 +17,18 @@
                     {{/enrolmenticons}}
                 </div>
             {{/hasenrolmenticons}}
-        </div>
 
-        <div class="nhsuk-card__content nhsuk-card__content--secondary">
-
-            <p class="hsuk-card__description">
-                {{{category}}}
+            <p class="course-summary nhsuk-card__description">
+                {{{summary}}}
             </p>
 
             <div class="card-body course-info-container">
-                <div class="d-flex align-items-start">
-                    <div class="w-100">
-                        <a href="{{courseurl}}" class="aalink coursename mr-2 mb-1 {{^visible}}dimmed{{/visible}}">
-                            {{{fullname}}}
-                        </a>
-                    </div>
-                </div>
-
                 <div class="customfields">
                     {{{customfields}}}
                 </div>
 
-                <div class="course-summary">
-                    {{{summary}}}
+                <div class="course-category">
+                    {{{category}}}
                 </div>
             </div>
 
@@ -58,13 +46,13 @@
             {{#hascontacts}}
                 <div class="course-contacts">
                     {{#contacts}}
-                        <a href="{{config.wwwroot}}/user/profile.php?id={{{id}}}" class="contact" data-toggle="tooltip" title="{{{fullname}}}">
-                        <img src="{{{userpicture}}}" class="rounded-circle" alt="{{{fullname}}}">
+                        <div class="userpicture">
+                           {{{userpicture}}}
+                        </div>
                         <div class="info">
                             <p class="name">{{{fullname}}}</p>
                             <p class="role">{{{role}}}</p>
                         </div>
-                        </a>
                     {{/contacts}}
                 </div>
             {{/hascontacts}}
