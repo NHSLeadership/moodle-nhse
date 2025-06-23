@@ -34,48 +34,54 @@
         ]
     }
 }}
-<div class="card dashboard-card mx-1" role="listitem"
+<div class="nhsuk-card nhsuk-card--clickable card dashboard-card mx-1"
      data-region="course-content"
      data-course-id="{{{id}}}">
-    <a href="{{viewurl}}" tabindex="-1">
-        <div class="card-img dashboard-card-img" style='background-image: url("{{{courseimage}}}");'>
-            <div class="course-category">
-                {{$coursecategory}}{{/coursecategory}}
-            </div>
-            <span class="sr-only">{{fullname}}</span>
-        </div>
-    </a>
-    <div class="card-body pr-1 course-info-container" id="course-info-container-{{id}}-{{uniqid}}">
-        <div class="d-flex align-items-start">
-            <div class="w-100">
-                {{#showshortname}}
-                    <div class="text-muted muted d-flex mb-1 flex-wrap">
-                        <span class="sr-only">
-                            {{#str}}aria:courseshortname, core_course{{/str}}
-                        </span>
-                        <div>
-                            {{{shortname}}}
-                        </div>
-                        {{$divider}}{{/divider}}
-                    </div>
-                {{/showshortname}}
-                <a href="{{viewurl}}" class="aalink coursename mr-2 mb-1">
-                    {{> core_course/favouriteicon }}
+
+    {{#courseimage}}
+    <img class="nhsuk-card__img" src="{{courseimage}}" alt="{{image.alt}}">
+    {{/courseimage}}
+
+    <div class="nhsuk-card__content nhsuk-u-padding-3" id="course-info-container-{{id}}-{{uniqid}}">
+        <h2 class="nhsuk-card__heading nhsuk-heading-xs">
+            {{#showshortname}}
+                <div class="text-muted muted d-flex mb-1 flex-wrap">
                     <span class="sr-only">
-                        {{#str}}aria:coursename, core_course{{/str}}
+                        {{#str}}aria:courseshortname, core_course{{/str}}
                     </span>
-                    {{$coursename}}{{/coursename}}
-                </a>
-                {{^visible}}
-                    <div class="d-flex flex-wrap">
-                        <span class="badge badge-info">{{#str}} hiddenfromstudents {{/str}}</span>
-                    </div>
-                {{/visible}}
-            </div>
+                    {{{shortname}}}
+                </div>
+            {{/showshortname}}
+
+            <a href="{{viewurl}}" class="aalink coursename mr-2 mb-1">
+                {{> core_course/favouriteicon }}
+                <span class="sr-only">
+                    {{#str}}aria:coursename, core_course{{/str}}
+                </span>
+                {{$coursename}}{{/coursename}}
+            </a>
+        </h2>
+
+        <p class="course-summary nhsuk-card__description">
+            <a href="{{viewurl}}" class="nhsuk-card__link" tabindex="-1">
+                <div class="course-category nhsuk-tag nhsuk-tag--blue">
+                    {{$coursecategory}}{{/coursecategory}}
+                </div>
+                <span class="sr-only">{{fullname}}</span>
+            </a>
+        </p>
+
+        {{^visible}}
+            <span class="badge badge-info">{{#str}} hiddenfromstudents {{/str}}</span>
+        {{/visible}}
+
+        <div class="d-flex align-items-start">
+            {{> block_myoverview/progress-bar}}
         </div>
-    </div>
-    <div class="d-flex align-items-start">
-        {{$progress}}{{/progress}}
-        {{$menu}}{{/menu}}
+
+        <div class="col-md-1 p-1 mr-2 d-flex menu">
+            {{> block_myoverview/course-action-menu }}
+        </div>
+
     </div>
 </div>
