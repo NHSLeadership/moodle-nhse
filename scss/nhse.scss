@@ -1169,15 +1169,12 @@ label input[type=checkbox] {
   }
 }
 
-th, td {
-  font-size: 1.0rem;
-}
-
-@media (min-width: 40.0625em) {
-  th, td {
-    font-size: 1.0rem;
-  }
-  .nhsuk-breadcrumb__item {
-    font-size: 1.1875rem;
+.path-mod-assign {
+  .gradingtable {
+    thead {
+      tr {
+        top: 0
+      }
+    }
   }
 }
