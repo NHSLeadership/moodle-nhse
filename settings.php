@@ -130,7 +130,6 @@ if ($ADMIN->fulltree) {
         0 => 'disable icon',
         1 => 'enable icon'
     ];
-
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
@@ -150,6 +149,21 @@ if ($ADMIN->fulltree) {
     $default = get_string('login_expand_text_default', 'theme_nhse');
     $setting = new admin_setting_configtext($name, $title, $description, $default);
     $page->add($setting);
+
+    // Course display grid layout
+    $name = 'theme_nhse/grid_columns';
+    $title = get_string('grid_columns_title', 'theme_nhse');
+    $description = get_string('grid_columns_description', 'theme_nhse');
+    $default = 'nhsuk-grid-column-full';
+    $choices = [
+        'nhsuk-grid-column-full' => 'One column grid',
+        'nhsuk-grid-column-one-half' => 'Two column grid',
+        'nhsuk-grid-column-one-third' => 'Three column grid',
+    ];
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
 
     $settings->add($page);
 }

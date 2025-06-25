@@ -163,7 +163,7 @@ ul {
 }
 
 .bg-secondary {
-  color: $nhsuk-reverse-button-text-color!important;
+  color: $nhsuk-button-text-color!important;
 }
 
 .btn {
@@ -193,7 +193,6 @@ ul {
  * Body styles
  */
 body {
-  background-color: $nhsuk-form-element-background-color;
   background: none;
   &.limitedwidth {
     #page {
@@ -238,12 +237,13 @@ body {
  */
 
 .card {
-  border: none;
+  &:not(.nhsuk-card) {
+    border: none;
+  }
   border-radius: 0;
   -moz-border-radius: 0;
-  margin: 0;
-  background-color: $color_nhsuk-grey-5;
   &.course-card {
+    border: 1px solid $color_nhsuk-grey-4;
     background-color: $color_nhsuk-white;
   }
 }
@@ -264,6 +264,27 @@ body {
     .dashboard-card-img {
       border-radius: 0;
     }
+  }
+}
+
+.nhsuk-card-group, .card-grid {
+  //:not(.nhsuk-grid-column-full) {
+    .nhsuk-card__img {
+      aspect-ratio: 3/2;
+      //max-height: 250px;
+      object-fit: cover;
+    }
+  //}
+}
+
+.nhsuk-card {
+  .menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .coursemenubtn {
+    background-color: $color_nhsuk-white;
   }
 }
 
@@ -306,9 +327,10 @@ body {
 
 .drawers {
   .block_myoverview>.card-body {
-    padding: 1.25rem!important;
+    padding: 0!important;
   }
 }
+
 .comment-area {
   padding: 10px 0 0;
 }
@@ -322,12 +344,13 @@ body {
     margin-bottom: 10px;
   }
 }
+
 .comment-ctrl {
   font-size: 1rem;
 }
 
 .dropdown-menu {
-  border: none;
+  border: 1px solid $nhsuk-border-color;
   border-radius: 0;
   min-width: 20rem;
   padding: 0 0 0 15px;
