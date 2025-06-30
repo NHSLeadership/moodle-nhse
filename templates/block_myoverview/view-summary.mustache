@@ -1,0 +1,114 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_myoverview/view-summary
+
+    This template renders the list view for the myoverview block.
+
+    Example context (json):
+    {
+        "courses": [
+            {
+                "name": "Assignment due 1",
+                "viewurl": "https://moodlesite/course/view.php?id=2",
+                "courseimage": "https://moodlesite/pluginfile/123/course/overviewfiles/123.jpg",
+                "fullname": "course 3",
+                "summary": "This course is about assignments",
+                "hasprogress": true,
+                "progress": 10,
+                "coursecategory": "Category 1",
+                "visible": true
+            }
+        ]
+    }
+}}
+<ul role="list" class="nhsuk-grid-row nhsuk-card-group">
+    {{#courses}}
+        <li class="nhsuk-grid-column-full nhsuk-card-group__item course-summaryitem list-group-item course-listitem border-start-0 border-end-0 border-top-0 rounded-0"
+             role="listitem"
+             data-region="course-content"
+             data-course-id="{{{id}}}">
+
+            <div class="nhsuk-card">
+                {{#courseimage}}
+                <a href="{{viewurl}}" class="nhsuk-card__link aalink coursename" tabindex="-1">
+                    <img class="nhsuk-card__img" src="{{{courseimage}}}" alt="{{fullname}}">
+                </a>
+                {{/courseimage}}
+
+                <div class="nhsuk-card__content nhsuk-card__content">
+
+                    <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                        <a href="{{viewurl}}" class="nhsuk-card__link aalink coursename" tabindex="-1">
+                            {{> core_course/favouriteicon }}
+                            <span class="sr-only">
+                                {{#str}}aria:coursename, core_course{{/str}}
+                            </span>
+                            {{{fullname}}}
+                        </a>
+                    </h2>
+
+                    {{#showshortname}}
+                        <div class="text-muted muted d-flex flex-wrap">
+                            <span class="sr-only">
+                                {{#str}}aria:courseshortname, core_course{{/str}}
+                            </span>
+                            <div>{{{shortname}}}</div>
+                        </div>
+                    {{/showshortname}}
+
+                    {{^visible}}
+                        <div class="d-flex flex-wrap">
+                            <span class="badge bg-info text-white">{{#str}} hiddenfromstudents {{/str}}</span>
+                        </div>
+                    {{/visible}}
+
+                    <p class="summary nhsuk-card__description">
+                        <span class="sr-only">{{#str}}aria:coursesummary, block_myoverview{{/str}}</span>
+                        {{{summary}}}
+                    </p>
+
+                    {{$coursecategory}}
+                        <span class="sr-only">
+                            {{#str}}aria:coursecategory, core_course{{/str}}
+                        </span>
+                        {{#showcoursecategory}}
+                            <span class="categoryname nhsuk-tag nhsuk-tag--blue">
+                                {{#coursecategory}}
+                                    {{{coursecategory}}}
+                                {{/coursecategory}}
+                            </span>
+                        {{/showcoursecategory}}
+                    {{/coursecategory}}
+
+                    {{#hasprogress}}
+                        <div class="border border-light border-left-0 border-right-0 border-bottom-0 pt-2">
+                            <div class="text-muted muted d-flex flex-wrap mt-auto">
+                                {{> block_myoverview/progress-bar}}
+                            </div>
+                        </div>
+                    {{/hasprogress}}
+                </div>
+
+                <div class="col-md-1 p-0 d-flex menu">
+                    {{> block_myoverview/course-action-menu }}
+                </div>
+            </div>
+
+        </li>
+    {{/courses}}
+</ul>
