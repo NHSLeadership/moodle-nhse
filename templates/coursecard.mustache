@@ -1,0 +1,90 @@
+<div role="listitem"
+    data-region="course-content"
+    data-course-id="{{{id}}}"
+    class="nhsuk-card-group__item
+        {{^visible}}dimmed{{/visible}}
+        {{#gridcolumns}}
+            {{{gridcolumns}}}
+        {{/gridcolumns}}
+        {{^gridcolumns}}
+            nhsuk-grid-column-full
+        {{/gridcolumns}}
+    ">
+
+    <div class="nhsuk-card card dashboard-card">
+        {{#image}}
+        <a href="{{courseurl}}" class="nhsuk-card__link aalink coursename" tabindex="-1">
+            <img class="nhsuk-card__img {{image.class}}" src="{{image.src}}" alt="{{image.alt}}">
+        </a>
+        {{/image}}
+
+        <div class="nhsuk-card__content nhsuk-u-padding-3">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a href="{{courseurl}}" class="nhsuk-card__link" tabindex="-1">{{fullname}}</a>...
+            </h2>
+
+            {{#hasenrolmenticons}}
+                <div class="enrolmenticons">
+                    {{#enrolmenticons}}
+                        <div class="enrolmenticon">
+                            {{{.}}}
+                        </div>
+                    {{/enrolmenticons}}
+                </div>
+            {{/hasenrolmenticons}}
+
+            {{#multigridcolumns}}
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">{{#str}} course_details_text, theme_nhse {{/str}}</span>
+                    </summary>
+                    <div class="nhsuk-details__text">
+            {{/multigridcolumns}}
+                    <p class="course-summary nhsuk-card__description">{{{summary}}}</p>
+            {{#multigridcolumns}}
+                    </div>
+                </details>
+            {{/multigridcolumns}}
+
+            {{#customfields}}
+                <div class="customfields course-info-container">
+                    {{{customfields}}}
+                </div>
+            {{/customfields}}
+
+            {{#coursecategory}}
+                <span class="sr-only">
+                    {{#str}}aria:coursecategory, core_course{{/str}}
+                </span>
+                <span class="customfields course-info-container nhsuk-tag nhsuk-tag--blue">
+                    {{{coursecategory}}}
+                </span>
+            {{/coursecategory}}
+
+            {{#progress}}
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{{progress}}}" style="width: {{{progress}}}%" aria-valuemin="0" aria-valuemax="{{{progress}}}"></div>
+                </div>
+                <p class="mb-0">{{#str}}completepercent, block_myoverview, {{progress}}{{/str}}</p>
+            {{/progress}}
+
+            {{#showtutors}}
+                {{#hascontacts}}
+                    <div class="course-contacts">
+                        {{#contacts}}
+                            <div class="userpicture">
+                               {{{userpicture}}}
+                            </div>
+                            <div class="info">
+                                <p class="name">{{{fullname}}}</p>
+                                <p class="role">{{{role}}}</p>
+                            </div>
+                        {{/contacts}}
+                    </div>
+                {{/hascontacts}}
+            {{/showtutors}}
+
+        </div>
+    </div>
+
+</div>
