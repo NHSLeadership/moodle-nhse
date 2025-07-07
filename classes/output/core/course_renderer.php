@@ -189,7 +189,7 @@ class course_renderer extends \core_course_renderer
             'summary' => $this->course_summary($chelper, $course),
             'coursecategory' => $category->name ?? null,
             'customfields' => $this->course_custom_fields($course),
-            'progress' => $this->get_progress($course) ?: 0,
+            'progress' => intval($this->get_progress($course) ?: 0),
             'gridcolumns' => get_config( 'theme_nhse', 'grid_columns') ?: 'nhsuk-grid-column-full',
             'multigridcolumns' => (!empty($gridcColumns) && $gridcColumns != 'nhsuk-grid-column-full'),
             'hasenrolmenticons' => $courseenrolmenticons != false,
