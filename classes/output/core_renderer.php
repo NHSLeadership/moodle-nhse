@@ -228,6 +228,19 @@ class core_renderer extends \theme_boost\output\core_renderer
         return $context; 
     }
 
+    public function get_footer_data(): \stdClass {
+        $context = new \stdClass();
+
+        $dotnet_base_url = get_config('theme_nhse', 'dotnet_base_url');
+        if (!empty($dotnet_base_url) && substr($dotnet_base_url, -1) !== '/') {
+            $dotnet_base_url .= '/';
+        }
+
+        $context->dotnet_base_url = $dotnet_base_url;
+
+        return $context;
+    }
+
 
     /**
      * Wrapper for header elements.
