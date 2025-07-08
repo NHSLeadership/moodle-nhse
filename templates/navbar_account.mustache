@@ -19,7 +19,7 @@
 <div class="nhsuk-account__login nhsuk-header__not-mobile">
     {{! Assuming dotnet_base_url is passed and correctly formatted with a trailing slash }}
     <a class="nhsuk-account__login--link" href="{{dotnet_base_url}}myaccount">My account</a>
-    <a class="nhsuk-account__login--link" href="{{dotnet_base_url}}Home/Logout">Log out</a>
+    <a class="nhsuk-account__login--link" href="/login/logout.php?sesskey={{sessionKey}}">Log out</a>    
 </div>
 {{/is_user_logged_in}} {{! End of the conditional block }}
 

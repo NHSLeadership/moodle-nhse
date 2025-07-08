@@ -64,8 +64,11 @@ class core_renderer extends \theme_boost\output\core_renderer
             $dotnet_base_url .= '/';
         }
 
-        // --- NEW: Add dotnet_base_url to the context for Mustache template ---
+        // Add dotnet_base_url to the context for Mustache template ---
         $context->dotnet_base_url = $dotnet_base_url;
+        error_log("DEBUG NHSE: get_global_header_data: dotnet_base_url = " . $context->dotnet_base_url); // ADD THIS LINE
+        // Add sesskey to the context for Mustache template ---
+        $context->sessionKey = sesskey();
 
         // --- NEW: Get the configured API Base URL ---
         $api_base_url = get_config('theme_nhse', 'api_base_url');
