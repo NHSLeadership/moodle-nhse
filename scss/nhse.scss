@@ -1146,6 +1146,10 @@ th, td {
 
 
 .nav-course__exit-btn {
-
   display:none !important;
+}
+
+/* Hide confusing enrolment icons – added 2025-07-08 */
+.coursebox .info .enrolmenticons {
+    display: none;
 }
