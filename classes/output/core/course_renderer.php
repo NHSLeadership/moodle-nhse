@@ -103,11 +103,11 @@ class course_renderer extends \core_course_renderer
 
     /**
      * Returns the user picture
-     * @param $user
-     * @param $imgsize
      *
-     * @return string
-     * @throws \core\exception\coding_exception
+     * @param $user
+     *
+     * @return mixed
+     * @throws \dml_exception
      */
     public function get_user_picture($user) {
         global $DB, $PAGE;
@@ -121,11 +121,11 @@ class course_renderer extends \core_course_renderer
 
     /**
      * Returns HTML to display course contacts.
+     *
      * @param $course
      *
      * @return array
-     * @throws \coding_exception
-     * @throws \core\exception\coding_exception
+     * @throws \dml_exception
      */
     public function get_course_contacts($course) {
         $contacts = [];
@@ -161,23 +161,47 @@ class course_renderer extends \core_course_renderer
     }
 
     /**
+     * Returns enrolment icons
+     *
+     * @param array $icons
+     *
+     * @return array
+     */
+    protected function render_enrolment_icons(array $icons): array {
+        $data = [];
+
+        foreach ($icons as $icon) {
+            $data[] = $this->render($icon);
+        }
+
+        return $data;
+    }
+
+    /**
      * Displays one course in the list of courses.
+     * *
+     * * This is an internal function, to display information about just one course
+     * * please use {@link core_course_renderer::course_info_box()}
      *
-     * This is an internal function, to display an information about just one course
-     * please use {@link core_course_renderer::course_info_box()}
+     * @param  coursecat_helper  $chelper
+     * @param $course
+     * @param $additionalclasses
      *
-     * @param coursecat_helper $chelper various display options
-     * @param core_course_list_element|stdClass $course
-     * @param string $additionalclasses additional classes to add to the main <div> tag (usually
-     *    depend on the course position in list - first/last/even/odd)
-     * @return string
+     * @return bool|string
+     * @throws \dml_exception
+     * @throws \moodle_exception
      */
     protected function coursecat_coursebox(coursecat_helper $chelper, $course, $additionalclasses = '') {
-        if ($course instanceof stdClass) {
+        if ($course instanceof \stdClass) {
             $course = new core_course_list_element($course);
         }
 
-        $courseenrolmenticons = !empty($courseenrolmenticons) ? $this->render_enrolment_icons($courseenrolmenticons) : false;
+        $courseEnrolmentIcons = [];
+        $course_info_icons = enrol_get_course_info_icons($course);
+        foreach ($course_info_icons as $icon) {
+            $courseEnrolmentIcons[] = $this->render($icon);
+        }
+
         $images = $this->course_images($course);
         $category = core_course_category::get($course?->category, IGNORE_MISSING);
 
@@ -192,8 +216,8 @@ class course_renderer extends \core_course_renderer
             'progress' => intval($this->get_progress($course) ?: 0),
             'gridcolumns' => get_config( 'theme_nhse', 'grid_columns') ?: 'nhsuk-grid-column-full',
             'multigridcolumns' => (!empty($gridcColumns) && $gridcColumns != 'nhsuk-grid-column-full'),
-            'hasenrolmenticons' => $courseenrolmenticons != false,
-            'enrolmenticons' => $courseenrolmenticons,
+            'hasenrolmenticons' => !empty($courseEnrolmentIcons),
+            'enrolmenticons' => $courseEnrolmentIcons,
             'contacts' => $this->get_course_contacts($course),
             'hascontacts' => !empty($this->get_course_contacts($course)),
             'showtutors' => false, // optional tutors in home page
