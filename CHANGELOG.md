@@ -1,7 +1,8 @@
 # NHSE Theme change log
 
-## 2025-07-22-00
+## 2025-07-29.00
 1. Tweak course card title formatting
+2. Sticky footer patch
 
 ## 2025-07-07.00
 1. Course cards added to course overview, categories pages
