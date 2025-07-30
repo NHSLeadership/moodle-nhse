@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         scormIframe.style.setProperty('width', '100%', 'important');
                         scormIframe.style.setProperty('height', '100%', 'important');
                         scormIframe.style.setProperty('display', 'block', 'important'); // Ensure it's not hidden
+                        scormIframe.style.setProperty('background-color', '#ffffff', 'important'); 
                     }
 
                     // *** REMOVED: Hiding #page-wrapper as it hides everything! ***
@@ -300,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     scormIframe.style.removeProperty('width');
                     scormIframe.style.removeProperty('height');
                     scormIframe.style.removeProperty('display');
+                    scormIframe.style.removeProperty('background-color');
                 }
 
                 // *** REMOVED: Restoring #page-wrapper is no longer needed if we don't hide it ***
