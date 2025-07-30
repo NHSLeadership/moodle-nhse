@@ -251,8 +251,11 @@ body {
 .course_category_tree {
   .category {
     >.info {
+      padding-left: 13px;
       >.categoryname {
         font-size: inherit;
+        padding: 0.5rem 1.25rem;
+        cursor: context-menu;
       }
     }
   }
@@ -1200,4 +1203,8 @@ label input[type=checkbox] {
       }
     }
   }
+}
+
+.stickyfooter {
+  overflow: visible;
 }

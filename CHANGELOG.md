@@ -1,5 +1,12 @@
 # NHSE Theme change log
 
+## 2025-07-29.00
+1. Tweak course card title formatting
+2. Sticky footer patch
+
+## 2025-07-07.00
+1. Course cards added to course overview, categories pages
+
 ## 2025-05-13.01
 1. Fix for left and right menu in course edit bulk actions
 2. Fix  visited/hover links in the main navigation sub menu
