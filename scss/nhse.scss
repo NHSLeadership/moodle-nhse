@@ -1145,7 +1145,61 @@ th, td {
 }
 
 
-.nav-course__exit-btn {
+/* Hide confusing enrolment icons */
+.coursebox .info .enrolmenticons {
+    display: none;
+}
 
-  display:none !important;
+.autosuggestion-menu {
+    padding: 16px 16px 0px 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #d8dde0;
+    border-radius: 0px 0px 4px 4px;
+    border-left: 1px solid #d8dde0;
+    border-right: 1px solid #d8dde0;
+    box-shadow: 0px 2px 3px 0px #d8dde0;
+    list-style: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 0;
+}
+
+.autosuggestion-option .autosuggestion-icon {
+    fill: #aeb7bd !important;
+    float: left;
+    height: 20px;
+    margin: 2px 8px 0 0;
+    width: 16px;
+}
+
+.autosuggestion-option .autosuggestion-link {
+    display: flex;
+    margin-bottom: 0px;
+    text-decoration: underline;
+}
+
+@media (min-width: 40.0625em) {
+    ol>li, ul>li, .nhsuk-list>li {
+        margin-bottom: 8px;
+    }
+}
+
+.autosuggestion-option {
+    margin-bottom: 0;
+    border-bottom: 1px solid #d8dde0;
+    color: #005eb8;
+    cursor: pointer;
+    font-size: 16px;
+    padding-bottom: 12px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.autosuggestion-option .autosuggestion-subtext {
+    color: #768692 !important;
+    padding-left: 24px;
+    margin: 0px;
 }

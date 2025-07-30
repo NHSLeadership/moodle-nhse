@@ -37,7 +37,16 @@ defined('MOODLE_INTERNAL') || die;
 class core_renderer extends \theme_boost\output\core_renderer
 {
 
- /**
+    // You can declare it explicitly for IDE clarity, but the parent usually does this.
+    // protected $page;
+
+    public function __construct(\moodle_page $page, $target) {
+        // This line is CRUCIAL. It calls the parent constructor,
+        // which sets up $this->page for the current renderer instance.
+        parent::__construct($page, $target);
+    }
+
+    /**
      * Returns the data context for the global theme header, fetching from API.
      * This method is called by {{# output.get_global_header_data }} in Mustache.
      *
@@ -227,8 +236,44 @@ class core_renderer extends \theme_boost\output\core_renderer
             error_log("theme_nhse: Failed to process API response. Response was empty, not an array, or an error occurred. JSON Error: " . $json_error_msg);
             error_log("theme_nhse: Raw API response (if available): " . ($response ?: 'No response content'));
         }
+
+        // NEW: Require your autosuggest JavaScript module
+        $this->page->requires->js_call_amd('theme_nhse/autosuggest', 'init');
+
+        // You can remove this for now, or keep it, it won't hurt
+        // $this->page->requires->js_init_call('M.cfg.userid = ' . $USER->id . ';');
+
         
         return $context; 
+    }
+
+    public function get_footer_data(): \stdClass {
+        $context = new \stdClass();
+
+        $dotnet_base_url = get_config('theme_nhse', 'dotnet_base_url');
+        if (!empty($dotnet_base_url) && substr($dotnet_base_url, -1) !== '/') {
+            $dotnet_base_url .= '/';
+        }
+
+        $context->dotnet_base_url = $dotnet_base_url;
+
+        return $context;
+
+    }
+    
+    public function standard_head_html() {
+        $output = parent::standard_head_html();
+
+        // Inject dotnet_base_url into M.cfg globally
+        $dotnet_base_url = get_config('theme_nhse', 'dotnet_base_url');
+
+        if (!empty($dotnet_base_url)) {
+            $output .= '<script>';
+            $output .= 'M.cfg.dotnet_base_url = ' . json_encode($dotnet_base_url) . ';';
+            $output .= '</script>';
+        }
+
+        return $output;
     }
 
 

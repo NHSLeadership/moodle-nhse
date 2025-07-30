@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         scormIframe.style.setProperty('width', '100%', 'important');
                         scormIframe.style.setProperty('height', '100%', 'important');
                         scormIframe.style.setProperty('display', 'block', 'important'); // Ensure it's not hidden
+                        scormIframe.style.setProperty('background-color', '#ffffff', 'important'); 
                     }
 
                     // *** REMOVED: Hiding #page-wrapper as it hides everything! ***
@@ -300,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     scormIframe.style.removeProperty('width');
                     scormIframe.style.removeProperty('height');
                     scormIframe.style.removeProperty('display');
+                    scormIframe.style.removeProperty('background-color');
                 }
 
                 // *** REMOVED: Restoring #page-wrapper is no longer needed if we don't hide it ***
@@ -330,23 +332,34 @@ document.addEventListener('DOMContentLoaded', function () {
         const MAX_POLL_TIME = 15000; // Max 15 seconds for button hiding inside iframe
 
         // Function to find and hide the Adapt button
-        const hideAdaptExitButton = () => {
+       const hideAdaptExitButton = () => {
             const scormIframe = document.getElementById('scorm_object');
-            if (!scormIframe || !scormIframe.contentDocument) {
+            if (!scormIframe || !scormIframe.contentDocument && !scormIframe.contentWindow) {
                 return false;
             }
 
             const iframeDoc = scormIframe.contentDocument || scormIframe.contentWindow.document;
-            const exitButton = iframeDoc.querySelector('.nav-course__exit-btn');
 
-            if (exitButton) {
-                if (getComputedStyle(exitButton).display !== 'none') {
-                    exitButton.style.setProperty('display', 'none', 'important');
-                    console.log(`[${Date.now()}] Adapt Exit Button hidden. Current display: ${getComputedStyle(exitButton).display}`);
+            // Try both selectors
+            const selectors = [
+                '.nav-course__exit-btn',            // Newer Adapt exit button
+                '.navigation-course-exit-button'    // Older Adapt exit button
+            ];
+
+            let found = false;
+
+            selectors.forEach(selector => {
+                const button = iframeDoc.querySelector(selector);
+                if (button) {
+                    if (getComputedStyle(button).display !== 'none') {
+                        button.style.setProperty('display', 'none', 'important');
+                        console.log(`[${Date.now()}] Hidden Adapt exit button via selector: ${selector}`);
+                    }
+                    found = true;
                 }
-                return true; // Button found and hidden (or already hidden)
-            }
-            return false; // Button not found yet
+            });
+
+            return found;
         };
 
         // Function to set up the hiding logic *inside* the iframe

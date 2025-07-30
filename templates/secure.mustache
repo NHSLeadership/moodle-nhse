@@ -83,7 +83,9 @@
         </div>
     </footer>
 </div>
-{{> theme_nhse/footer }}
+{{# output.get_footer_data }}
+    {{> theme_nhse/footer }}
+{{/ output.get_footer_data }}
 </body>
 </html>
 {{#js}}
