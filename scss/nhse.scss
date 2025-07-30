@@ -1145,7 +1145,10 @@ th, td {
 }
 
 
-
+/* Hide confusing enrolment icons */
+.coursebox .info .enrolmenticons {
+    display: none;
+}
 
 .autosuggestion-menu {
     padding: 16px 16px 0px 16px;
