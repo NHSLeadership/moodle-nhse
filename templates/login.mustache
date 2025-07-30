@@ -47,7 +47,9 @@
     </div>
     <!-- end of div id="page"-->
 
-    {{> theme_nhse/footer }}
+    {{# output.get_footer_data }}
+        {{> theme_nhse/footer }}
+    {{/ output.get_footer_data }}
     {{{ output.standard_after_main_region_html }}}
 </div>
 
