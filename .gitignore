@@ -5,3 +5,6 @@ vendor/
 # Compiled CSS files
 css/*.min.css
 css/*.min.css.map
+
+# Ignore the entire build folder
+/amd/build/
