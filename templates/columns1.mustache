@@ -69,7 +69,9 @@
         </div>
     </div>
     {{{ output.standard_after_main_region_html }}}
-    {{> theme_nhse/footer }}
+    {{# output.get_footer_data }}
+        {{> theme_nhse/footer }}
+    {{/ output.get_footer_data }}
 
 </div>
 {{{ output.standard_end_of_body_html }}}
