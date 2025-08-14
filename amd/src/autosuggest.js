@@ -31,39 +31,39 @@ define(['jquery'], function($) {
                             const decodedResult = response.api_decoded_result;
 
                             // Process Concept Documents - order them as per the .NET code (Concepts first)
-                            if (decodedResult.conceptDocument && decodedResult.conceptDocument.conceptDocumentList) {
-                                decodedResult.conceptDocument.conceptDocumentList.forEach(item => {
+                            if (decodedResult.concepts_documents && decodedResult.concepts_documents.documents) {
+                                decodedResult.concepts_documents.documents.forEach(item => {
                                     allSuggestions.push({
                                         displayTitle: item.concept, // As per .NET code, uses item.Concept
                                         originalTermForUrl: item.concept, // Used for the actualHref for concepts
                                         type: 'Concepts', // Matches 'Concepts' from .NET GetUrl searchType
-                                        payload: item.click.payload, // Pass the whole payload for tracking URL
+                                        payload: item._click.payload, // Pass the whole payload for tracking URL
                                         // originalItem: item // Keep original item for deeper inspection if needed
                                     });
                                 });
                             }
 
                             // Process Resource Documents
-                            if (decodedResult.resourceDocument && decodedResult.resourceDocument.resourceDocumentList) {
-                                decodedResult.resourceDocument.resourceDocumentList.forEach(item => {
+                            if (decodedResult.resources_documents && decodedResult.resources_documents.documents) {
+                                decodedResult.resources_documents.documents.forEach(item => {
                                     allSuggestions.push({
                                         displayTitle: item.title,
                                         targetReferenceId: item.resourceReferenceId, // Use ResourceReferenceId as per .NET GetUrl
                                         type: 'Resource', // Matches 'Resource' from .NET GetUrl searchType
-                                        payload: item.click.payload,
+                                        payload: item._click.payload,
                                         // originalItem: item
                                     });
                                 });
                             }
 
                             // Process Catalogue Documents
-                            if (decodedResult.catalogueDocument && decodedResult.catalogueDocument.catalogueDocumentList) {
-                                decodedResult.catalogueDocument.catalogueDocumentList.forEach(item => {
+                            if (decodedResult.catalogues_documents && decodedResult.catalogues_documents.documents) {
+                                decodedResult.catalogues_documents.documents.forEach(item => {
                                     allSuggestions.push({
                                         displayTitle: item.name, // Use 'name' for catalogues
                                         targetReference: item.url, // Use item.Url as per .NET GetUrl
                                         type: 'Catalogues', // Matches 'Catalogues' from .NET GetUrl searchType
-                                        payload: item.click.payload,
+                                        payload: item._click.payload,
                                         // originalItem: item
                                     });
                                 });
@@ -170,11 +170,7 @@ define(['jquery'], function($) {
                         } else {
                             suggestionsList.empty().hide(); // Hide if no suggestions
                         }
-                    },
-                    //error: function(xhr, status, error) {
-                    //console.error('Search API error:', error, 'Status:', status, 'Response:', xhr.responseText);
-                      //suggestionsList.empty().hide(); // Hide on error
-                    //}
+                    }
                 });
             });
 
