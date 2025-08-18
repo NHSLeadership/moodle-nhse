@@ -70,6 +70,23 @@ class course_renderer extends \core_course_renderer
         return $contentimages;
     }
 
+
+    /**
+     * Renders course info box.
+     *
+     * @param \stdClass $course
+     * @return string
+     */
+    public function course_info_box(\stdClass $course) {
+        $content = '';
+        $content .= $this->output->box_start('d-flex generalbox info');
+        $chelper = new coursecat_helper();
+        $chelper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED);
+        $content .= $this->coursecat_coursebox($chelper, $course);
+        $content .= $this->output->box_end();
+        return $content;
+    }
+
     /**
      * Returns HTML to print list of available courses for the frontpage
      *
