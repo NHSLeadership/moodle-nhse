@@ -550,6 +550,21 @@ body {
   }
 }
 
+.format-tiles {
+  .sectionbutton {
+    &:focus {
+      background-color: $color_nhsuk-yellow;
+      text-shadow: none;
+    }
+    .icon {
+      font-size: 1.2em;
+    }
+  }
+  .summary {
+    padding: 0 1.0em
+  }
+}
+
 #frontpage-available-course-list {
   .coursebox {
     @extend .nhsuk-card__content;
@@ -1021,22 +1036,23 @@ input[type=checkbox] {
 }
 
 input[type=checkbox] + label {
-  padding-left: 1.0rem!important;
+  padding-left: 1.0rem !important;
 }
 label input[type=checkbox] {
-  margin-right: 1.0rem!important;
+  margin-right: 1.0rem !important;
 }
 
-label input[type=checkbox] {
-  margin-right: 1.0rem!important;
-}
-.form-check label {
-  padding-left: 1.0rem!important;
+label {
+  &.form-check {
+    padding-left: 1.0rem!important;
+  }
 }
 
-.form-check-inline .form-check-input {
-  margin-left: 1.0rem;
-  margin-right: 1.0rem;
+.form-check-inline {
+  .form-check-input {
+    margin-left: 1.0rem;
+    margin-right: 1.0rem;
+  }
 }
 
 .form-control {

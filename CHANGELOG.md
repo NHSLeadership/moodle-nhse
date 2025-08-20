@@ -5,6 +5,7 @@
 2. Drawers padding tweaks
 3. Default page background updated
 4. Style tweaks to various card blocks
+5. Tiles and cards plugin CSS tweaks
 
 ## 2025-07-29.00
 1. Tweak course card title formatting
