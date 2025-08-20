@@ -201,15 +201,18 @@ th, td {
   border-bottom-right-radius: 4px!important;
 }
 
-/**
- * Body styles
- */
-.nhsuk-header__navigation-list {
-  max-width: 100%
-}
-
 body {
   background: none;
+  #page {
+    &.drawers {
+      padding: 0 1em;
+    }
+
+    .nhsuk-header__navigation-list {
+      margin-left: 0;
+    }
+  }
+
   &.limitedwidth {
     #page {
       &.drawers {
