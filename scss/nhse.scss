@@ -58,11 +58,7 @@ a {
   &.btn {
     &:focus {
       @include nhsuk-focused-button;
-    }
-  }
-  &.btn {
-    &:focus {
-      @include nhsuk-focused-button;
+      color: $color_nhsuk-black !important;
     }
   }
   &.nav-link {
@@ -76,6 +72,7 @@ button {
   &.btn {
     &:focus {
       @include nhsuk-focused-button;
+      color: $color_nhsuk-black !important;
     }
   }
 }
@@ -332,6 +329,7 @@ body {
  * Drawer styles
  */
 .drawer {
+  border: 1px solid $color_nhsuk-blue;
   ul {
     font-size: 15px;
   }
@@ -497,12 +495,14 @@ body {
   #page {
     &.drawers {
       &.show-drawer-left {
-        padding-left: 326px;
-        margin-left: 0;
+        margin-left: 335px;
+        margin-right: 0;
+        padding-left: 1rem;
       }
       &.show-drawer-right {
-        padding-right: 327px;
-        margin-right: 0;
+        margin-left: 0;
+        margin-right: 335px;
+        padding-right: 1rem;
       }
     }
   }
