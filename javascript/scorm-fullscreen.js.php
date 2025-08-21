@@ -5,11 +5,33 @@ require_once(__DIR__ . '/../../../config.php');
 // Set header to ensure it's served as JavaScript
 header('Content-Type: application/javascript');
 ?>
-document.addEventListener('DOMContentLoaded', function () {
-    console.log(`[${Date.now()}] Parent DOMContentLoaded fired.`);
+document.addEventListener('DOMContentLoaded', function () {   
 
     // Pass the Moodle base URL from PHP to JavaScript
     const MOODLE_BASE_URL = '<?php echo $CFG->wwwroot; ?>';
+
+    // Determine if viewed on mobile as this will determine the full screen implementation
+    // If not mobile then will use the native full screen implementation
+    // If mobile then will use a simulated full screen implementation
+    const isMobile = () => {
+        console.log("navigator.platform: " + navigator.platform);
+        console.log("navigator.maxTouchPoints = " + navigator.maxTouchPoints);
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+        // iOS detection (iPhone, iPod)
+        if (/iPhone|iPod/i.test(ua)) return true;
+
+        // iPad detection
+        // Modern iPads on iOS 13+ report MacIntel in navigator.platform
+        if ((/iPad/i.test(ua)) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+            return true;
+        }
+
+        // Android detection (phones & tablets)
+        if (/Android/i.test(ua)) return true;
+
+        return false;
+    };    
 
     // Function to get a URL parameter from a given URL string
     function getUrlParameterFromHref(href, name) {
@@ -91,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         courseReturnUrl = MOODLE_BASE_URL + '/course/view.php?id=' + foundCourseId;
         console.log(`[${Date.now()}] Final course return URL determined: ${courseReturnUrl}`);
     } else {
-        // This warning should hopefully be rare now
+        // This warning should hopefully be rare 
         console.warn(`[${Date.now()}] Could not determine specific course ID. Exit button will go to generic course view: ${courseReturnUrl}`);
     }
 
@@ -100,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const scormContentDiv = document.getElementById('scorm_content');
     let isFullScreen = false; // Moved here to be accessible by all fullscreen related logic
+    let fullscreenMode = null; // "native" or "simulated"
 
     // --- Font Awesome 6.x 'right-from-bracket' SVG Icon Code ---
     const svgIconCode = `
@@ -108,15 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
         </svg>
     `;
 
-    // --- Modify the Moodle-generated "Exit activity" button ---
+    // Modify the Moodle-generated "Exit activity" button
     const moodleExitButton = document.querySelector('div.d-flex.flex-row-reverse.mb-2 > a.btn.btn-secondary[title="Exit activity"]');
     if (moodleExitButton) {
         if (!moodleExitButton.querySelector('svg')) { // Only add icon if not already present
             moodleExitButton.innerHTML = svgIconCode + moodleExitButton.textContent.trim();
             console.log('Icon added to Moodle-generated Exit Activity button.');
         }
-
-        // NEW: Update href for the Moodle-generated button
+        
         if (targetSectionLink) {
             moodleExitButton.href = targetSectionLink;
             console.log('Moodle-generated Exit Activity button href updated to:', targetSectionLink);
@@ -128,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (scormContentDiv) {
-        // --- Create your custom Fullscreen button ---
+        // Create custom Fullscreen button
         const fullScreenButton = document.createElement('a');
         fullScreenButton.className = 'btn btn-secondary';
         fullScreenButton.textContent = 'Full screen';
@@ -136,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fullScreenButton.style.wordSpacing = 'normal';
         fullScreenButton.id = 'scorm-fullscreen-button';
 
-        // --- Create the white box container for fullscreen buttons ---
+        // Create the white box container for fullscreen buttons
         const fullscreenButtonContainer = document.createElement('div');
         fullscreenButtonContainer.id = 'fullscreen-button-container';
         Object.assign(fullscreenButtonContainer.style, {
@@ -146,8 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
             width: '100%', // Span the full width of the fullscreen element
             backgroundColor: 'white',
             padding: '10px 20px',
-            borderRadius: '0px',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.2)', // Add a subtle shadow for depth
+            borderRadius: '0px',            
             zIndex: '2147483647',
             display: 'none', // Initially hidden, only shown in fullscreen
             justifyContent: 'space-between', // Spaces out the buttons nicely
@@ -155,14 +176,14 @@ document.addEventListener('DOMContentLoaded', function () {
             boxSizing: 'border-box' // Ensures padding is included within the element's total width/height
         });
 
-        // --- Create your custom "Exit full screen" button ---
+        // Create custom "Exit full screen" button
         const exitFullscreenButton = document.createElement('a');
         exitFullscreenButton.className = 'btn btn-secondary';
         exitFullscreenButton.textContent = 'Exit full screen';
         exitFullscreenButton.style.wordSpacing = 'normal';
         exitFullscreenButton.id = 'scorm-exit-fullscreen-button';
 
-        // --- Create your custom "Exit activity" button (shown in fullscreen) ---
+        // Create custom "Exit activity" button (shown in fullscreen)
         const exitActivityButton = document.createElement('a');
         exitActivityButton.className = 'btn btn-secondary';
         exitActivityButton.setAttribute('href', targetSectionLink || courseReturnUrl); // Use targetSectionLink if available
@@ -208,124 +229,151 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('scormPageDiv (#scormpage) not found. Cannot insert Fullscreen button container.');
         }
 
+        const enterSimulatedFullscreen = () => {            
+            document.body.classList.add("simulated-fullscreen");
+            isFullScreen = true;
+        };
 
-        // --- Fullscreen and Custom Exit Button Logic ---
-        fullScreenButton.addEventListener('click', function () {
+        const exitSimulatedFullscreen = () => {            
+            document.body.classList.remove("simulated-fullscreen");
+            resetFullscreenUI();        
+        };
+
+        const enterNativeFullscreen = () => {
+            
             const elementToFullscreen = scormPageDiv;
 
-            if (elementToFullscreen) {
-                if (!isFullScreen) { // Currently not in fullscreen, so entering
-                    if (elementToFullscreen.requestFullscreen) {
-                        elementToFullscreen.requestFullscreen();
-                    } else if (elementToFullscreen.mozRequestFullScreen) {
-                        elementToFullscreen.mozRequestFullScreen();
-                    } else if (elementToFullscreen.webkitRequestFullscreen) {
-                        elementToFullscreen.webkitRequestFullscreen();
-                    } else if (elementToFullscreen.msRequestFullscreen) {
-                        elementToFullscreen.msRequestFullscreen();
-                    } else {
-                        console.warn('Fullscreen API is not supported in this browser.');
-                        alert('Fullscreen is not supported in your browser. Please try a different browser.');
-                        return; // Exit if fullscreen is not supported
-                    }
+            if (!elementToFullscreen) {
+                console.error("SCORM page div (#scormpage) not found for fullscreen.");
+                return;
+            }
 
-                    // --- CRITICAL: Actions when entering fullscreen to handle overlap ---
-                    fullScreenButton.style.display = 'none'; // Hide the original full screen button
-                    fullscreenButtonContainer.style.display = 'flex'; // Show the white box with exit buttons
+            elementToFullscreen.requestFullscreen()
+                .then(() => {
+                // --- layout adjustments ---
+                fullScreenButton.style.display = "none";
+                fullscreenButtonContainer.style.display = "flex";
 
-                    // Get the actual height of the displayed fullscreen header
-                    const headerHeight = fullscreenButtonContainer.offsetHeight;
-                    console.log(`[${Date.now()}] Fullscreen header height: ${headerHeight}px`);
+                // const headerHeight = fullscreenButtonContainer.offsetHeight;
+                const headerHeight = 30;
+                console.log(`[${Date.now()}] Fullscreen header height: ${headerHeight}px`);
 
-                    // Adjust the SCORM content's padding and height
-                    scormContentDiv.style.setProperty('padding-top', `${headerHeight}px`, 'important');
-                    scormContentDiv.style.setProperty('height', `calc(100vh - ${headerHeight}px)`, 'important');
-                    scormContentDiv.style.setProperty('width', '100vw', 'important'); // Ensure it spans full width
-                    scormContentDiv.style.setProperty('box-sizing', 'border-box', 'important'); // Account for padding in height/width
+                scormContentDiv.style.setProperty("padding-top", `${headerHeight}px`, "important");
+                scormContentDiv.style.setProperty("height", `calc(100vh - ${headerHeight}px)`, "important");
+                scormContentDiv.style.setProperty("width", "100vw", "important");
+                scormContentDiv.style.setProperty("box-sizing", "border-box", "important");
 
-                    // NEW ADDITION: Ensure the iframe fills its parent
-                    const scormIframe = document.getElementById('scorm_object');
-                    if (scormIframe) {
-                        scormIframe.style.setProperty('width', '100%', 'important');
-                        scormIframe.style.setProperty('height', '100%', 'important');
-                        scormIframe.style.setProperty('display', 'block', 'important'); // Ensure it's not hidden
-                        scormIframe.style.setProperty('background-color', '#ffffff', 'important'); 
-                    }
-
-                    // *** REMOVED: Hiding #page-wrapper as it hides everything! ***
-                    // const pageWrapper = document.getElementById('page-wrapper');
-                    // if (pageWrapper) {
-                    //     pageWrapper.style.setProperty('display', 'none', 'important');
-                    //     console.log(`[${Date.now()}] #page-wrapper hidden.`);
-                    // }
-
-                    isFullScreen = true; // Set state after successful entry
+                const scormIframe = document.getElementById("scorm_object");
+                if (scormIframe) {
+                    scormIframe.style.setProperty("width", "100%", "important");
+                    scormIframe.style.setProperty("height", "100%", "important");
+                    scormIframe.style.setProperty("display", "block", "important");
+                    scormIframe.style.setProperty("background-color", "#ffffff", "important");
                 }
-            } else {
-                console.error('SCORM page div (#scormpage) not found for fullscreen.');
+
+                isFullScreen = true;
+                })
+                .catch(err => {
+                console.error("Failed to enter fullscreen:", err);
+                });
+
+        };
+
+        const exitNativeFullscreen = () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }           
+        };
+        
+        
+        fullScreenButton.addEventListener('click', function () {
+            if (!isFullScreen) { // Currently not in fullscreen
+                if (isMobile()) {
+                    enterSimulatedFullscreen();
+                    applySimulatedFullscreenUI();  
+                    fullscreenMode = "simulated";
+                } else {
+                    enterNativeFullscreen();
+                    applyNativeFullscreenUI(); 
+                    fullscreenMode = "native";
+                }               
             }
         });
 
         // Event listener for the "Exit full screen" button within the white box
         exitFullscreenButton.addEventListener('click', function () {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
+             if (fullscreenMode === "native") {
+                exitNativeFullscreen();
+            } else if (fullscreenMode === "simulated") {
+                exitSimulatedFullscreen();
             }
-            // State change will be handled by the 'fullscreenchange' event listener
         });
 
 
-        // --- Event listeners for browser fullscreen state changes ---
+        const applyNativeFullscreenUI = () => {
+            fullScreenButton.style.display = 'none'; 
+            fullscreenButtonContainer.style.display = 'flex';
+
+            // const headerHeight = fullscreenButtonContainer.offsetHeight;
+            const headerHeight = 30;
+
+            scormContentDiv.style.setProperty('padding-top', `${headerHeight}px`, 'important');
+            scormContentDiv.style.setProperty('height', `calc(100vh - ${headerHeight}px)`, 'important');
+            scormContentDiv.style.setProperty('width', '100vw', 'important');
+            scormContentDiv.style.setProperty('box-sizing', 'border-box', 'important');
+
+            const scormIframe = document.getElementById('scorm_object');
+            if (scormIframe) {
+                scormIframe.style.setProperty('width', '100%', 'important');
+                scormIframe.style.setProperty('height', '100%', 'important');
+            }
+
+            isFullScreen = true;
+        };
+
+        const applySimulatedFullscreenUI = () => {
+            document.body.classList.add('simulated-fullscreen'); // hides Moodle chrome
+            applyNativeFullscreenUI(); // reuse shared iframe adjustments
+        };
+
+        const resetFullscreenUI = () => {
+            fullScreenButton.style.display = 'block';
+            fullscreenButtonContainer.style.display = 'none';
+
+            scormContentDiv.style.removeProperty('padding-top');
+            scormContentDiv.style.removeProperty('height');
+            scormContentDiv.style.removeProperty('width');
+            scormContentDiv.style.removeProperty('box-sizing');
+
+            const scormIframe = document.getElementById('scorm_object');
+            if (scormIframe) {
+                scormIframe.style.removeProperty('width');
+                scormIframe.style.removeProperty('height');
+            }
+
+            document.body.classList.remove('simulated-fullscreen'); // cleanup if simulated
+            isFullScreen = false;
+        };
+
+        // fullscreenchange listener
         const handleFullscreenChange = () => {
-            isFullScreen = !!(document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+            isFullScreen = !!document.fullscreenElement;
             if (!isFullScreen) {
-                // When exiting fullscreen (e.g., via ESC key or our button)
-                fullScreenButton.style.display = 'block'; // Show the original full screen button
-                fullscreenButtonContainer.style.display = 'none'; // Hide the white box
-
-                // Restore SCORM content styles
-                scormContentDiv.style.removeProperty('padding-top');
-                scormContentDiv.style.removeProperty('height');
-                scormContentDiv.style.removeProperty('width');
-                scormContentDiv.style.removeProperty('box-sizing');
-
-                // NEW ADDITION: Reset iframe styles
-                const scormIframe = document.getElementById('scorm_object');
-                if (scormIframe) {
-                    scormIframe.style.removeProperty('width');
-                    scormIframe.style.removeProperty('height');
-                    scormIframe.style.removeProperty('display');
-                    scormIframe.style.removeProperty('background-color');
-                }
-
-                // *** REMOVED: Restoring #page-wrapper is no longer needed if we don't hide it ***
-                // const pageWrapper = document.getElementById('page-wrapper');
-                // if (pageWrapper) {
-                //     pageWrapper.style.setProperty('display', 'block', 'important');
-                //     console.log(`[${Date.now()}] #page-wrapper shown.`);
-                // }
+                resetFullscreenUI();
             }
         };
 
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        document.addEventListener('msfullscreenchange', handleFullscreenChange);
+        // Listen for native fullscreen changes (ESC key, browser actions)
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
 
-        // Your custom exit button's click listener now uses the dynamic targetSectionLink
+       
         exitActivityButton.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent default link behavior
             window.location.href = targetSectionLink || courseReturnUrl;
         });
 
 
-        // --- Hiding Adapt's Internal Exit Button (Optimized Logic) ---
+        // Hiding Adapt's Internal Exit Button
         let adaptButtonHiderInterval = null;
         let iframeFinderInterval = null;
         const MAX_IFRAME_FIND_TIME = 20000; // Max 20 seconds to find the iframe
@@ -373,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             scormIframe._adaptHidingLogicInitialized = true; // Mark as initialized
 
-            // --- IMMEDIATE & PERSISTENT POLLING FOR BUTTON INSIDE IFRAME ---
+            // IMMEDIATE & PERSISTENT POLLING FOR BUTTON INSIDE IFRAME
             if (!adaptButtonHiderInterval) {
                 let pollStartTime = Date.now();
                 adaptButtonHiderInterval = setInterval(() => {
@@ -391,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 50);
             }
 
-            // --- MUTATION OBSERVER ---
+            // MUTATION OBSERVER
             if (!scormIframe._adaptExitButtonObserver) {
                 const iframeDoc = scormIframe.contentDocument || scormIframe.contentWindow.document;
                 const targetNode = iframeDoc ? iframeDoc.documentElement || iframeDoc.body : null;
@@ -415,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        // --- Main entry point: Polling for the iframe itself ---
+        // Main entry point: Polling for the iframe itself
         console.log(`[${Date.now()}] Starting polling for #scorm_object iframe...`);
         let iframeFindStartTime = Date.now();
         iframeFinderInterval = setInterval(() => {
@@ -455,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 50);
 
-        // --- Cleanup Observers and Intervals on Page Unload ---
+        // Cleanup Observers and Intervals on Page Unload
         window.addEventListener('beforeunload', () => {
             if (adaptButtonHiderInterval) {
                 clearInterval(adaptButtonHiderInterval);
