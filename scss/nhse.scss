@@ -130,9 +130,14 @@ th, td {
 .text-muted {
   color: $nhsuk-text-color !important;
 }
-
+.nhsuk-breadcrumb {
+  margin-top: 0;
+}
+.nhsuk-breadcrumb__list {
+  margin-bottom: 10px;
+}
 .nhsuk-breadcrumb__item {
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 /**
@@ -201,10 +206,6 @@ th, td {
 body {
   background: none;
   #page {
-    &.drawers {
-      padding: 0 1em;
-    }
-
     .nhsuk-header__navigation-list {
       margin-left: 0;
     }
@@ -476,10 +477,11 @@ body {
   margin: 0 auto;
   &.drawers {
     margin-top: 0;
-
+    padding: 0 1em;
     .main-inner {
       margin-top: 0;
       margin-bottom: 0;
+      padding: 1.5rem 0;
       background-color: $primary-light-background;
     }
   }
@@ -495,22 +497,6 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  #page {
-    &.drawers {
-      &.show-drawer-left {
-        margin-left: 335px;
-        margin-right: 0;
-        padding-left: 1rem;
-      }
-      &.show-drawer-right {
-        margin-left: 0;
-        margin-right: 335px;
-        padding-right: 1rem;
-      }
-    }
-  }
-}
 
 .pagelayout-admin,
 .pagelayout-mycourses,
@@ -535,14 +521,20 @@ body {
   }
 }
 
+@media (min-width: 576px) {
+  #page {
+    &.drawers {
+      padding: 0 1em;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   #page {
     &.drawers {
-      padding-left: 0;
-      padding-right: 0;
+      padding: 0 2em;
 
       .main-inner {
-        padding: 1em 0;
         width: 100%;
       }
 
@@ -550,6 +542,32 @@ body {
         padding-left: 0;
         padding-right: 0;
       }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #page {
+    &.drawers {
+      padding: 0 2em;
+      &.show-drawer-left {
+        margin-left: 335px;
+        margin-right: 0;
+        padding-left: 1rem;
+      }
+      &.show-drawer-right {
+        margin-left: 0;
+        margin-right: 335px;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  #page {
+    &.drawers {
+      padding: 0 1em;
     }
   }
 }
