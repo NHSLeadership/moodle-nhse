@@ -330,6 +330,7 @@ body {
  */
 .drawer {
   border: 1px solid $color_nhsuk-blue;
+  z-index: 1020;
   ul {
     font-size: 15px;
   }
@@ -342,7 +343,10 @@ body {
 
 .drawer-toggles {
   .drawer-toggler {
-    top: calc(140px + 0.7rem)
+    top: calc(140px + 0.7rem);
+    .btn {
+      background-color: $color_nhsuk-grey-4;
+    }
   }
 }
 
@@ -818,7 +822,7 @@ body {
   svg {
     max-height: 50px;
     &.nhsuk-logo {
-      max-height: 35px;
+      max-height: 40px;
     }
   }
 
@@ -1173,10 +1177,12 @@ label {
   &.drawer-left {
     width: 335px;
     max-width: 335px;
+    box-shadow: 1px 0 5px #333333;
   }
   &.drawer-right {
     width: 335px;
     max-width: 335px;
+    box-shadow: -1px 0 5px #333333;
   }
 }
 
