@@ -521,6 +521,12 @@ body {
   }
 }
 
+.pagelayout-login #page {
+  background-color: $primary-light-background;
+  background-image: none;
+  background-repeat: no-repeat;
+}
+
 @media (min-width: 576px) {
   #page {
     &.drawers {
