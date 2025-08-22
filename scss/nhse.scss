@@ -521,10 +521,23 @@ body {
   }
 }
 
-.pagelayout-login #page {
-  background-color: $primary-light-background;
-  background-image: none;
-  background-repeat: no-repeat;
+.pagelayout-login #page-wrapper #page,
+.pagelayout-popup #page-wrapper #page,
+.pagelayout-embedded #page-wrapper #page,
+.pagelayout-redirect #page-wrapper #page {
+  #page-wrapper {
+    #page {
+      padding-top: 30px;
+    }
+  }
+}
+
+.pagelayout-login {
+  #page {
+    background-color: $primary-light-background;
+    background-image: none;
+    background-repeat: no-repeat;
+  }
 }
 
 @media (min-width: 576px) {

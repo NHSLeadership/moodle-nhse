@@ -8,7 +8,8 @@
 5. Tiles and cards plugin CSS tweaks
 6. Removed burger menu
 7. Drawer drop shadows added
-8. Page padding media tweaks 
+8. Page padding media tweaks
+9. Login page background and layout tweaks
 
 ## 2025-07-29.00
 1. Tweak course card title formatting
