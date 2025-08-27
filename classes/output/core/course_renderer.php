@@ -70,10 +70,30 @@ class course_renderer extends \core_course_renderer
         return $contentimages;
     }
 
+
+    /**
+     * Renders course info box.
+     * @param  \stdClass  $course
+     *
+     * @return string
+     * @throws \dml_exception
+     * @throws \moodle_exception
+     */
+    public function course_info_box(\stdClass $course) {
+        $content = $this->output->box_start('d-flex nhsuk-grid-row generalbox info') ?? '';
+        $c_helper = new coursecat_helper();
+        $c_helper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED);
+        $content .= $this->coursecat_coursebox($c_helper, $course);
+        $content .= $this->output->box_end();
+        return $content;
+    }
+
     /**
      * Returns HTML to print list of available courses for the frontpage
      *
      * @return string
+     * @throws \coding_exception
+     * @throws \dml_exception
      */
     public function frontpage_available_courses() {
         global $CFG;

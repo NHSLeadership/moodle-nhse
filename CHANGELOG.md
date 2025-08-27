@@ -1,5 +1,16 @@
 # NHSE Theme change log
 
+## 2025-08-19.00
+1. Page wrapper, header and footer width fix
+2. Drawers padding tweaks
+3. Default page background updated
+4. Style tweaks to various card blocks
+5. Tiles and cards plugin CSS tweaks
+6. Removed burger menu
+7. Drawer drop shadows added
+8. Page padding media tweaks
+9. Login page background and layout tweaks
+
 ## 2025-07-29.00
 1. Tweak course card title formatting
 2. Sticky footer patch

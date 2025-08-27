@@ -8,6 +8,7 @@
 
 $color_nhsuk-light-blue: #41B6E6;
 $color_nhsuk-bright-blue: #0072CE;
+$page-max-width: 990px;
 
 @import "checklist.scss";
 
@@ -20,6 +21,11 @@ $color_nhsuk-bright-blue: #0072CE;
  */
 body {
   height: auto;
+  &#page-course-view-tiles {
+    &.format-tiles {
+      overflow-y: auto;
+    }
+  }
 }
 
 /**
@@ -36,6 +42,8 @@ $btn-secondary-text: $color_nhsuk-white;
 $btn-secondary-background: $color_nhsuk-dark-blue;
 $btn-secondary-border: $color_nhsuk-dark-blue;
 
+$primary-light-background: $color_nhsuk-grey-5;
+
 /* Import NHSE scss directory partials */
 @import "nhse/courseindex";
 @import "nhse/media";
@@ -50,11 +58,7 @@ a {
   &.btn {
     &:focus {
       @include nhsuk-focused-button;
-    }
-  }
-  &.btn {
-    &:focus {
-      @include nhsuk-focused-button;
+      color: $color_nhsuk-black !important;
     }
   }
   &.nav-link {
@@ -68,6 +72,7 @@ button {
   &.btn {
     &:focus {
       @include nhsuk-focused-button;
+      color: $color_nhsuk-black !important;
     }
   }
 }
@@ -114,6 +119,10 @@ ul {
   }
 }
 
+th, td {
+  font-size: 1rem;
+}
+
 //.float-end {
 //  float: inline-end;
 //}
@@ -121,9 +130,14 @@ ul {
 .text-muted {
   color: $nhsuk-text-color !important;
 }
-
+.nhsuk-breadcrumb {
+  margin-top: 0;
+}
+.nhsuk-breadcrumb__list {
+  margin-bottom: 10px;
+}
 .nhsuk-breadcrumb__item {
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 /**
@@ -189,18 +203,39 @@ ul {
   border-bottom-right-radius: 4px!important;
 }
 
-/**
- * Body styles
- */
 body {
   background: none;
+  #page {
+    .nhsuk-header__navigation-list {
+      margin-left: 0;
+    }
+  }
+
   &.limitedwidth {
     #page {
       &.drawers {
         .main-inner {
-          max-width: 990px;
+          max-width: $page-max-width;
         }
       }
+    }
+
+    /**
+     * Increase max container width
+     */
+    .nhsuk-header__container {
+      padding: 1em 0;
+      max-width: $page-max-width;
+    }
+    .header-maxwidth {
+      max-width: $page-max-width;
+    }
+    .nhsuk-width-container,
+    .nhsuk-width-container-fluid {
+      max-width: $page-max-width;
+    }
+    .nhsuk-header__navigation-list {
+      max-width: $page-max-width;
     }
   }
 }
@@ -219,17 +254,10 @@ body {
 
 .bg-light {
   color: $color_nhsuk-grey-1;
-  background-color: $btn-default-background !important;
+  background-color: $primary-light-background !important;
   > * {
     color: $color_nhsuk-grey-1 !important;
   }
-}
-
-/**
- * Increase max container width
- */
-.nhsuk-width-container {
-  max-width: 990px;
 }
 
 /**
@@ -246,6 +274,9 @@ body {
     border: 1px solid $color_nhsuk-grey-4;
     background-color: $color_nhsuk-white;
   }
+  &.block_myoverview {
+    background: none;
+  }
 }
 
 .course_category_tree {
@@ -259,6 +290,10 @@ body {
       }
     }
   }
+}
+
+.course-section .section-item {
+  background-color: $color_nhsuk-white;
 }
 
 .dashboard-card-deck {
@@ -295,6 +330,8 @@ body {
  * Drawer styles
  */
 .drawer {
+  border: 1px solid $color_nhsuk-blue;
+  z-index: 1020;
   ul {
     font-size: 15px;
   }
@@ -307,11 +344,14 @@ body {
 
 .drawer-toggles {
   .drawer-toggler {
-    top: calc(140px + 0.7rem)
+    top: calc(140px + 0.7rem);
+    .btn {
+      background-color: $color_nhsuk-grey-4;
+    }
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 992px) {
   .drawer-toggles {
     .drawer-toggler {
       top: calc(99vh - (60px * 2.5))
@@ -325,12 +365,6 @@ body {
     margin-bottom: 0;
     padding: .25rem .5rem .25rem 0;
     line-height: 1.5;
-  }
-}
-
-.drawers {
-  .block_myoverview>.card-body {
-    padding: 0!important;
   }
 }
 
@@ -379,26 +413,17 @@ body {
   top: 0;
 }
 
-.nhsuk-header__container {
-  padding: 16px 0;
-  max-width: 990px;
-}
-
 .nhsuk-header__search-form {
   margin: 0;
 }
 
-@media (max-width: 40.0525em) {
+@media (max-width: 992px) {
   .nhsuk-header__container {
     display: flex !important;
     .nhsuk-header__logo {
       padding-right: 12px;
     }
   }
-}
-
-.header-maxwidth {
-  max-width: 990px;
 }
 
 @media (min-width: 768px) {
@@ -425,32 +450,17 @@ body {
   }
 }
 
-/**
- * Page and headings
- */
-
-#page-wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  #page {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1440px;
-    &.nhsuk-width-container {
-      max-width: 990px;
-    }
-    .main-inner {
-      padding: 1.5rem 1.5rem;
-      width: 100%;
-    }
-  }
+.list-group-item {
+  padding: 1.25rem 1.25rem;
 }
 
 /**
  * Max width except reportbuilder
  */
+#page-wrapper {
+  background-color: $primary-light-background;
+}
+
 #page-admin-reportbuilder,
 #page-admin-reportbuilder-edit {
   height: 100%;
@@ -464,14 +474,15 @@ body {
 
 #page {
   width: 100%;
-  max-width: 1920px;
   margin: 0 auto;
   &.drawers {
     margin-top: 0;
-
+    padding: 0 1em;
     .main-inner {
       margin-top: 0;
       margin-bottom: 0;
+      padding: 1.5rem 0;
+      background-color: $primary-light-background;
     }
   }
 
@@ -486,20 +497,6 @@ body {
   }
 }
 
-@media (min-width: 992px) {
-  #page {
-    &.drawers {
-      &.show-drawer-left {
-        padding-left: 286px;
-        margin-left: 0;
-      }
-      &.show-drawer-right {
-        padding-right: 316px;
-        margin-right: 0;
-      }
-    }
-  }
-}
 
 .pagelayout-admin,
 .pagelayout-mycourses,
@@ -524,17 +521,88 @@ body {
   }
 }
 
-@media (min-width: 768px) {
-  #page.drawers {
-    .main-inner {
-      padding: 1.5rem 1.5rem;
-      width: 100%;
+.pagelayout-login #page-wrapper #page,
+.pagelayout-popup #page-wrapper #page,
+.pagelayout-embedded #page-wrapper #page,
+.pagelayout-redirect #page-wrapper #page {
+  #page-wrapper {
+    #page {
+      padding-top: 30px;
     }
+  }
+}
 
-    div[role="main"] {
-      padding-left: 0;
-      padding-right: 0;
+.pagelayout-login {
+  #page {
+    background-color: $primary-light-background;
+    background-image: none;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (min-width: 576px) {
+  #page {
+    &.drawers {
+      padding: 0 1em;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  #page {
+    &.drawers {
+      padding: 0 2em;
+
+      .main-inner {
+        width: 100%;
+      }
+
+      div[role="main"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #page {
+    &.drawers {
+      padding: 0 2em;
+      &.show-drawer-left {
+        margin-left: 335px;
+        margin-right: 0;
+        padding-left: 1rem;
+      }
+      &.show-drawer-right {
+        margin-left: 0;
+        margin-right: 335px;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  #page {
+    &.drawers {
+      padding: 0 1em;
+    }
+  }
+}
+
+.format-tiles {
+  .sectionbutton {
+    &:focus {
+      background-color: $color_nhsuk-yellow;
+      text-shadow: none;
+    }
+    .icon {
+      font-size: 1.2em;
+    }
+  }
+  .summary {
+    padding: 0 1.0em
   }
 }
 
@@ -586,6 +654,7 @@ body {
 
 #region-main {
   height: 100%;
+  background-color: $primary-light-background;
 }
 
 /**
@@ -751,10 +820,6 @@ body {
   padding-bottom: 12px;
 }
 
-.nav {
-  margin-left: 0;
-}
-
 .nav-link {
   padding: 0.6rem 1rem;
   font-size: 1rem;
@@ -794,7 +859,7 @@ body {
   svg {
     max-height: 50px;
     &.nhsuk-logo {
-      max-height: 35px;
+      max-height: 40px;
     }
   }
 
@@ -1012,22 +1077,23 @@ input[type=checkbox] {
 }
 
 input[type=checkbox] + label {
-  padding-left: 1.0rem!important;
+  padding-left: 1.0rem !important;
 }
 label input[type=checkbox] {
-  margin-right: 1.0rem!important;
+  margin-right: 1.0rem !important;
 }
 
-label input[type=checkbox] {
-  margin-right: 1.0rem!important;
-}
-.form-check label {
-  padding-left: 1.0rem!important;
+label {
+  &.form-check {
+    padding-left: 1.0rem!important;
+  }
 }
 
-.form-check-inline .form-check-input {
-  margin-left: 1.0rem;
-  margin-right: 1.0rem;
+.form-check-inline {
+  .form-check-input {
+    margin-left: 1.0rem;
+    margin-right: 1.0rem;
+  }
 }
 
 .form-control {
@@ -1120,10 +1186,15 @@ label input[type=checkbox] {
   [data-region=right-hand-drawer].drawer {
     top: 92px;
   }
-  body.limitedwidth {
-    #page.drawers {
-      .footer-popover {
-        max-width: none;
+  body {
+    &.limitedwidth {
+      #page {
+        &.drawers {
+          .footer-popover {
+            max-width: none;
+            margin: inherit
+          }
+        }
       }
     }
   }
@@ -1143,10 +1214,12 @@ label input[type=checkbox] {
   &.drawer-left {
     width: 335px;
     max-width: 335px;
+    box-shadow: 1px 0 5px #333333;
   }
   &.drawer-right {
     width: 335px;
     max-width: 335px;
+    box-shadow: -1px 0 5px #333333;
   }
 }
 
