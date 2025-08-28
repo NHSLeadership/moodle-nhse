@@ -52,14 +52,17 @@ function theme_nhse_get_main_scss_content($theme) {
     /**
      * Load variable overload for bootstrap
      */
-//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/fontawesome.scss');
-//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/bootstrap.scss');
-//    $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/moodle.scss');
+    // Get pre CSS with variables
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/moodle/variables.scss') . "\n";
+
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/fontawesome.scss') . "\n";
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/bootstrap.scss') . "\n";
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/moodle.scss') . "\n";
 
     // Get main theme file and combine them together.
-    $scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/nhse/css/nhse.min.css');
-    //$scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhsuk.scss');
-    //$scss .= "\n" . file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhse.scss');
+    $scss .= file_get_contents($CFG->dirroot . '/theme/nhse/css/nhse.min.css') . "\n";
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhsuk.scss') . "\n";
+    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhse.scss') . "\n";
 
     return $scss;
 }
