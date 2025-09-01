@@ -6,7 +6,9 @@
 @import "../../boost/scss/bootstrap.scss";
 @import "../../boost/scss/moodle.scss";
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -47,11 +49,13 @@ a {
       @include nhsuk-focused-button;
     }
   }
+
   &.btn {
     &:focus {
       @include nhsuk-focused-button;
     }
   }
+
   &.nav-link {
     &:focus {
       @include nhsuk-focused-button;
@@ -75,20 +79,36 @@ input {
   }
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-weight: 600;
 }
 
 h1 {
   font-size: 1.75rem;
 }
+
 h2 {
   font-size: 1.50rem;
 }
+
 h3 {
   font-size: 1.35rem;
 }
-h4, h5, h6 {
+
+h4,
+h5,
+h6 {
   font-size: 1.1875rem;
 }
 
@@ -121,15 +141,14 @@ ul {
  * Button styles
  */
 .btn {
-  &:not(
-    .btn-icon,
+
+  &:not(.btn-icon,
     .btn-close,
     .btn-link,
     .btn-open,
     .search-icon,
     .navbar .dropdown-toggle,
-    .icon-no-margin
-  ) {
+    .icon-no-margin) {
     @extend .nhsuk-button--small;
     box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
@@ -139,21 +158,23 @@ ul {
     box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
 
-  &.active, &.visited {
+  &.active,
+  &.visited {
     @extend .nhsuk-button--reverse;
     box-shadow: 0 2px 0 $nhsuk-box-shadow-color;
   }
 
   &.text-primary {
-    color: $btn-secondary-text!important;
+    color: $btn-secondary-text !important;
   }
 }
 
 .bg-secondary {
-  color: $nhsuk-reverse-button-text-color!important;
+  color: $nhsuk-reverse-button-text-color !important;
 }
 
 .btn {
+
   &.btn-secondary,
   &.btn-outline-secondary {
     @extend .nhsuk-button--small;
@@ -170,10 +191,10 @@ ul {
 .btn-group>.btn:not(:last-child):not(.dropdown-toggle),
 .btn-group>.btn-group:not(:first-child)>.btn,
 .btn-group>.btn-group:not(:last-child)>.btn {
-  border-top-left-radius: 4px!important;
-  border-top-right-radius: 4px!important;
-  border-bottom-left-radius: 4px!important;
-  border-bottom-right-radius: 4px!important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-bottom-right-radius: 4px !important;
 }
 
 /**
@@ -182,6 +203,7 @@ ul {
 body {
   background-color: $nhsuk-form-element-background-color;
   background: none;
+
   &.limitedwidth {
     #page {
       &.drawers {
@@ -200,6 +222,7 @@ body {
 .bg-dark {
   color: $btn-primary-text;
   background-color: $btn-primary-background !important;
+
   * {
     color: $btn-primary-text !important;
   }
@@ -208,7 +231,8 @@ body {
 .bg-light {
   color: $color_nhsuk-grey-1;
   background-color: $btn-default-background !important;
-  > * {
+
+  >* {
     color: $color_nhsuk-grey-1 !important;
   }
 }
@@ -223,6 +247,7 @@ body {
   -moz-border-radius: 0;
   margin: 0;
   background-color: $color_nhsuk-grey-5;
+
   &.course-card {
     background-color: $color_nhsuk-white;
   }
@@ -241,6 +266,7 @@ body {
 .dashboard-card-deck {
   .dashboard-card {
     background-color: $color_nhsuk-white;
+
     .dashboard-card-img {
       border-radius: 0;
     }
@@ -254,6 +280,7 @@ body {
   ul {
     font-size: 15px;
   }
+
   .card-text {
     li {
       padding: .25rem .5rem;
@@ -277,7 +304,10 @@ body {
 
 .drawercontent {
   height: calc(100% - 124px);
-  h1, h2, h3 {
+
+  h1,
+  h2,
+  h3 {
     margin-bottom: 0;
     padding: .25rem .5rem;
     line-height: 1.5;
@@ -286,9 +316,10 @@ body {
 
 .drawers {
   .block_myoverview>.card-body {
-    padding: 1.25rem!important;
+    padding: 1.25rem !important;
   }
 }
+
 .comment-area {
   padding: 10px 0 0;
 }
@@ -296,12 +327,14 @@ body {
 .comment-list {
   font-size: 1rem;
   color: $nhsuk-text-color;
+
   li {
     background-color: $color_nhsuk-white;
     margin: 0;
     margin-bottom: 10px;
   }
 }
+
 .comment-ctrl {
   font-size: 1rem;
 }
@@ -331,7 +364,7 @@ body {
 }
 
 .nhsuk-header__container {
-  padding: 16px 0;  
+  padding: 16px 0;
 }
 
 .nhsuk-header__search-form {
@@ -339,48 +372,50 @@ body {
 }
 
 .nhsuk-header__rhscontent {
- 
-    // Styles specifically for the nhsuk-header__rhscontent element
+
+  // Styles specifically for the nhsuk-header__rhscontent element
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // Example: Align content to the right
+  // Add other styles as needed (padding, etc.)
+
+  .border-left,
+  .border-start {
+    border-left: none !important;
+  }
+
+  .custom-control-input:checked~.custom-control-label::before {
+    color: $btn-primary-text;
+    background-color: $btn-default-background;
+    border-color: $btn-default-background;
+  }
+
+  .custom-control-input:checked~.custom-control-label::after {
+    background-color: $btn-primary-background;
+  }
+
+  .text-primary {
+    color: $btn-secondary-text !important;
+  }
+
+  .nhsuk-header__content {
+    padding-right: 1.5rem;
+  }
+
+  .nhsuk-account__login {
+    font-size: 0.875rem;
+    float: right;
+    position: relative;
+    z-index: 2;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-end; // Example: Align content to the right
-    // Add other styles as needed (padding, etc.)
+    gap: 1.5rem;
+  }
 
-    .border-left, .border-start {
-      border-left: none !important;
-    }
-
-    .custom-control-input:checked~.custom-control-label::before {
-      color: $btn-primary-text;
-      background-color: $btn-default-background;
-      border-color: $btn-default-background;
-    }
-
-    .custom-control-input:checked~.custom-control-label::after {
-      background-color: $btn-primary-background;
-    }
-
-    .text-primary {
-      color: $btn-secondary-text!important;
-    }
-    .nhsuk-header__content {
-	    padding-right: 1.5rem;
-    }
-
-    .nhsuk-account__login {
-      font-size: 0.875rem;
-      float: right;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nhsuk-account__login--link {
-      color: #fff;
-    }
+  .nhsuk-account__login--link {
+    color: #fff;
+  }
 
 }
 
@@ -405,13 +440,14 @@ body {
   font-size: 20px;
   width: 20px;
   height: 20px;
-  padding-top:0;
-  padding-bottom:0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .editmode-switch-form {
   margin-block-start: 0.4em;
   margin-block-end: 0.6em;
+
   .input-group {
     label {
       padding-top: 3px;
@@ -432,9 +468,11 @@ body {
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
+
     &.nhsuk-width-container {
       max-width: 1200px;
     }
+
     .main-inner {
       padding: 1.5rem 1.5rem;
       width: 100%;
@@ -452,6 +490,7 @@ body {
 #page-admin-reportbuilder,
 #page-admin-reportbuilder-edit {
   height: 100%;
+
   #page-wrapper {
     #page {
       width: 100%;
@@ -464,6 +503,7 @@ body {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
+
   &.drawers {
     margin-top: 0;
 
@@ -491,6 +531,7 @@ body {
         padding-left: 286px;
         margin-left: 0;
       }
+
       &.show-drawer-right {
         padding-right: 316px;
         margin-right: 0;
@@ -501,8 +542,7 @@ body {
 
 .pagelayout-admin,
 .pagelayout-mycourses,
-.pagelayout-mydashboard
-{
+.pagelayout-mydashboard {
   #page-wrapper {
     #page {
       padding-top: 0;
@@ -513,8 +553,7 @@ body {
 .pagelayout-login,
 .pagelayout-popup,
 .pagelayout-embedded,
-.pagelayout-redirect
-{
+.pagelayout-redirect {
   #page-wrapper {
     #page {
       padding-top: 60px;
@@ -542,9 +581,10 @@ body {
     border-radius: 0;
     border-top: 1px solid $color_nhsuk-grey-4;
 
-    & > .info {
+    &>.info {
       @extend .nhsuk-card--care__heading;
-      & > .coursename {
+
+      &>.coursename {
         @extend .nhsuk-card--care__heading;
         font-size: 1.5rem;
         font-weight: bold;
@@ -554,7 +594,8 @@ body {
         }
       }
     }
-    & > .content {
+
+    &>.content {
       @extend .nhsuk-card__content;
     }
   }
@@ -658,14 +699,18 @@ body {
 .nhsuk-header__navigation {
   overflow: visible;
 }
+
 .nhsuk-header__service-name {
   max-width: none;
 }
+
 .nhsuk-header--white {
   background-color: $color_nhsuk-white;
+
   .nhsuk-header__navigation {
     color: $btn-default-text;
     background-color: $btn-default-background;
+
     .nhsuk-header__service-name {
       color: $btn-default-text;
     }
@@ -675,30 +720,32 @@ body {
     &:visited {
       color: $color_nhsuk-black;
     }
+
     &.active {
       border-bottom: 4px solid $color_nhsuk-blue;
     }
+
     &:checked {
       color: $color_nhsuk-white;
       border-bottom: 4px solid $color_nhsuk-white;
     }
-    
+
   }
 }
 
-  .nhsuk-tag {
-    top: 0.5rem;
-    right: -0.625rem;
-    font-size: 0.6875rem;
-    line-height: 1.125rem;
-    font-weight: 900;
-    background: #d5281b;
-    color: #fff;
-    min-width: 1.125rem; 
-    text-align: center;
-    border-radius: 0.5625rem;
-    padding: 0.0625rem 0.1875rem 0;
-  }
+.nhsuk-tag {
+  top: 0.5rem;
+  right: -0.625rem;
+  font-size: 0.6875rem;
+  line-height: 1.125rem;
+  font-weight: 900;
+  background: #d5281b;
+  color: #fff;
+  min-width: 1.125rem;
+  text-align: center;
+  border-radius: 0.5625rem;
+  padding: 0.0625rem 0.1875rem 0;
+}
 
 
 .nhsuk-breadcrumb__list {
@@ -802,15 +849,16 @@ body {
 
   .navbar-nav {
     .btn {
-      &:not(
-        .btn-close,
-        .btn-open
-      ) {
+
+      &:not(.btn-close,
+        .btn-open) {
         color: $btn-primary-text;
         background-color: $btn-primary-background;
+
         &:focus {
           @include nhsuk-focused-button;
         }
+
         border-color: transparent;
         border-bottom: none;
       }
@@ -827,13 +875,14 @@ body {
     }
 
     .text-primary {
-      color: $btn-secondary-text!important;
+      color: $btn-secondary-text !important;
     }
   }
 
   &.navbar__light {
     color: $btn-default-text;
     background-color: $btn-default-background;
+
     .navbar-brand {
       color: $btn-default-text;
     }
@@ -848,10 +897,9 @@ body {
 
     .navbar-nav {
       .btn {
-        &:not(
-          .btn-close,
-          .btn-open
-        ) {
+
+        &:not(.btn-close,
+          .btn-open) {
           color: $btn-default-text;
           background-color: $btn-default-background;
           border-color: transparent;
@@ -862,13 +910,13 @@ body {
 
     .custom-control-input {
 
-      &:checked ~ .custom-control-label::before {
+      &:checked~.custom-control-label::before {
         color: $btn-primary-text;
         background-color: $btn-primary-background;
         border-color: $btn-primary-background;
       }
 
-      &:checked ~ .custom-control-label::after {
+      &:checked~.custom-control-label::after {
         background-color: $btn-default-background;
       }
     }
@@ -884,7 +932,11 @@ body {
       }
 
       .navbar-nav {
-        .show > .nav-link, .active > .nav-link, .nav-link.show, .nav-link.active {
+
+        .show>.nav-link,
+        .active>.nav-link,
+        .nav-link.show,
+        .nav-link.active {
           color: $btn-primary-text;
           background-color: $btn-primary-background;
           border-color: transparent;
@@ -901,7 +953,7 @@ body {
     }
 
     .text-primary {
-      color: $btn-default-text!important;
+      color: $btn-default-text !important;
     }
   }
 
@@ -928,7 +980,11 @@ body {
       }
 
       .navbar-nav {
-        .show > .nav-link, .active > .nav-link, .nav-link.show, .nav-link.active {
+
+        .show>.nav-link,
+        .active>.nav-link,
+        .nav-link.show,
+        .nav-link.active {
           color: $btn-default-text;
           background-color: $btn-default-background;
           border-color: transparent;
@@ -948,13 +1004,16 @@ body {
 
 .content-area {
   .navbar {
-    a, a:visited {
-     color: $btn-primary-text;
+
+    a,
+    a:visited {
+      color: $btn-primary-text;
     }
   }
 }
 
 .nhsuk-header__search-wrap {
+
   .btn-close,
   .btn-open {
     color: $btn-primary-text;
@@ -982,18 +1041,23 @@ body {
  * Double-sized Checkboxes
  */
 input[type=checkbox] {
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
+  -ms-transform: scale(2);
+  /* IE */
+  -moz-transform: scale(2);
+  /* FF */
+  -webkit-transform: scale(2);
+  /* Safari and Chrome */
+  -o-transform: scale(2);
+  /* Opera */
   transform: scale(2);
 }
 
 label input[type=checkbox] {
-  margin-right: 1.0rem!important;
+  margin-right: 1.0rem !important;
 }
+
 .form-check label {
-  padding-left: 1.0rem!important;
+  padding-left: 1.0rem !important;
 }
 
 .form-check-inline .form-check-input {
@@ -1023,17 +1087,21 @@ label input[type=checkbox] {
     right: -2.5em;
     top: 0.2rem;
   }
+
   .collapse.show {
     background-color: $color_nhsuk-blue;
     right: 0;
   }
+
   .collapsing {
     background-color: $color_nhsuk-blue;
     right: 0;
   }
+
   .searchform-navbar {
     padding-right: 2.5em;
-}
+  }
+
   .input-group {
     input.form-control {
       border-top-left-radius: 0;
@@ -1048,7 +1116,8 @@ label input[type=checkbox] {
   border-top: none;
 }
 
-.popover-region-toggle::before, .popover-region-toggle::after {
+.popover-region-toggle::before,
+.popover-region-toggle::after {
   display: none;
 }
 
@@ -1059,7 +1128,9 @@ label input[type=checkbox] {
         top: 49px;
       }
     }
-    .popover-region-toggle::before, .popover-region-toggle::after {
+
+    .popover-region-toggle::before,
+    .popover-region-toggle::after {
       display: inline-block;
     }
   }
@@ -1070,6 +1141,7 @@ label input[type=checkbox] {
     .divider {
       display: block;
     }
+
     .dropdown-toggle::after {
       display: inline-block;
     }
@@ -1080,9 +1152,11 @@ label input[type=checkbox] {
   .d-md-none {
     display: block !important;
   }
+
   [data-region=right-hand-drawer].drawer {
     top: 92px;
   }
+
   body.limitedwidth {
     #page.drawers {
       .footer-popover {
@@ -1096,16 +1170,20 @@ label input[type=checkbox] {
   .d-md-none {
     display: none !important;
   }
+
   [data-region=right-hand-drawer].drawer {
     top: 140px;
   }
-  .drawer-left, .drawer-right {
+
+  .drawer-left,
+  .drawer-right {
     top: 135px;
     height: calc(100vh - 124px)
   }
 }
 
-.nhsuk-list--number, ol {
+.nhsuk-list--number,
+ol {
   padding-left: 32px;
 }
 
@@ -1132,14 +1210,18 @@ label input[type=checkbox] {
   }
 }
 
-th, td {
+th,
+td {
   font-size: 1.0rem;
 }
 
 @media (min-width: 40.0625em) {
-  th, td {
+
+  th,
+  td {
     font-size: 1.0rem;
   }
+
   .nhsuk-breadcrumb__item {
     font-size: 1.1875rem;
   }
@@ -1148,61 +1230,95 @@ th, td {
 
 /* Hide confusing enrolment icons */
 .coursebox .info .enrolmenticons {
-    display: none;
+  display: none;
 }
 
 .autosuggestion-menu {
-    padding: 16px 16px 0px 16px;
-    background-color: #fff;
-    border-bottom: 1px solid #d8dde0;
-    border-radius: 0px 0px 4px 4px;
-    border-left: 1px solid #d8dde0;
-    border-right: 1px solid #d8dde0;
-    box-shadow: 0px 2px 3px 0px #d8dde0;
-    list-style: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    margin-bottom: 0;
+  padding: 16px 16px 0px 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #d8dde0;
+  border-radius: 0px 0px 4px 4px;
+  border-left: 1px solid #d8dde0;
+  border-right: 1px solid #d8dde0;
+  box-shadow: 0px 2px 3px 0px #d8dde0;
+  list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 0;
 }
 
 .autosuggestion-option .autosuggestion-icon {
-    fill: #aeb7bd !important;
-    float: left;
-    height: 20px;
-    margin: 2px 8px 0 0;
-    width: 16px;
+  fill: #aeb7bd !important;
+  float: left;
+  height: 20px;
+  margin: 2px 8px 0 0;
+  width: 16px;
 }
 
 .autosuggestion-option .autosuggestion-link {
-    display: flex;
-    margin-bottom: 0px;
-    text-decoration: underline;
+  display: flex;
+  margin-bottom: 0px;
+  text-decoration: underline;
 }
 
 @media (min-width: 40.0625em) {
-    ol>li, ul>li, .nhsuk-list>li {
-        margin-bottom: 8px;
-    }
+
+  ol>li,
+  ul>li,
+  .nhsuk-list>li {
+    margin-bottom: 8px;
+  }
 }
 
 .autosuggestion-option {
-    margin-bottom: 0;
-    border-bottom: 1px solid #d8dde0;
-    color: #005eb8;
-    cursor: pointer;
-    font-size: 16px;
-    padding-bottom: 12px;
-    text-align: left;
-    text-decoration: none;
+  margin-bottom: 0;
+  border-bottom: 1px solid #d8dde0;
+  color: #005eb8;
+  cursor: pointer;
+  font-size: 16px;
+  padding-bottom: 12px;
+  text-align: left;
+  text-decoration: none;
 }
 
 .autosuggestion-option .autosuggestion-subtext {
-    color: #768692 !important;
-    padding-left: 24px;
-    margin: 0px;
+  color: #768692 !important;
+  padding-left: 24px;
+  margin: 0px;
+}
+
+#page-enrol-index #region-main #maincontent+h2 {
+  display: none;
+}
+
+#page-enrol-index #fitem_id_submitbutton .col-md-3,
+#page-enrol-index #fitem_id_submitbutton .col-md-9 {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+
+#page-enrol-index #id_selfheader .icons-collapse-expand,
+#page-enrol-index #id_selfheadercontainer {
+  display: none;
+}
+
+#page-enrol-index #id_selfheader {
+  border-style: none
+}
+
+#page-enrol-index h3.coursename {
+  display: none;
+}
+
+#page-enrol-index .coursebox .content .teachers {
+  margin-left: 0px;
+}
+
+#page-enrol-index .mform {
+  padding-left: 0px;
 }
 
 /* simulated full screen for displaying content on mobile devices */
@@ -1238,3 +1354,4 @@ body.simulated-fullscreen #page.drawers .main-inner {
 body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[title="Exit activity"] {
   display: none !important;
 }
+
