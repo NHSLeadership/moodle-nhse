@@ -1,22 +1,3 @@
-{{!
-    @template core_courseformat/local/content/sectionselector
-
-    Displays the course section navigation.
-
-    Example context (json):
-    {
-        "hasprevious": true,
-        "previousurl": "#",
-        "larrow": "&#x25C4;",
-        "previousname": "Section 3",
-        "hasnext": true,
-        "rarrow": "&#x25BA;",
-        "nexturl": "#",
-        "nextname": "Section 5",
-        "selector": "<select><option>Section 4</option></select>"
-    }
-}}
-
 <nav class="section-navigation nhsuk-pagination" role="navigation" aria-label="Pagination">
   <ul class="nhsuk-list nhsuk-pagination__list">
     {{#hasprevious}}
