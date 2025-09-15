@@ -83,8 +83,9 @@ class course_renderer extends \core_course_renderer
         $content = $this->output->box_start('d-flex nhsuk-grid-row generalbox info') ?? '';
         $c_helper = new coursecat_helper();
         $c_helper->set_show_courses(self::COURSECAT_SHOW_COURSES_EXPANDED);
-        $content .= $this->coursecat_coursebox($c_helper, $course);
+        $content .= $this->coursecat_coursebox($c_helper, $course, 'nhsuk-grid-column-full');
         $content .= $this->output->box_end();
+
         return $content;
     }
 
@@ -205,7 +206,7 @@ class course_renderer extends \core_course_renderer
      *
      * @param  coursecat_helper  $chelper
      * @param $course
-     * @param $additionalclasses
+     * @param $additionalClasses
      *
      * @return bool|string
      * @throws \dml_exception
@@ -225,6 +226,8 @@ class course_renderer extends \core_course_renderer
         $images = $this->course_images($course);
         $category = core_course_category::get($course?->category, IGNORE_MISSING);
 
+        $multiGridColumns = !str_contains($additionalclasses, 'first last');
+
         $data = [
             'id' => $course->id,
             'fullname' => $chelper->get_course_formatted_name($course),
@@ -234,8 +237,8 @@ class course_renderer extends \core_course_renderer
             'coursecategory' => $category->name ?? null,
             'customfields' => $this->course_custom_fields($course),
             'progress' => intval($this->get_progress($course) ?: 0),
-            'gridcolumns' => get_config( 'theme_nhse', 'grid_columns') ?: 'nhsuk-grid-column-full',
-            'multigridcolumns' => (!empty($gridcColumns) && $gridcColumns != 'nhsuk-grid-column-full'),
+            'gridcolumns' => ($multiGridColumns ? get_config( 'theme_nhse', 'grid_columns') : 'nhsuk-grid-column-full') . ' ' . $additionalclasses,
+            'multigridcolumns' => $multiGridColumns,
             'hasenrolmenticons' => !empty($courseEnrolmentIcons),
             'enrolmenticons' => $courseEnrolmentIcons,
             'contacts' => $this->get_course_contacts($course),
