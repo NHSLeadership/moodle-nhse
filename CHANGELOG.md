@@ -2,6 +2,7 @@
 
 ## 2025-09-16.00
 1. Tweak course category columns view for single item
+2. Guest access header buttons
 
 ## 2025-08-19.00
 1. Page wrapper, header and footer width fix
