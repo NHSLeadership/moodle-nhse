@@ -428,7 +428,7 @@ body {
 
 @media (min-width: 768px) {
   .header-maxwidth {
-    padding-left: 0;
+    max-width: $page-max-width;
   }
 }
 
@@ -1031,6 +1031,11 @@ body {
       }
     }
   }
+}
+
+.secondary-navigation {
+  margin: 0 auto;
+  max-width: $page-max-width;
 }
 
 .content-area {
