@@ -1342,12 +1342,12 @@ body.simulated-fullscreen #scormpage {
 
 /* Remove page-wrapper padding in simulated fullscreen */
 body.simulated-fullscreen #page-wrapper #page .main-inner {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 /* Remove drawer padding in simulated fullscreen */
 body.simulated-fullscreen #page.drawers .main-inner {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 /* Hide Moodle's default Exit activity button in simulated fullscreen */
@@ -1363,4 +1363,8 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
   @include mq($until: tablet) {
     margin-top: 0;
   }
+}
+
+.nhsuk-pagination__link .nhsuk-icon {
+  fill: #005eb8;
 }
