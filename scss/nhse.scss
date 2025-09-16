@@ -1355,6 +1355,10 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
   display: none !important;
 }
 
+.activity-icon {
+  display: none;
+}
+
 .nhsuk-navigation-container {
   @include mq($until: tablet) {
     margin-top: 0;
