@@ -601,6 +601,14 @@ body {
     &.drawers {
       padding: 0 32px;
 
+      body.limitedwidth {
+        #page {
+          &.drawers {
+            padding: 0 0;
+          }
+        }
+      }
+
       &.show-drawer-left {
         margin-left: $drawer-width;
         margin-right: auto;
@@ -627,18 +635,21 @@ body {
 
       &.show-drawer-left {
         margin: 0 auto;
-        padding-left: $drawer-width;
+        padding-left: $drawer-width + 32px;
+        width: 100%;
       }
 
       &.show-drawer-right {
         margin: 0 auto;
-        padding-right: $drawer-width;
+        padding-right: $drawer-width + 32px;
+        width: 100%;
       }
 
       &.show-drawer-left.show-drawer-right {
         margin: 0 auto;
-        padding-left: $drawer-width;
-        padding-right: $drawer-width;
+        padding-left: $drawer-width + 32px;
+        padding-right: $drawer-width + 32px;
+        width: 100%;
       }
     }
   }
@@ -651,19 +662,19 @@ body {
         &.show-drawer-left {
           width: $page-max-width;
           margin: 0 auto;
-          padding-left: 32px;
+          padding-left: 0;
         }
 
         &.show-drawer-right {
           width: $page-max-width;
           margin: 0 auto;
-          padding-right: 32px;
+          padding-right: 0;
         }
 
         &.show-drawer-left.show-drawer-right {
           width: $page-max-width;
           margin: 0 auto;
-          padding: 0 32px;
+          padding: 0 0;
         }
       }
     }
