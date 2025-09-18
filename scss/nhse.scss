@@ -2,14 +2,11 @@
 @import "../node_modules/nhsuk-frontend/packages/nhsuk";
 @import "../scss/bootstrap/_config.scss";
 
+@import "moodle/variables.scss";
+
 @import "../../boost/scss/fontawesome.scss";
 @import "../../boost/scss/bootstrap.scss";
 @import "../../boost/scss/moodle.scss";
-
-$color_nhsuk-light-blue: #41B6E6;
-$color_nhsuk-bright-blue: #0072CE;
-$page-max-width: 990px;
-$drawer-width: 335px;
 
 @import "checklist.scss";
 
@@ -204,10 +201,6 @@ th, td {
   border-bottom-right-radius: 4px!important;
 }
 
-//.nhsuk-header__container {
-//  padding: 32px 0;
-//}
-
 .nhsuk-header__navigation-list {
   margin: 0 auto;
 }
@@ -219,24 +212,24 @@ body {
     #page {
       &.drawers {
         .main-inner {
-          max-width: $page-max-width;
+          max-width: $course-content-maxwidth;
         }
       }
     }
 
     .nhsuk-header__container {
-      max-width: $page-max-width;
+      max-width: $course-content-maxwidth;
     }
     .header-maxwidth {
-      max-width: $page-max-width;
+      max-width: $course-content-maxwidth;
     }
     .nhsuk-width-container,
     .nhsuk-width-container-fluid {
-      max-width: $page-max-width;
+      max-width: $course-content-maxwidth;
       padding: 0;
     }
     .nhsuk-header__navigation-list {
-      max-width: $page-max-width;
+      max-width: $course-content-maxwidth;
     }
   }
 }
@@ -345,7 +338,7 @@ body {
 
 .drawer-toggles {
   .drawer-toggler {
-    top: calc(140px + 0.7rem);
+    top: calc($drawer-top + 0.7rem);
     .btn {
       background-color: $color_nhsuk-grey-4;
     }
@@ -433,7 +426,7 @@ body {
 
 @media (min-width: 768px) {
   .header-maxwidth {
-    max-width: $page-max-width;
+    max-width: $course-content-maxwidth;
   }
 }
 
@@ -472,7 +465,7 @@ body {
   #page-wrapper {
     #page {
       width: 100%;
-      max-width: $page-max-width;
+      max-width: $course-content-maxwidth;
       margin: 0 auto;
     }
   }
@@ -485,6 +478,7 @@ body {
   &.drawers {
     margin-top: 0;
     padding: 0 32px;
+
     .main-inner {
       margin-top: 0;
       margin-bottom: 0;
@@ -660,19 +654,19 @@ body {
         padding: 0 0;
 
         &.show-drawer-left {
-          width: $page-max-width;
+          width: $course-content-maxwidth;
           margin: 0 auto;
           padding-left: 0;
         }
 
         &.show-drawer-right {
-          width: $page-max-width;
+          width: $course-content-maxwidth;
           margin: 0 auto;
           padding-right: 0;
         }
 
         &.show-drawer-left.show-drawer-right {
-          width: $page-max-width;
+          width: $course-content-maxwidth;
           margin: 0 auto;
           padding: 0 0;
         }
@@ -1131,7 +1125,7 @@ body {
 
 .secondary-navigation {
   margin: 0 auto;
-  max-width: $page-max-width;
+  max-width: $course-content-maxwidth;
 }
 
 .content-area {
@@ -1315,12 +1309,12 @@ label {
   &.drawer-left {
     width: $drawer-width;
     max-width: $drawer-width;
-    box-shadow: 1px 0 5px #333333;
+    box-shadow: $box-shadow-drawer-left;
   }
   &.drawer-right {
     width: $drawer-width;
     max-width: $drawer-width;
-    box-shadow: -1px 0 5px #333333;
+    box-shadow: $box-shadow-drawer-right;
   }
 }
 
@@ -1329,15 +1323,15 @@ label {
     display: none !important;
   }
   [data-region=right-hand-drawer].drawer {
-    top: 140px;
+    top: $drawer-top;
   }
   .drawer-left, .drawer-right {
-    top: 143px;
+    top: $drawer-top;
     height: calc(100vh - 124px);
     border-top: 1px solid $color_nhsuk-white;
   }
   .hasstickyfooter .drawer-left, .hasstickyfooter .drawer-right {
-    top: 143px;
+    top: $drawer-top;
     height: calc(100vh - 60px - max(80px, 1rem * 3));
   }
 }
