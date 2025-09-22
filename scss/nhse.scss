@@ -1368,3 +1368,45 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 .nhsuk-pagination__link .nhsuk-icon {
   fill: #005eb8;
 }
+
+
+
+/* Prevent width of white area of course pages being limited in width - to match header */
+@media (min-width: 768px) {
+    body.limitedwidth.pagelayout-course #page.drawers .main-inner,
+    body.limitedwidth.pagelayout-mycourses #page.drawers .main-inner,
+    body.pagelayout-incourse #page.drawers .main-inner {
+        max-width: unset;
+    }
+}
+
+/* Remove padding to maximise the width of the white area of course pages and match header */
+@media (min-width: 768px) {
+    body.limitedwidth.pagelayout-course #page.drawers,
+    body.limitedwidth.pagelayout-mycourses #page.drawers,
+    body.pagelayout-incourse #page.drawers {
+        padding-left: unset;
+        padding-right: unset;
+    }
+}
+
+/* Limit width of content area to prevent wide text area on course pages */
+@media (min-width: 768px) {
+    body.limitedwidth.pagelayout-course #page-wrapper #page #page-content,
+    body.limitedwidth.pagelayout-mycourses #page-wrapper #page #page-content,
+    body.pagelayout-incourse #page-wrapper #page #page-content {
+        max-width: 830px;
+    }
+    /* No limit required when displaying SCORM content inline */
+    body#page-mod-scorm-player #page-wrapper #page #page-content {
+      max-width: unset;
+    }
+}
+
+/* Remove rounded corners on course page white content area */
+body.limitedwidth.pagelayout-course #page.drawers .main-inner,
+body.limitedwidth.pagelayout-mycourses #page.drawers .main-inner,
+body.pagelayout-incourse #page.drawers .main-inner {
+    border-radius: 0;
+}
+
