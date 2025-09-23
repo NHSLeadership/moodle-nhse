@@ -1381,12 +1381,21 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 }
 
 /* Remove padding to maximise the width of the white area of course pages and match header */
+/* Rules to apply when the menu is NOT open */
 @media (min-width: 768px) {
-    body.limitedwidth.pagelayout-course #page.drawers,
-    body.limitedwidth.pagelayout-mycourses #page.drawers,
+    body.pagelayout-course #page.drawers:not(.show-drawer-left),
+    body.pagelayout-mycourses #page.drawers:not(.show-drawer-left),
+    body.pagelayout-incourse #page.drawers:not(.show-drawer-left) {
+        padding-left: 0;
+    }
+}
+
+/* Rule to remove padding-right always */
+@media (min-width: 768px) {
+    body.pagelayout-course #page.drawers,
+    body.pagelayout-mycourses #page.drawers,
     body.pagelayout-incourse #page.drawers {
-        padding-left: unset;
-        padding-right: unset;
+        padding-right: 0;
     }
 }
 
