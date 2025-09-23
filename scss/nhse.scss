@@ -1381,12 +1381,14 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 }
 
 .nhsuk-details.nhsuk-expander .section_link,
+.nhsuk-details.nhsuk-expander .summarytext,
 .course-content ul.topics li.section .nhsuk-expander .nhsuk-details__text.content {
   padding-left: 0.75rem;
 }
 
 @media (max-width: 37.49em) {
   .nhsuk-details.nhsuk-expander .section_link,
+  .nhsuk-details.nhsuk-expander .summarytext,
   .course-content ul.topics li.section .nhsuk-expander .nhsuk-details__text.content {
     padding-left: 0.5rem;
   }
