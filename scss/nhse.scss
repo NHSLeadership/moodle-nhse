@@ -1387,6 +1387,7 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 }
 
 @media (max-width: 37.49em) {
+
   .nhsuk-details.nhsuk-expander .section_link,
   .nhsuk-details.nhsuk-expander .summarytext,
   .course-content ul.topics li.section .nhsuk-expander .nhsuk-details__text.content {
@@ -1397,4 +1398,24 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 .section-item .nhsuk-expander .nhsuk-details__summary:focus .nhsuk-details__summary-text:before,
 .section-item .nhsuk-expander[open] .nhsuk-details__summary:focus .nhsuk-details__summary-text::before {
   background-color: transparent;
+}
+
+// override boost theme focus styles with NHSUK focus styles
+.aalink.focus,
+a.focus.autolink,
+.aalink:focus,
+a.autolink:focus,
+#page-footer a:not([class]).focus,
+#page-footer a:not([class]):focus,
+.arrow_link.focus,
+.arrow_link:focus,
+a:not([class]).focus,
+a:not([class]):focus,
+.activityinstance>a.focus,
+.activityinstance>a:focus {
+  outline: 4px solid #fff0;
+  color: #212b32;
+  background-color: #ffeb3b;
+  box-shadow: 0 -2px #ffeb3b, 0 4px #212b32;
+  text-decoration: none;
 }
