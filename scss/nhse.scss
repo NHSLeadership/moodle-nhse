@@ -1368,3 +1368,33 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
 .nhsuk-pagination__link .nhsuk-icon {
   fill: #005eb8;
 }
+
+.course-section .section-item {
+  padding: 0px;
+  border: none;
+  border-radius: 0px;
+}
+
+.nhsuk-expander .h4.sectionname {
+  font-size: 1.1875rem;
+  font-weight: 400;
+}
+
+.nhsuk-details.nhsuk-expander .section_link,
+.nhsuk-details.nhsuk-expander .summarytext,
+.course-content ul.topics li.section .nhsuk-expander .nhsuk-details__text.content {
+  padding-left: 0.75rem;
+}
+
+@media (max-width: 37.49em) {
+  .nhsuk-details.nhsuk-expander .section_link,
+  .nhsuk-details.nhsuk-expander .summarytext,
+  .course-content ul.topics li.section .nhsuk-expander .nhsuk-details__text.content {
+    padding-left: 0.5rem;
+  }
+}
+
+.section-item .nhsuk-expander .nhsuk-details__summary:focus .nhsuk-details__summary-text:before,
+.section-item .nhsuk-expander[open] .nhsuk-details__summary:focus .nhsuk-details__summary-text::before {
+  background-color: transparent;
+}
