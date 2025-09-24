@@ -1394,6 +1394,7 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
   }
 }
 
-.nhsuk-expander .nhsuk-details__summary:focus .nhsuk-details__summary-text:before {
+.section-item .nhsuk-expander .nhsuk-details__summary:focus .nhsuk-details__summary-text:before,
+.section-item .nhsuk-expander[open] .nhsuk-details__summary:focus .nhsuk-details__summary-text::before {
   background-color: transparent;
 }
