@@ -182,10 +182,19 @@ class core_renderer extends \theme_boost\output\core_renderer
                     $processed_item->title = $item['title'] ?? 'Untitled'; // Default title if missing
                     // Handle URLs - convert to moodle_url if internal, keep as string if external
                     if (isset($item['url']) && !empty($item['url'])) {
-                        $item_url_path = $item['url']; // Store the raw URL from the API
-
+                        $item_url_path = $item['url']; // Store the raw URL from the API       
+                        // --- NEW: Override URL for 'Admin' link with theme setting ---
+                        if (trim($processed_item->title) === 'Admin') {
+                            $admin_url = get_config('theme_nhse', 'admin_url');
+                            if (!empty($admin_url)) {
+                                $processed_item->url = $admin_url;
+                                error_log("theme_nhse: Overriding 'Admin' URL with theme setting: {$processed_item->url}");
+                            } else {
+                                // Fallback to original logic if theme setting is not configured
+                                error_log("theme_nhse: Admin URL theme setting not found, falling back to API URL.");
+                            }
                         // Check if it's an absolute URL (starts with http/s or //)
-                        if (strpos($item_url_path, 'http') === 0 || strpos($item_url_path, '//') === 0) {
+                        } else if (strpos($item_url_path, 'http') === 0 || strpos($item_url_path, '//') === 0) {
                             $processed_item->url = $item_url_path; // Use the absolute URL as is
                             error_log("theme_nhse: Processing absolute URL: {$processed_item->url}");
                         } 
