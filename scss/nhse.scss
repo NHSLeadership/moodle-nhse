@@ -1393,3 +1393,7 @@ body.simulated-fullscreen .d-flex.flex-row-reverse.mb-2 a.btn.btn-secondary[titl
     padding-left: 0.5rem;
   }
 }
+
+.nhsuk-expander .nhsuk-details__summary:focus .nhsuk-details__summary-text:before {
+  background-color: transparent;
+}
