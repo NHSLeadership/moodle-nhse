@@ -54,15 +54,16 @@
 }}
 <div class="usermenu">
     {{#unauthenticateduser}}
-            {{#guest}}
-                <span class="login pl-2">
-                    {{#str}} loggedinasguest, core {{/str}}
-                    <div class="divider border-left h-75 align-self-center mx-2"></div>
-                </span>
-            {{/guest}}
-            {{#url}}
-                <a class="nhsuk-header__navigation-link" href="{{url}}"><strong>{{#str}} login, core {{/str}}</strong></a>
-            {{/url}}
+        {{#url}}
+            <div class="pt-2 mt-1">
+                {{#guest}}
+                    {{#str}} loggedinasguest, theme_nhse {{/str}}
+                {{/guest}}
+                <a class="nhsuk-header__navigation-link inline" href="{{url}}">
+                    <strong>{{#str}} login, core {{/str}}</strong>
+                </a>
+            </div>
+        {{/url}}
     {{/unauthenticateduser}}
     {{^unauthenticateduser}}
         <div class="dropdown show">

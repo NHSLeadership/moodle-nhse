@@ -77,6 +77,7 @@ $string['login_expand_description']                    = 'Login expander descrip
 $string['login_expand_text_default']                   = 'Other Login';
 $string['loginguest']                                  = 'Continue as a guest';
 $string['login_oauth_with']                            = 'Log in with';
+$string['loggedinasguest']                             = 'Guest access';
 $string['nobootswatch']                                = 'None';
 $string['pluginname']                                  = 'NHSE';
 $string['preset']                                      = 'Theme preset';
