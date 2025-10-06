@@ -76,24 +76,8 @@ class core_renderer extends \theme_boost\output\core_renderer
     }
 
     /**
-     * @return array|string|string[]
-     * @throws \dml_exception
+     * Footer page and theme information
      */
-    public function footer()
-    {
-        $html = parent::footer();
-
-        // Activate only if we want white style footer
-        //$navbarstyle = get_config( 'theme_nhse', 'navbarstyle');
-        //$navbarstyle = 'white';
-        //if ($navbarstyle) {
-        //    $html = str_replace('nhsuk-header--default', 'nhsuk-header--' . $navbarstyle, $html);
-        //}
-        $html = str_replace('YYYY', date('Y'), $html);
-
-        return $html;
-    }
-
     public function other_info()
     {
         if (debugging(null, DEBUG_DEVELOPER) and has_capability('moodle/site:config', \context_system::instance())) {
@@ -107,6 +91,18 @@ class core_renderer extends \theme_boost\output\core_renderer
         } else {
             return '';
         }
+    }
+
+    /**
+     * Footer copyright notice (Theme settings editable)
+     */
+    public function copyright_notice()
+    {
+        return str_replace(
+            'YYYY',
+            date('Y'),
+            get_config( 'theme_nhse', 'copyright' )
+        );
     }
 
     /**
