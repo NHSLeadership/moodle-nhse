@@ -1,5 +1,8 @@
 # NHSE Theme change log
 
+## 2025-10-06.00
+1. Add footer note editor
+
 ## 2025-09-16.00
 1. Tweak course category columns view for single item
 2. Guest access header buttons

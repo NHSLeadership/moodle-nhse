@@ -34,6 +34,16 @@ if ($ADMIN->fulltree) {
         get_string('unaddableblocks', 'theme_nhse'), get_string('unaddableblocks_desc', 'theme_nhse'), $default, PARAM_TEXT);
     $page->add($setting);
 
+    // Copyright notice (footer)
+    $setting = new admin_setting_configtext(
+        'theme_nhse/copyright',
+        get_string('copyright', 'theme_nhse'),
+        get_string('copyright_desc', 'theme_nhse'),
+        get_string('copyright_default', 'theme_nhse'),
+        PARAM_TEXT
+    );
+    $page->add($setting);
+
     // Preset.
     $name = 'theme_nhse/preset';
     $title = get_string('preset', 'theme_nhse');
