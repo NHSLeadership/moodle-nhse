@@ -488,11 +488,28 @@ body {
 #page-admin-reportbuilder,
 #page-admin-reportbuilder-edit {
   height: 100%;
+
+  .navbar__default {
+    padding-top: 61px;
+  }
+
+  &.pagelayout-popup {
+    .dynamictabs .nav-tabs {
+      position: absolute;
+    }
+    .reportbuilder-sidebar-menu {
+      position: absolute;
+    }
+    .reportbuilder-sidebar-settings {
+      position: absolute;
+    }
+  }
+
   #page-wrapper {
     #page {
       width: 100%;
-      max-width: $course-content-maxwidth;
       margin: 0 auto;
+      padding-top: 15px;
     }
   }
 }
@@ -960,6 +977,10 @@ body {
   background-color: $btn-primary-background;
   box-shadow: none;
   padding: 0;
+
+  &.bg-white {
+    color: $nhsuk-text-color;
+  }
 
   .divider {
     display: none;
