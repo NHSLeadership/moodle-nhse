@@ -1,5 +1,11 @@
 # NHSE Theme change log
 
+## 2025-11-06.01
+1. Removed course details expander
+2. Tweak page drawers styles
+3. Remove rounded corners in course view and admin view 
+4. Fix custom report width
+
 ## 2025-10-06.00
 1. Add footer note editor
 
