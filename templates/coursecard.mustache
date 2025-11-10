@@ -6,9 +6,6 @@
         {{#gridcolumns}}
             {{{gridcolumns}}}
         {{/gridcolumns}}
-        {{^gridcolumns}}
-            nhsuk-grid-column-full
-        {{/gridcolumns}}
     ">
 
     <div class="nhsuk-card card dashboard-card">
@@ -20,7 +17,7 @@
 
         <div class="nhsuk-card__content nhsuk-u-padding-3">
             <h2 class="nhsuk-card__heading nhsuk-heading-m">
-                <a href="{{courseurl}}" class="nhsuk-card__link" tabindex="-1">{{{fullname}}}</a>...
+                <a href="{{courseurl}}" class="nhsuk-card__link" tabindex="-1">{{{fullname}}}</a>
             </h2>
 
             {{#hasenrolmenticons}}
@@ -33,18 +30,7 @@
                 </div>
             {{/hasenrolmenticons}}
 
-            {{#multigridcolumns}}
-                <details class="nhsuk-details">
-                    <summary class="nhsuk-details__summary">
-                        <span class="nhsuk-details__summary-text">{{#str}} course_details_text, theme_nhse {{/str}}</span>
-                    </summary>
-                    <div class="nhsuk-details__text">
-            {{/multigridcolumns}}
-                    <p class="course-summary nhsuk-card__description">{{{summary}}}</p>
-            {{#multigridcolumns}}
-                    </div>
-                </details>
-            {{/multigridcolumns}}
+            {{{summary}}}
 
             {{#customfields}}
                 <div class="customfields course-info-container">
