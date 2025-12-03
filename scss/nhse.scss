@@ -219,6 +219,7 @@ body {
 
     .nhsuk-header__container {
       max-width: $course-content-maxwidth;
+      padding: 16px 0;
     }
     .header-maxwidth {
       max-width: $course-content-maxwidth;
@@ -334,6 +335,7 @@ body {
       object-fit: cover;
     }
   //}
+  margin-bottom: 0;
 }
 
 .nhsuk-card {
@@ -1185,6 +1187,10 @@ body {
   }
 }
 
+#contentframe {
+  min-height: 600px;
+}
+
 .content-area {
   .navbar {
     a, a:visited {
@@ -1436,6 +1442,11 @@ label {
   }
 }
 
+.pagination {
+  padding-left: 8px;
+}
+
 .stickyfooter {
   overflow: visible;
 }
+

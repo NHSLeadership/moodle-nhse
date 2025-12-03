@@ -224,7 +224,7 @@ class course_renderer extends \core_course_renderer
         }
 
         $images = $this->course_images($course);
-        $category = core_course_category::get($course?->category, IGNORE_MISSING);
+        $coursecategory = core_course_category::get($course?->category, IGNORE_MISSING);
 
         $multiGridColumns = !str_contains($additionalclasses, 'first last');
 
@@ -234,7 +234,7 @@ class course_renderer extends \core_course_renderer
             'visible' => $course->visible,
             'image' => array_pop($images),
             'summary' => $this->course_summary($chelper, $course),
-            'coursecategory' => $category->name ?? null,
+            'coursecategory' => $coursecategory->name ?? null,
             'customfields' => $this->course_custom_fields($course),
             'progress' => intval($this->get_progress($course) ?: 0),
             'gridcolumns' => ($multiGridColumns ? get_config( 'theme_nhse', 'grid_columns') : 'nhsuk-grid-column-full') . ' ' . $additionalclasses,
@@ -260,7 +260,6 @@ class course_renderer extends \core_course_renderer
      */
     protected function coursecat_courses(coursecat_helper $chelper, $courses, $totalcount = null)
     {
-        $chelper = new coursecat_helper();
         $chelper->set_attributes(array('class' => 'nhsuk-grid-row nhsuk-card-group'));
 
         return parent::coursecat_courses($chelper, $courses, $totalcount);
