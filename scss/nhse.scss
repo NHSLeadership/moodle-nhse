@@ -1450,3 +1450,6 @@ label {
   overflow: visible;
 }
 
+.visually-hidden {
+  @extend .nhsuk-u-visually-hidden;
+}
