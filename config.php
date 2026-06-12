@@ -46,7 +46,7 @@ $THEME->doctype = 'html5';
 //$THEME->lessvariablescallback = 'theme_more_less_variables';
 //$THEME->extralesscallback = 'theme_more_extra_less';
 $THEME->name = 'nhse';
-$THEME->version = '2025121901';
+$THEME->version = '2026061701';
 $THEME->parents = ['boost'];
 $THEME->regions = [];
 $THEME->sheets = [];
@@ -57,9 +57,11 @@ $THEME->showtutors = false;
 
 // This is the function that returns the SCSS source for the main file in our theme. We override the boost version because
 // we want to allow presets uploaded to our own theme file area to be selected in the preset list.
-$THEME->scss = function($theme) {
-    return theme_nhse_get_main_scss_content($theme);
-};
+//$THEME->scss = function($theme) {
+//    return theme_nhse_get_main_scss_content($theme);
+//};
+$THEME->sheets = ['nhse'];
+$THEME->editorsheets = ['nhse'];
 $THEME->extrascsscallback = 'theme_boost_get_extra_scss';
 $THEME->prescsscallback = 'theme_boost_get_pre_scss';
 $THEME->precompiledcsscallback = 'theme_boost_get_precompiled_css';
@@ -220,6 +222,7 @@ $THEME->haseditswitch = true;
 //$THEME->removedprimarynavitems = []
 // A new theme config 'usescourseindex' allows a theme to specify whether it implements and uses course index, shows modules pagination if unset or false
 $THEME->usescourseindex = getenv("USES_COURSE_INDEX");
+//$THEME->javascripts = array( 'nhsuk.min' );
 
 // Control displaying nhse titles (Boost is set to true).
 $THEME->activityheaderconfig = [

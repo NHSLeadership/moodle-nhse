@@ -27,6 +27,13 @@ defined('MOODLE_INTERNAL') || die();
 $templatecontext = [
     // We cannot pass the context to format_string, this layout can be used during
     // installation. At that stage database tables do not exist yet.
+    'favicons' => [
+        'mask' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-mask.svg'),
+        'svg' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/favicon.svg'),
+        'apple-180' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-180.png'),
+        'apple-192' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-192.png'),
+        'apple-512' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-512.png'),
+    ],
     'sitename' => format_string($SITE->shortname, true, ["escape" => false]),
     'output' => $OUTPUT
 ];

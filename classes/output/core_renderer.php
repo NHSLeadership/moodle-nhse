@@ -82,12 +82,12 @@ class core_renderer extends \theme_boost\output\core_renderer
     {
         if (debugging(null, DEBUG_DEVELOPER) and has_capability('moodle/site:config', \context_system::instance())) {
             $layout   = $this->get_page()->pagelayout;
-            $pagetype = $this->get_page()->pagetype;
+            $pageType = $this->get_page()->pagetype;
             $title    = $this->page_title();
 
             return "<span>Page title: {$title}<span><br>                
                     <span>Page layout: {$layout}</span><br>
-                    <span>Page type: {$pagetype}</span>";
+                    <span>Page type: {$pageType}</span>";
         } else {
             return '';
         }
