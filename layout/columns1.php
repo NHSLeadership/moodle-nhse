@@ -24,11 +24,19 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$bodyattributes = $OUTPUT->body_attributes([]);
+$bodyattributes = $OUTPUT->body_attributes(['nhsuk-frontend-supported']);
 $templatecontext = [
-    'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
-    'output' => $OUTPUT,
     'bodyattributes' => $bodyattributes,
+    'favicons' => [
+        'mask' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-mask.svg'),
+        'svg' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/favicon.svg'),
+        'apple-180' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-180.png'),
+        'apple-192' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-192.png'),
+        'apple-512' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-512.png'),
+    ],
+    'manifest_url' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/manifest.json'),
+    'output' => $OUTPUT,
+    'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
 ];
 
 if (empty($PAGE->layout_options['noactivityheader'])) {
@@ -38,7 +46,7 @@ if (empty($PAGE->layout_options['noactivityheader'])) {
 }
 
 // Include NHSUK Frontend js file
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/node_modules/nhsuk-frontend/dist/nhsuk.min.js'));
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
 
 echo $OUTPUT->render_from_template('theme_nhse/columns1', $templatecontext);
 

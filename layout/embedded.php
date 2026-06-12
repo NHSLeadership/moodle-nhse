@@ -29,6 +29,14 @@ $hasfakeblocks = strpos($fakeblockshtml, 'data-block="_fake"') !== false;
 $renderer = $PAGE->get_renderer('core');
 
 $templatecontext = [
+    'favicons' => [
+        'mask' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-mask.svg'),
+        'svg' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/favicon.svg'),
+        'apple-180' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-180.png'),
+        'apple-192' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-192.png'),
+        'apple-512' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-512.png'),
+    ],
+    'manifest_url' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/manifest.json'),
     'output' => $OUTPUT,
     'headercontent' => $PAGE->activityheader->export_for_template($renderer),
     'hasfakeblocks' => $hasfakeblocks,
@@ -36,6 +44,6 @@ $templatecontext = [
 ];
 
 // Include NHSUK Frontend js file
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/node_modules/nhsuk-frontend/dist/nhsuk.min.js'));
+$PAGE->requires->js_module(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
 
 echo $OUTPUT->render_from_template('theme_nhse/embedded', $templatecontext);
