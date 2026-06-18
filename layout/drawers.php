@@ -45,11 +45,6 @@ if (defined('BEHAT_SITE_RUNNING') && get_user_preferences('behat_keep_drawer_clo
     $blockdraweropen = true;
 }
 
-$extraclasses = ['uses-drawers'];
-if ($courseindexopen) {
-    $extraclasses[] = 'drawer-open-index';
-}
-
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 if (!$hasblocks) {
@@ -60,6 +55,10 @@ if (!$courseindex) {
     $courseindexopen = false;
 }
 
+$extraclasses = ['uses-drawers', 'nhsuk-frontend-supported'];
+if ($courseindexopen) {
+    $extraclasses[] = 'drawer-open-index';
+}
 $bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
@@ -86,11 +85,19 @@ $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
 $templatecontext = [
+    'bodyattributes' => $bodyattributes,
+    'favicons' => [
+        'mask' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-mask.svg'),
+        'svg' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/favicon.svg'),
+        'apple-180' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-180.png'),
+        'apple-192' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-192.png'),
+        'apple-512' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-512.png'),
+    ],
+    'manifest_url' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/manifest.json'),
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
     'hasblocks' => $hasblocks,
-    'bodyattributes' => $bodyattributes,
     'courseindexopen' => $courseindexopen,
     'blockdraweropen' => $blockdraweropen,
     'courseindex' => $courseindex,
@@ -108,6 +115,6 @@ $templatecontext = [
 ];
 
 // Include NHSUK Frontend js file
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/node_modules/nhsuk-frontend/dist/nhsuk.min.js'));
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
 
 echo $OUTPUT->render_from_template('theme_nhse/drawers', $templatecontext);
