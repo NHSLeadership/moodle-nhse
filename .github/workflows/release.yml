@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Create release
@@ -30,6 +33,6 @@ jobs:
         run: zip -r "${{ steps.get_version.outputs.VERSION }}.zip" . -x '.github**' -x '.git**' -x '.gitignore' -x '.gitattributes'
 
       - name: Upload release asset
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3.0.1
         with:
           files: ${{ steps.get_version.outputs.VERSION }}.zip
