@@ -31,7 +31,7 @@ $plugin->release = '405.1.0';
 $plugin->maturity = MATURITY_BETA;
 
 // This is the version of Moodle this plugin requires.
-$plugin->requires  = 2026061600.00; // 5.1.5+ (Build: 20260616)
+$plugin->requires  = 2026042000.00; // Moodle 5.2.0
 
 // This is the component name of the plugin - it always starts with 'theme_'
 // for themes and should be the same as the name of the folder.
