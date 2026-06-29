@@ -22,7 +22,7 @@ use navigation_node;
 //use block_contents;
 //use custom_menu;
 //use custom_menu_item;
-//use html_writer;
+use html_writer;
 //use moodle_url;
 
 defined('MOODLE_INTERNAL') || die;
@@ -190,5 +190,28 @@ class core_renderer extends \theme_boost\output\core_renderer
      */
     public function render_preferences_groups(\preferences_groups $renderable) {
         return $this->render_from_template('theme_nhse/core/preferences_groups', $renderable);
+    }
+
+    public function services_support_link(): string {
+        global $CFG;
+
+        if (
+            during_initial_install() ||
+            (isset($CFG->showservicesandsupportcontent) && $CFG->showservicesandsupportcontent == false) ||
+            !is_siteadmin()
+        ) {
+            return '';
+        }
+
+        $liferingicon = $this->pix_icon('t/life-ring', '', 'moodle', ['class' => 'fa fa-life-ring']);
+        //$newwindowicon = $this->pix_icon('i/externallink', get_string('opensinnewwindow'), 'moodle', ['class' => 'ms-1']);
+        $newwindowicon = html_writer::tag('span', get_string('opensinnewwindow'), ['class' => 'visually-hidden']);
+
+        $link = !empty($CFG->servicespage)
+            ? $CFG->servicespage
+            : 'https://moodle.com/help/?utm_source=CTA-banner&utm_medium=platform&utm_campaign=name~Moodle4+cat~lms+mp~no';
+        $content = $liferingicon . get_string('moodleservicesandsupport') . $newwindowicon;
+
+        return html_writer::tag('a', $content, ['target' => '_blank', 'href' => $link]);
     }
 }

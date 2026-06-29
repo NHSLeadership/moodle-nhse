@@ -1,10 +1,11 @@
 # NHSE Theme change log
 
-## 2026-06-18.01
+## 2026-06-29.01
 ### NHUSK 10.x updates for Moodle 5.2
 1. Improved sidebar spacing and background colours
 2. Tweaks to some active links and buttons
 3. Resolved bootstrap CSS deprecations
+4. Updated drawers templates
 
 ## 2026-06-17.01
 ### NHUSK 10.x updates for Moodle 5.1 

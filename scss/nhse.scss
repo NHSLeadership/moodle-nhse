@@ -261,10 +261,42 @@ th, td {
   }
 }
 
+.course-content {
+  ul.section-list {
+    margin-bottom: 15px;
+  }
+}
+
 .courseindex {
   .courseindex-item {
-    padding: 0 .5rem;
+    padding: 0;
     line-height: 1.7rem;
+
+    &.courseindex-section-title a {
+      color: nhsuk-colour("blue");
+    }
+
+    &.pageitem {
+      color: nhsuk-colour("white");
+      &.courseindex-section-title a {
+        color: nhsuk-colour("white");
+      }
+    }
+
+    .courseindex-link {
+      font-size: 0.9rem;
+    }
+  }
+  .courseindex-section {
+    border: none;
+
+    .current-badge {
+      color: nhsuk-colour("white");
+    }
+
+    .courseindex-sectioncontent:not(.delegated-section) .courseindex-item {
+      padding-left: 0.5rem;
+    }
   }
 }
 
@@ -455,6 +487,7 @@ th, td {
 
 .nhsuk-header__account {
   margin-top: 0;
+  border: none;
 }
 .nhsuk-header__search-form {
   margin: 0;
@@ -599,6 +632,7 @@ th, td {
     background-color: $primary-light-background;
     background-image: none;
     background-repeat: no-repeat;
+    margin: 0 auto;
   }
 }
 
@@ -628,10 +662,6 @@ th, td {
 }
 
 @media (min-width: 992px) {
-  .drawer-left,
-  .drawer-right {
-    top: $drawer-top;
-  }
   #page {
     &.drawers {
       padding: 0 32px;
@@ -1079,9 +1109,21 @@ th, td {
 
   .navbar-nav {
     font-size: 1rem;
-    a {
-      color: nhsuk-colour("black");
+
+    .usermenu {
+      color: nhsuk-colour("white");
+      a:visited {
+        color: nhsuk-colour("white");
+      }
     }
+
+    .dropdown-menu {
+      color: nhsuk-colour("black");
+      a:visited {
+        color: nhsuk-colour("black");
+      }
+    }
+
     .btn {
       box-shadow: none;
       &:not(
@@ -1329,10 +1371,8 @@ label input[type=checkbox] {
   margin-right: 1.0rem !important;
 }
 
-.form-control {
-  padding: 0 0.75rem;
-  margin-right: 0.5rem;
-  border-radius: 0;
+.custom-select {
+  padding: 0 1.75rem 0 .75rem
 }
 
 .form-item {
@@ -1354,11 +1394,16 @@ label input[type=checkbox] {
   }
 }
 
-.custom-select {
-  padding: 0 1.75rem 0 .75rem
+.form-control {
+  padding: 0 0.75rem;
+  margin-right: 0.5rem;
+  border-radius: 0;
 }
 
 .simplesearchform {
+  .btn {
+    border: none;
+  }
   .btn-close {
     right: 3rem;
     top: 0.3rem;
@@ -1372,8 +1417,8 @@ label input[type=checkbox] {
     background-color: $nav-blue;
     right: 0;
   }
-  .searchform-navbar {
-    padding-right: 2.5em;
+  .form-control {
+    margin-right: 0;
   }
   .input-group {
     margin-left: 0.5rem;
@@ -1383,6 +1428,9 @@ label input[type=checkbox] {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
+  }
+  .searchform-navbar {
+    padding-right: 2.5em;
   }
 }
 
@@ -1480,24 +1528,6 @@ label input[type=checkbox] {
     }
   }
 
-  @media (min-width: 992px) {
-    .d-md-none {
-      display: none !important;
-    }
-    [data-region=right-hand-drawer].drawer {
-      top: $drawer-top;
-    }
-    .drawer-left, .drawer-right {
-      top: $drawer-top;
-      height: calc(100vh - $drawer-top);
-      border-top: 1px solid nhsuk-colour("white");
-    }
-    .hasstickyfooter .drawer-left, .hasstickyfooter .drawer-right {
-      top: $drawer-top;
-      height: calc(100vh - 60px - max(80px, 1rem * 3));
-    }
-  }
-
   .nhsuk-list--number, ol {
     padding-left: 32px;
   }
@@ -1541,6 +1571,28 @@ label input[type=checkbox] {
 
   .stickyfooter {
     overflow: visible;
+  }
+}
+
+@media (min-width: 992px) {
+  .d-md-none {
+    display: none !important;
+  }
+  [data-region=right-hand-drawer].drawer {
+    top: $drawer-top;
+  }
+  .drawer-left,
+  .drawer-right {
+    top: $drawer-top;
+    height: calc(100vh - $drawer-top);
+    border-top: 1px solid nhsuk-colour("white");
+  }
+  .hasstickyfooter {
+    .drawer-left,
+    .drawer-right {
+      top: $drawer-top;
+      height: calc(100vh - 60px - max(80px, 1rem * 3));
+    }
   }
 }
 
