@@ -26,12 +26,12 @@
 defined('MOODLE_INTERNAL') || die();
 
 // This is the version of the plugin.
-$plugin->version = 2025121901;
+$plugin->version = 2026062901;
 $plugin->release = '405.1.0';
 $plugin->maturity = MATURITY_BETA;
 
 // This is the version of Moodle this plugin requires.
-$plugin->requires  = 2024041600.00; // 4.4.4 (Build: 20241007)
+$plugin->requires  = 2026042000.00; // Moodle 5.2.0
 
 // This is the component name of the plugin - it always starts with 'theme_'
 // for themes and should be the same as the name of the folder.
@@ -39,5 +39,5 @@ $plugin->component = 'theme_nhse';
 
 // This is a list of plugins, this plugin depends on (and their versions).
 $plugin->dependencies = [
-    'theme_boost' => 2024042200
+    'theme_boost' => 2026042000
 ];
