@@ -300,6 +300,10 @@ th, td {
   }
 }
 
+.activityiconcontainer {
+  border-radius: 0;
+}
+
 /**
  * Cards and box styles
  */
@@ -351,8 +355,9 @@ th, td {
   }
 }
 
-.activityiconcontainer {
-  border-radius: 0;
+.collapsible-actions {
+  display: block;
+  width: 100%;
 }
 
 #frontpage-available-course-list,
