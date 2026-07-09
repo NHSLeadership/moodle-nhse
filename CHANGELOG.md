@@ -1,5 +1,9 @@
 # NHSE Theme change log
 
+## 2026-07-09.01
+### NHUSK 10.x updates for Moodle 5.2
+1. Fixed course category page layout for single item
+
 ## 2026-06-29.01
 ### NHUSK 10.x updates for Moodle 5.2
 1. Improved sidebar spacing and background colours
