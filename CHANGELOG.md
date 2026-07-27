@@ -1,5 +1,10 @@
 # NHSE Theme change log
 
+## 2026-07-27.01
+### NHUSK 10.x updates for Moodle 5.2
+1. Fixed custom javascript loading in embedded layout
+2. Tweaks to course list and pagination styling
+
 ## 2026-07-09.01
 ### NHUSK 10.x updates for Moodle 5.2
 1. Fixed course category page layout for single item
