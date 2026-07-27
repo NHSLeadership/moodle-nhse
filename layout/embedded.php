@@ -44,6 +44,6 @@ $templatecontext = [
 ];
 
 // Include NHSUK Frontend js file
-$PAGE->requires->js_module(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
 
 echo $OUTPUT->render_from_template('theme_nhse/embedded', $templatecontext);
