@@ -31,63 +31,61 @@
         }
     }
 }}
-<footer role="contentinfo" id="nhsuk-footer">
-    <div class="nhsuk-footer-container">
+<footer class="nhsuk-footer" role="contentinfo">
+    <div class="nhsuk-width-container">
+        <div class="nhsuk-footer__meta">
+            <div class="logininfo footer-content-debugging">
+                {{{ output.login_info }}}
+                {{{ output.debug_footer_html }}}
+            </div>
+            {{#output.other_info}}
+            <div class="otherinfo">
+                {{{ output.other_info }}}
+            </div>
+            {{/output.other_info}}
+            <div class="tool_usertours-resettourcontainer">
+            </div>
+            {{{ output.standard_footer_html }}}
+            {{{ output.standard_end_of_body_html }}}
 
-        {{#output.has_communication_links}}
-        <div data-region="footer-container-popover">
-            <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon bg-primary text-white icon-no-margin btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
-                {{#pix}}t/messages-o, core{{/pix}}
-            </button>
+            {{#str}}poweredbymoodle, core{{/str}}
+            {{#output.moodle_release}}
+                {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
+            {{/output.moodle_release}}
+
+            <p class="nhsuk-body-s">{{{ output.copyright_notice }}}</p>
+
+            <div data-region="footer-container-popover">
+                {{#output.has_communication_links}}
+                    <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon rounded-circle bg-primary text-white btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
+                        {{#pix}}t/messages-o, core{{/pix}}
+                    </button>
+                {{/output.has_communication_links}}
+                <button class="btn btn-icon rounded-circle bg-white btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">
+                    {{#pix}}e/question, core{{/pix}}
+                </button>
+            </div>
         </div>
-        {{/output.has_communication_links}}
 
-        <div class="nhsuk-width-container footer-content-popover" data-region="footer-content-popover">
-            <h2 class="nhsuk-u-visually-hidden">Support links</h2>
-
+        <div class="nhsuk-u-visually-hidden footer-content-popover container" data-region="footer-content-popover">
             {{# output.has_popover_links }}
-                <ul class="nhsuk-footer__list">
-                {{# output.page_doc_link }}
-                    <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.page_doc_link }}}</li>
-                {{/ output.page_doc_link }}
+                <p class="nhsuk-u-visually-hidden">Support links</p>
+                <ul class="nhsuk-footer__list px-3 py-3">
+                    {{# output.page_doc_link }}
+                        <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.page_doc_link }}}</li>
+                    {{/ output.page_doc_link }}
 
-                {{# output.services_support_link }}
-                    <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.services_support_link }}}</li>
-                {{/ output.services_support_link }}
+                    {{# output.services_support_link }}
+                        <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.services_support_link }}}</li>
+                    {{/ output.services_support_link }}
 
-                {{# output.supportemail }}
-                    <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.supportemail }}}</li>
-                {{/ output.supportemail }}
+                    {{# output.supportemail }}
+                        <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">{{{ output.supportemail }}}</li>
+                    {{/ output.supportemail }}
                 </ul>
             {{/ output.has_popover_links }}
-
-            <div class="nhsuk-grid-row nhsuk-u-margin-bottom-5">
-                <div class="nhsuk-grid-column-full footer-section">
-                    <div class="logininfo">
-                        {{{ output.login_info }}}
-                        {{{ output.debug_footer_html }}}
-                    </div>
-                    {{#output.other_info}}
-                    <div class="otherinfo">
-                        {{{ output.other_info }}}
-                    </div>
-                    {{/output.other_info}}
-                    <div class="tool_usertours-resettourcontainer"></div>
-                    {{{ output.standard_footer_html }}}
-                    {{{ output.standard_end_of_body_html }}}
-
-                    {{#str}}poweredbymoodle, core{{/str}}
-                    {{#output.moodle_release}}
-                        {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
-                    {{/output.moodle_release}}
-                </div>
-            </div>
-
-            <div>
-                <p class="nhsuk-footer__copyright">{{{ output.copyright_notice }}}</p>
-            </div>
-
         </div>
+
     </div>
 </footer>
 {{#js}}
