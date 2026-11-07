@@ -18,13 +18,13 @@
   },
   "homepage": "https://github.com/NHSLeadership/moodle-nhse#readme",
   "dependencies": {
-    "nhsuk-frontend": "^9.0.0"
+    "nhsuk-frontend": "^9.6.4"
   },
   "scripts": {
     "build": "sass scss/nhse.scss:css/nhse.min.css --style compressed --verbose",
     "watch": "sass --watch scss/nhse.scss:css/nhse.min.css --style compressed"
   },
   "devDependencies": {
-    "sass": "^1.86.3"
+    "sass": "^1.108.1"
   }
 }
