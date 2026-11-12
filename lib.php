@@ -47,22 +47,12 @@ function theme_nhse_get_extra_scss($theme) {
  */
 function theme_nhse_get_main_scss_content($theme) {
     global $CFG;
-    $scss = '';
 
     /**
      * Load variable overload for bootstrap
      */
-    // Get pre CSS with variables
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/moodle/variables.scss') . "\n";
-
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/fontawesome.scss') . "\n";
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/bootstrap.scss') . "\n";
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/moodle.scss') . "\n";
-
     // Get main theme file and combine them together.
-    $scss .= file_get_contents($CFG->dirroot . '/theme/nhse/css/nhse.min.css') . "\n";
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhsuk.scss') . "\n";
-    //$scss .= file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhse.scss') . "\n";
+    $scss = file_get_contents($CFG->dirroot . '/theme/nhse/scss/nhse.scss') . "\n";
 
     return $scss;
 }

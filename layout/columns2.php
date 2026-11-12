@@ -29,8 +29,7 @@ require_once($CFG->libdir . '/behat/lib.php');
 // Add block button in editing mode.
 $addblockbutton = $OUTPUT->addblockbutton();
 
-$extraclasses = [];
-$bodyattributes = $OUTPUT->body_attributes($extraclasses);
+$bodyattributes = $OUTPUT->body_attributes(['nhsuk-frontend-supported']);
 $blockshtml = $OUTPUT->blocks('side-pre');
 $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbutton));
 
@@ -57,11 +56,19 @@ $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
 $templatecontext = [
+    'bodyattributes' => $bodyattributes,
+    'favicons' => [
+        'mask' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-mask.svg'),
+        'svg' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/favicon.svg'),
+        'apple-180' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-180.png'),
+        'apple-192' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-192.png'),
+        'apple-512' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/nhsuk-icon-512.png'),
+    ],
+    'manifest_url' => new moodle_url($CFG->wwwroot . '/theme/nhse/pix/manifest.json'),
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
     'output' => $OUTPUT,
     'sidepreblocks' => $blockshtml,
     'hasblocks' => $hasblocks,
-    'bodyattributes' => $bodyattributes,
     'primarymoremenu' => $primarymenu['moremenu'],
     'secondarymoremenu' => $secondarynavigation ?: false,
     'mobileprimarynav' => $primarymenu['mobileprimarynav'],
@@ -75,6 +82,6 @@ $templatecontext = [
 ];
 
 // Include NHSUK Frontend js file
-$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/node_modules/nhsuk-frontend/dist/nhsuk.min.js'));
+$PAGE->requires->js(new moodle_url($CFG->wwwroot . '/theme/nhse/javascript/nhse.min.js'), true);
 
 echo $OUTPUT->render_from_template('theme_nhse/columns2', $templatecontext);

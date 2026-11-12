@@ -58,7 +58,7 @@
                         <a class="nhsuk-header__navigation-link dropdown-item" role="menuitem" href="{{{url}}}{{{action}}}" {{#isactive}}aria-current="true"{{/isactive}} data-disableactive="true" tabindex="-1"
                            {{#title}}title="{{.}}"{{/title}}
                         >
-                            {{{text}}}
+                        {{{text}}}
                         </a>
                     {{/is_action_link}}
                 {{/divider}}
@@ -70,13 +70,13 @@
     </li>
 {{/haschildren}}
 {{^haschildren}}
-    <li data-key="{{key}}" class="nhsuk-header__navigation-item nav-item" role="none" data-forceintomoremenu="{{#forceintomoremenu}}true{{/forceintomoremenu}}{{^forceintomoremenu}}false{{/forceintomoremenu}}">
+    <li class="nhsuk-header__navigation-item nav-item" data-key="{{key}}" role="none" data-forceintomoremenu="{{#forceintomoremenu}}true{{/forceintomoremenu}}{{^forceintomoremenu}}false{{/forceintomoremenu}}">
         {{#istablist}}
             {{#is_action_link}}
-                <a role="tab" class="nhsuk-header__navigation-link nav-link {{#classes}}{{.}} {{/classes}}" href="{{tab}}" data-toggle="tab" data-text="{{{text}}}" data-disableactive="true" tabindex="-1"
+                <a role="tab" class="nhsuk-header__navigation-link nav-link {{#classes}}{{.}} {{/classes}}" href="{{tab}}" data-bs-toggle="tab" data-text="{{{text}}}" data-disableactive="true" tabindex="-1"
                    {{#title}}title="{{.}}"{{/title}}
                 >
-                    {{{text}}}
+                {{{text}}}
                 </a>
                 {{#action_link_actions}}
                     {{> core/actions }}
@@ -84,7 +84,7 @@
             {{/is_action_link}}
             {{^is_action_link}}
                 <a role="tab" class="nhsuk-header__navigation-link nav-link {{#isactive}}active{{/isactive}} {{#classes}}{{.}} {{/classes}}"
-                   href="{{tab}}" data-toggle="tab" data-text="{{{text}}}"
+                   href="{{tab}}" data-bs-toggle="tab" data-text="{{{text}}}"
                    {{#title}}title="{{.}}"{{/title}}
                     {{#isactive}}aria-selected="true"{{/isactive}}
                    data-disableactive="true"

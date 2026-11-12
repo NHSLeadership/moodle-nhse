@@ -32,51 +32,47 @@
         ]
     }
 }}
-<div class="simplesearchform" id="searchinput-navbar-{{uniqid}}">
-    <div class="collapse nhsuk-header__search-wrap" id="searchform-navbar">
-        <form class="nhsuk-header__search-form searchform-navbar "
-              autocomplete="off" action="{{{ action }}}" method="get" accept-charset="utf-8" rolw="search">
-            <div class="input-group">
-                <label for="searchinput-{{uniqid}}" class="nhsuk-label nhsuk-u-visually-hidden">
-                    <span class="sr-only">{{{ searchstring }}}</span>
-                </label>
-                {{#hiddenfields}}
-                    <input type="hidden" name="{{ name }}" value="{{ value }}">
-                {{/hiddenfields}}
-
+<div id="searchinput-navbar-{{uniqid}}" class="simplesearchform">
+    <div class="collapse" id="searchform-navbar">
+        <form autocomplete="off" action="{{{ action }}}" method="get" accept-charset="utf-8" class="mform d-flex flex-wrap align-items-center searchform-navbar">
+            {{#hiddenfields}}
+                <input type="hidden" name="{{ name }}" value="{{ value }}">
+            {{/hiddenfields}}
+            <div class="input-group" {{#grouplabel}}role="group" aria-labelledby="searchgrouplabel-{{uniqid}}"{{/grouplabel}}>
+                {{#grouplabel}}
+                    <span id="searchgrouplabel-{{uniqid}}" class="visually-hidden">{{{ . }}}</span>
+                {{/grouplabel}}
                 <input type="text"
-                       class="nhsuk-search__input"
                        id="searchinput-{{uniqid}}"
+                       class="form-control withclear nhsuk-input"
                        placeholder="{{{ searchstring }}}"
                        aria-label="{{{ searchstring }}}"
                        name="{{{ inputname }}}"
                        data-region="input"
                        autocomplete="off"
                 >
-
-                <button type="submit" class="nhsuk-search__submit" data-action="submit">
-                    <svg class="nhsuk-icon nhsuk-icon__search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d="M19.71 18.29l-4.11-4.1a7 7 0 1 0-1.41 1.41l4.1 4.11a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 10a5 5 0 1 1 5 5 5 5 0 0 1-5-5z"></path>
-                    </svg>
-                    <span class="nhsuk-u-visually-hidden">{{{ searchstring }}}</span>
-                </button>
-
+                <label for="searchinput-{{uniqid}}">
+                    <span class="visually-hidden">{{{ searchstring }}}</span>
+                </label>
                 <a class="btn btn-close"
                    data-action="closesearch"
-                   data-toggle="collapse"
+                   data-bs-toggle="collapse"
                    href="#searchform-navbar"
                    role="button"
+                   title="{{#str}} closebuttontitle {{/str}}"
                 >
-                    {{#pix}} e/cancel, core {{/pix}}
-                    <span class="sr-only">{{#str}} closebuttontitle {{/str}}</span>
+                    <span class="visually-hidden">{{#str}} closebuttontitle {{/str}}</span>
                 </a>
+                <button type="submit" class="btn btn-submit" data-action="submit" title="{{#str}}performsearch, search{{/str}}">
+                    {{#pix}} a/search, core {{/pix}}
+                    <span class="visually-hidden">{{#str}}performsearch, search{{/str}}</span>
+                </button>
             </div>
         </form>
     </div>
-
     <a
-            class="btn btn-open rounded-0 nav-link"
-            data-toggle="collapse"
+            class="rounded-0 nav-link icon-no-margin"
+            data-bs-toggle="collapse"
             data-action="opensearch"
             href="#searchform-navbar"
             role="button"
@@ -85,7 +81,7 @@
             title="{{#str}} togglesearch {{/str}}"
     >
         {{#pix}} a/search, core {{/pix}}
-        <span class="sr-only">{{#str}} togglesearch {{/str}}</span>
+        <span class="visually-hidden">{{#str}} togglesearch {{/str}}</span>
     </a>
 </div>
 
@@ -97,25 +93,27 @@
     function(
     $
     ) {
-    var uniqid = "{{uniqid}}";
-    var container = $('#searchinput-navbar-' + uniqid);
-    var opensearch = container.find('[data-action="opensearch"]');
-    var input = container.find('[data-region="input"]');
-    var submit = container.find('[data-action="submit"]');
+    const container = document.getElementById('searchform-navbar');
+    const opensearch = container.parentElement.querySelector('[data-action="opensearch"]');
+    const input = container.querySelector('[data-region="input"]');
+    const submit = container.querySelector('[data-action="submit"]');
 
-    submit.on('click', function(e) {
-    if (input.val() === '') {
+    submit.addEventListener('click', (e) => {
+    if (input.valUE === '') {
     e.preventDefault();
     }
     });
-    container.on('hidden.bs.collapse', function() {
-    opensearch.removeClass('d-none');
-    input.val('');
+
+    container.addEventListener('hidden.bs.collapse', () => {
+    opensearch.classList.remove('d-none');
+    input.value = '';
     });
-    container.on('show.bs.collapse', function() {
-    opensearch.addClass('d-none');
+
+    container.addEventListener('show.bs.collapse', () => {
+    opensearch.classList.add('d-none');
     });
-    container.on('shown.bs.collapse', function() {
+
+    container.addEventListener('shown.bs.collapse', () => {
     input.focus();
     });
     });
